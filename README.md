@@ -3,7 +3,7 @@
 
 ## TODO List
     UI
-        Login View Controller (Authentication) ❌
+        Login View Controller (Authentication) ✅
         Home View Controller ❌
         History View Controller ❌
         Favorite Food List View Controller ❌
@@ -14,4 +14,5 @@
     Backend
         Spoonacular API (https://spoonacular.com/food-api/) ❌
         Alamofire Library ❌
-        Firebase Library ❌
+        Firebase Library ✅
+        Core Data ❌

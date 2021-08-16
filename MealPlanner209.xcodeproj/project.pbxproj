@@ -10,8 +10,15 @@
 		35EB25DFB7B500A1B7D7BFD2 /* Pods_MealPlanner209_MealPlanner209UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C15B548FCBC4D5FDE9EC0B0 /* Pods_MealPlanner209_MealPlanner209UITests.framework */; };
 		A9C5C6CC63C344A8EB642A04 /* Pods_MealPlanner209.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEBFA23DB6665172C3DC9B23 /* Pods_MealPlanner209.framework */; };
 		BE5670CCA54B2A373B0E4D16 /* Pods_MealPlanner209Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5B803E0CB3DF9C6BD427F3E /* Pods_MealPlanner209Tests.framework */; };
+		EB4E347A26C8ECD70093CDC4 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4E347926C8ECD70093CDC4 /* SettingsCell.swift */; };
+		EB4E347D26C8EDA40093CDC4 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EB4E347B26C8EDA40093CDC4 /* DataModel.xcdatamodeld */; };
+		EB4E347F26C8F5D40093CDC4 /* CustomLinearProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4E347E26C8F5D40093CDC4 /* CustomLinearProgressBar.swift */; };
+		EB4E348126C90DD00093CDC4 /* CustomCircleProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4E348026C90DD00093CDC4 /* CustomCircleProgressBar.swift */; };
+		EB6DC32426C2567F00764CDD /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6DC32326C2567F00764CDD /* CustomTextField.swift */; };
 		EB83C50726BE6605007A82F6 /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB83C50626BE6605007A82F6 /* AuthModel.swift */; };
 		EB83C50926BE89FD007A82F6 /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB83C50826BE89FD007A82F6 /* TabbarController.swift */; };
+		EB990F0126C3982A008E671F /* ImageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB990F0026C3982A008E671F /* ImageHandler.swift */; };
+		EBA78C3326C3F8FD0066DF7C /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA78C3226C3F8FD0066DF7C /* TextFieldDelegate.swift */; };
 		EBB2ECEA26BCF8B900176847 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2ECE926BCF8B900176847 /* AppDelegate.swift */; };
 		EBB2ECEC26BCF8B900176847 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2ECEB26BCF8B900176847 /* SceneDelegate.swift */; };
 		EBB2ECEE26BCF8B900176847 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2ECED26BCF8B900176847 /* LoginViewController.swift */; };
@@ -57,8 +64,15 @@
 		B71480CAE073C278807802F1 /* Pods-MealPlanner209Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealPlanner209Tests.release.xcconfig"; path = "Target Support Files/Pods-MealPlanner209Tests/Pods-MealPlanner209Tests.release.xcconfig"; sourceTree = "<group>"; };
 		D5B803E0CB3DF9C6BD427F3E /* Pods_MealPlanner209Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MealPlanner209Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6035873311B356F75469409 /* Pods-MealPlanner209-MealPlanner209UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealPlanner209-MealPlanner209UITests.debug.xcconfig"; path = "Target Support Files/Pods-MealPlanner209-MealPlanner209UITests/Pods-MealPlanner209-MealPlanner209UITests.debug.xcconfig"; sourceTree = "<group>"; };
+		EB4E347926C8ECD70093CDC4 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		EB4E347C26C8EDA40093CDC4 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		EB4E347E26C8F5D40093CDC4 /* CustomLinearProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLinearProgressBar.swift; sourceTree = "<group>"; };
+		EB4E348026C90DD00093CDC4 /* CustomCircleProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCircleProgressBar.swift; sourceTree = "<group>"; };
+		EB6DC32326C2567F00764CDD /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		EB83C50626BE6605007A82F6 /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
 		EB83C50826BE89FD007A82F6 /* TabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
+		EB990F0026C3982A008E671F /* ImageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHandler.swift; sourceTree = "<group>"; };
+		EBA78C3226C3F8FD0066DF7C /* TextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
 		EBB2ECE626BCF8B900176847 /* MealPlanner209.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MealPlanner209.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBB2ECE926BCF8B900176847 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EBB2ECEB26BCF8B900176847 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -136,6 +150,25 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		EB6DC32226C2566D00764CDD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EB6DC32326C2567F00764CDD /* CustomTextField.swift */,
+				EB4E347926C8ECD70093CDC4 /* SettingsCell.swift */,
+				EB4E347E26C8F5D40093CDC4 /* CustomLinearProgressBar.swift */,
+				EB4E348026C90DD00093CDC4 /* CustomCircleProgressBar.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EBA78C3126C3F8E90066DF7C /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				EBA78C3226C3F8FD0066DF7C /* TextFieldDelegate.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
 		EBB2ECDD26BCF8B900176847 = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +198,8 @@
 				EBB2ECE926BCF8B900176847 /* AppDelegate.swift */,
 				EBB2ECEB26BCF8B900176847 /* SceneDelegate.swift */,
 				EBB2ECF726BCF8BB00176847 /* Info.plist */,
+				EBA78C3126C3F8E90066DF7C /* Delegate */,
+				EB6DC32226C2566D00764CDD /* View */,
 				EBB2ED1D26BCF8EE00176847 /* Assets */,
 				EBB2ED1C26BCF8E600176847 /* Storyboards */,
 				EBB2ED1B26BCF8DA00176847 /* DataModel */,
@@ -197,6 +232,7 @@
 			children = (
 				EBB2ED1E26BCF92B00176847 /* NetworkModel.swift */,
 				EB83C50626BE6605007A82F6 /* AuthModel.swift */,
+				EB990F0026C3982A008E671F /* ImageHandler.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -220,6 +256,7 @@
 		EBB2ED1B26BCF8DA00176847 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				EB4E347B26C8EDA40093CDC4 /* DataModel.xcdatamodeld */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -516,17 +553,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB4E347A26C8ECD70093CDC4 /* SettingsCell.swift in Sources */,
+				EB6DC32426C2567F00764CDD /* CustomTextField.swift in Sources */,
 				EBB2ED2F26BD29E700176847 /* SignUpViewController.swift in Sources */,
+				EB4E348126C90DD00093CDC4 /* CustomCircleProgressBar.swift in Sources */,
 				EBB2ED2326BD220C00176847 /* HomeViewController.swift in Sources */,
 				EBB2ED2726BD225400176847 /* SearchViewController.swift in Sources */,
 				EBB2ED1F26BCF92B00176847 /* NetworkModel.swift in Sources */,
 				EBB2ED2526BD223A00176847 /* FavoriteListViewController.swift in Sources */,
+				EBA78C3326C3F8FD0066DF7C /* TextFieldDelegate.swift in Sources */,
 				EB83C50726BE6605007A82F6 /* AuthModel.swift in Sources */,
 				EBB2ED2D26BD22A100176847 /* RecipeViewController.swift in Sources */,
 				EB83C50926BE89FD007A82F6 /* TabbarController.swift in Sources */,
 				EBB2ECEE26BCF8B900176847 /* LoginViewController.swift in Sources */,
+				EB4E347F26C8F5D40093CDC4 /* CustomLinearProgressBar.swift in Sources */,
+				EB990F0126C3982A008E671F /* ImageHandler.swift in Sources */,
 				EBB2ECEA26BCF8B900176847 /* AppDelegate.swift in Sources */,
 				EBB2ED2B26BD228D00176847 /* HistoryViewController.swift in Sources */,
+				EB4E347D26C8EDA40093CDC4 /* DataModel.xcdatamodeld in Sources */,
 				EBB2ECEC26BCF8B900176847 /* SceneDelegate.swift in Sources */,
 				EBB2ED2926BD227A00176847 /* SettingsViewController.swift in Sources */,
 			);
@@ -867,6 +911,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		EB4E347B26C8EDA40093CDC4 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				EB4E347C26C8EDA40093CDC4 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = EB4E347C26C8EDA40093CDC4 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = EBB2ECDE26BCF8B900176847 /* Project object */;
 }

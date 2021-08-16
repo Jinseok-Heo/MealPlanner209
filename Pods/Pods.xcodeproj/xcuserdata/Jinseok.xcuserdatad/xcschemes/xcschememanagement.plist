@@ -317,35 +317,35 @@
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>51</integer>
+			<integer>52</integer>
 		</dict>
 		<key>Pods-MealPlanner209.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>50</integer>
+			<integer>51</integer>
 		</dict>
 		<key>Pods-MealPlanner209Tests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>52</integer>
+			<integer>53</integer>
 		</dict>
 		<key>PromisesObjC.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>53</integer>
+			<integer>54</integer>
 		</dict>
 		<key>SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>54</integer>
+			<integer>55</integer>
 		</dict>
 		<key>abseil.xcscheme</key>
 		<dict>
@@ -388,6 +388,13 @@
 			<false/>
 			<key>orderHint</key>
 			<integer>49</integer>
+		</dict>
+		<key>naveridlogin-sdk-ios.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>50</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>

@@ -7,18 +7,14 @@
 
 import UIKit
 import FirebaseAuth
+import NaverThirdPartyLogin
 
 class TabbarController: UITabBarController {
     
     @IBOutlet weak var signOutButton: UIBarButtonItem!
     
-    @IBAction func signOutButtonTapped(_ sender: Any) {
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-            self.navigationController?.popViewController(animated: true)
-        } catch let signOutError as NSError {
-            print("Error signing out: %@", signOutError)
-        }
+    override func viewDidLoad() {
+        self.navigationItem.setHidesBackButton(true, animated: true)
     }
+    
 }

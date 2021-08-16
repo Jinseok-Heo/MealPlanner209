@@ -6,6 +6,7 @@ target 'MealPlanner209' do
   use_frameworks!
   # Pods for MealPlanner209
 pod 'Alamofire', '~> 5.4'
+pod 'naveridlogin-sdk-ios'
 pod 'Firebase/Storage'
 pod 'Firebase/Auth'
 pod 'GoogleSignIn'

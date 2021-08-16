@@ -23,15 +23,30 @@
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="49.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vge-G5-wae">
-                                                <rect key="frame" x="0.0" y="0.0" width="82.5" height="49.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="84" height="49.5"/>
+                                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m4I-NF-pJN">
-                                                <rect key="frame" x="82.5" y="0.0" width="291.5" height="49.5"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m4I-NF-pJN" customClass="DesignableUITextField" customModule="MealPlanner209" customModuleProvider="target">
+                                                <rect key="frame" x="84" y="0.0" width="290" height="49.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="email"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="24"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="mail-inbox-app"/>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.0045606461939999999" green="0.29425788650000001" blue="0.080881043540000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -39,18 +54,33 @@
                                         <rect key="frame" x="0.0" y="59.5" width="374" height="49"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P74-x7-mbQ">
-                                                <rect key="frame" x="0.0" y="0.0" width="82.5" height="49"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="84" height="49"/>
+                                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M63-cR-XSE">
-                                                <rect key="frame" x="82.5" y="0.0" width="291.5" height="49"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M63-cR-XSE" customClass="DesignableUITextField" customModule="MealPlanner209" customModuleProvider="target">
+                                                <rect key="frame" x="84" y="0.0" width="290" height="49"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="290" id="Mjk-Ny-p4e"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="24"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.0045606461939999999" green="0.29425788650000001" blue="0.080881043540000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="padlock"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -84,6 +114,11 @@
                                         <state key="normal" title="    Login with Facebook" image="facebookLogo">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="22"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="facebookButtonTapped:" destination="t2N-B8-aM9" eventType="touchUpInside" id="fwL-B9-D8t"/>
                                         </connections>
@@ -96,6 +131,11 @@
                                         <state key="normal" title="     Login with Google" image="googleLogo">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="22"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="googleButtonTapped:" destination="t2N-B8-aM9" eventType="touchUpInside" id="fiI-Yt-8we"/>
                                         </connections>
@@ -107,6 +147,11 @@
                                         <state key="normal" title="     Login with Naver    " image="naverLogo">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="22"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="naverButtonTapped:" destination="t2N-B8-aM9" eventType="touchUpInside" id="mKM-qq-TxB"/>
                                         </connections>
@@ -160,7 +205,7 @@
                         <viewLayoutGuide key="safeArea" id="Rvq-O3-WiI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="FavoriteList" image="star.fill" catalog="system" id="7sN-Nb-mYq"/>
+                    <tabBarItem key="tabBarItem" title="" image="star" id="7sN-Nb-mYq"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fbM-KR-BM2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -188,33 +233,158 @@
                     <view key="view" contentMode="scaleToFill" id="w4v-ZD-nMu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E30-CG-ZdV" customClass="LinearProgressBar" customModule="MealPlanner209" customModuleProvider="target">
+                                <rect key="frame" x="110" y="153" width="265" height="41"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                        <color key="value" red="1" green="0.70386443309602531" blue="0.96138156638510519" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="progress">
+                                        <real key="value" value="0.20000000000000001"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4hh-1o-GUS">
+                                <rect key="frame" x="29" y="163.5" width="62" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="sD8-Fb-nsb">
+                                <rect key="frame" x="20" y="244" width="374" height="118"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4EE-8O-h0Y" customClass="CircleProgressBar" customModule="MealPlanner209" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="118" height="118"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="progress">
+                                                <real key="value" value="0.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="ringWidth">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="Carbs"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                <color key="value" red="1" green="0.70386443310000002" blue="0.96138156640000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fl4-PN-zVN" customClass="CircleProgressBar" customModule="MealPlanner209" customModuleProvider="target">
+                                        <rect key="frame" x="128" y="0.0" width="118" height="118"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="progress">
+                                                <real key="value" value="0.80000000000000004"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="ringWidth">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="Proteins"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                <color key="value" red="1" green="0.70386443310000002" blue="0.96138156640000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wpA-MU-OQf" customClass="CircleProgressBar" customModule="MealPlanner209" customModuleProvider="target">
+                                        <rect key="frame" x="256" y="0.0" width="118" height="118"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="progress">
+                                                <real key="value" value="0.40000000000000002"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="ringWidth">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="Fats"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                <color key="value" red="1" green="0.70386443310000002" blue="0.96138156640000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="118" id="zJg-tf-1PM"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Zzv-xA-vLy">
+                                <rect key="frame" x="20" y="370" width="374" height="20.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carbs" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y7J-sS-dpL">
+                                        <rect key="frame" x="0.0" y="0.0" width="118" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Proteins" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="na5-wW-xIy">
+                                        <rect key="frame" x="128" y="0.0" width="118" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fats" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jmi-Hs-SmI">
+                                        <rect key="frame" x="256" y="0.0" width="118" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dZk-ke-BXT">
+                                <rect key="frame" x="198" y="462" width="18" height="22"/>
+                                <state key="normal" image="plus" catalog="system"/>
+                                <connections>
+                                    <action selector="addButtonTapped:" destination="Ol5-b4-LkK" eventType="touchUpInside" id="wYU-Zp-A99"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="fWf-sA-ejX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="4hh-1o-GUS" firstAttribute="centerY" secondItem="E30-CG-ZdV" secondAttribute="centerY" id="1eQ-gP-glk"/>
+                            <constraint firstItem="fWf-sA-ejX" firstAttribute="trailing" secondItem="sD8-Fb-nsb" secondAttribute="trailing" constant="20" id="2xK-Jz-e46"/>
+                            <constraint firstItem="sD8-Fb-nsb" firstAttribute="leading" secondItem="fWf-sA-ejX" secondAttribute="leading" constant="20" id="EaY-qn-46G"/>
+                            <constraint firstItem="fWf-sA-ejX" firstAttribute="trailing" secondItem="E30-CG-ZdV" secondAttribute="trailing" constant="39" id="F8n-cD-aHk"/>
+                            <constraint firstItem="E30-CG-ZdV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4hh-1o-GUS" secondAttribute="trailing" constant="8" symbolic="YES" id="G97-HL-7L0"/>
+                            <constraint firstItem="4hh-1o-GUS" firstAttribute="leading" secondItem="fWf-sA-ejX" secondAttribute="leading" constant="29" id="LBz-Ca-UDH"/>
+                            <constraint firstItem="Zzv-xA-vLy" firstAttribute="top" secondItem="sD8-Fb-nsb" secondAttribute="bottom" constant="8" symbolic="YES" id="OaU-Mu-r4G"/>
+                            <constraint firstItem="E30-CG-ZdV" firstAttribute="top" secondItem="fWf-sA-ejX" secondAttribute="top" constant="65" id="V6s-lm-pE2"/>
+                            <constraint firstItem="dZk-ke-BXT" firstAttribute="top" secondItem="Zzv-xA-vLy" secondAttribute="bottom" constant="71.5" id="VXm-jj-yMh"/>
+                            <constraint firstItem="Zzv-xA-vLy" firstAttribute="leading" secondItem="sD8-Fb-nsb" secondAttribute="leading" id="amd-ef-vba"/>
+                            <constraint firstItem="E30-CG-ZdV" firstAttribute="leading" secondItem="fWf-sA-ejX" secondAttribute="leading" constant="110" id="cOO-iR-Lr0"/>
+                            <constraint firstItem="sD8-Fb-nsb" firstAttribute="top" secondItem="E30-CG-ZdV" secondAttribute="bottom" constant="50" id="eRZ-zl-JP4"/>
+                            <constraint firstItem="dZk-ke-BXT" firstAttribute="centerX" secondItem="Zzv-xA-vLy" secondAttribute="centerX" id="ooY-WG-H1w"/>
+                            <constraint firstItem="fWf-sA-ejX" firstAttribute="bottom" secondItem="E30-CG-ZdV" secondAttribute="bottom" constant="619" id="qcC-hV-Ej1"/>
+                            <constraint firstItem="Zzv-xA-vLy" firstAttribute="centerX" secondItem="sD8-Fb-nsb" secondAttribute="centerX" id="rud-d1-Ysh"/>
+                            <constraint firstItem="Zzv-xA-vLy" firstAttribute="trailing" secondItem="sD8-Fb-nsb" secondAttribute="trailing" id="zPb-Kb-oxy"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" image="homekit" catalog="system" id="bnr-Wd-fTl"/>
+                    <tabBarItem key="tabBarItem" title="" image="house" id="bnr-Wd-fTl"/>
+                    <connections>
+                        <outlet property="caloriesBar" destination="E30-CG-ZdV" id="A6g-Ci-ZbL"/>
+                        <outlet property="carbsBar" destination="4EE-8O-h0Y" id="ua3-ec-FtG"/>
+                        <outlet property="defaultAddButton" destination="dZk-ke-BXT" id="eFq-OH-UDL"/>
+                        <outlet property="fatsBar" destination="wpA-MU-OQf" id="Sqf-5o-wLx"/>
+                        <outlet property="homeBarButton" destination="bnr-Wd-fTl" id="M3q-bY-arC"/>
+                        <outlet property="proteinsBar" destination="fl4-PN-zVN" id="oSY-ym-nR2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JbP-PH-JS0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2214" y="-407"/>
+            <point key="canvasLocation" x="2213.04347826087" y="-407.14285714285711"/>
         </scene>
         <!--Tabbar Controller-->
         <scene sceneID="Ejs-Q7-BAt">
             <objects>
-                <tabBarController id="iVV-xx-Gbh" customClass="TabbarController" customModule="MealPlanner209" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="9Pd-SZ-frI">
-                        <barButtonItem key="rightBarButtonItem" title="Sign Out" id="a9r-dB-xvq">
-                            <connections>
-                                <action selector="signOutButtonTapped:" destination="iVV-xx-Gbh" id="Yy4-Iz-y3c"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                <tabBarController storyboardIdentifier="TabbarController" id="iVV-xx-Gbh" customClass="TabbarController" customModule="MealPlanner209" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="9Pd-SZ-frI"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XsU-is-Gpf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <outlet property="signOutButton" destination="a9r-dB-xvq" id="b82-Qt-zo0"/>
                         <segue destination="Ol5-b4-LkK" kind="relationship" relationship="viewControllers" id="0lK-2k-u0u"/>
                         <segue destination="hOd-vz-aR7" kind="relationship" relationship="viewControllers" id="tep-Xw-1iO"/>
                         <segue destination="eGE-hM-0cn" kind="relationship" relationship="viewControllers" id="RNI-nE-E8K"/>
@@ -232,14 +402,270 @@
                     <view key="view" contentMode="scaleToFill" id="lr8-h3-dVy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wdM-ct-KOM">
+                                <rect key="frame" x="121" y="168" width="172" height="51"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="45"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="aTQ-Cf-K8x">
+                                <rect key="frame" x="20" y="319" width="374" height="354"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxi-Ct-5L1">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="hcx-LR-L74"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YVM-Bw-8NH" customClass="DesignableUITextField" customModule="MealPlanner209" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="35" width="374" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="34" id="WvN-9F-aGO"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" textContentType="email"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.0045606461939999999" green="0.29425788650000001" blue="0.080881043540000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                <real key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Cut-fD-JtO">
+                                        <rect key="frame" x="0.0" y="74" width="374" height="225"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="4Ua-hO-GDT">
+                                                <rect key="frame" x="0.0" y="0.0" width="182" height="225"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sMV-yq-HuY">
+                                                        <rect key="frame" x="0.0" y="0.0" width="182" height="40"/>
+                                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="20"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q0s-Hl-sF1" customClass="DesignableUITextField" customModule="MealPlanner209" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="45" width="182" height="34"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="34" id="lzW-uc-OOl"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="15"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" red="0.0045606461939999999" green="0.29425788650000001" blue="0.080881043540000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1.5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                                <real key="value" value="15"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textField>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aqj-4q-3zC">
+                                                        <rect key="frame" x="0.0" y="84" width="182" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="30" id="c8Q-GV-tiA"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PDW-s7-ej2">
+                                                        <rect key="frame" x="0.0" y="119" width="182" height="22"/>
+                                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="20"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tLj-ao-sWa" customClass="DesignableUITextField" customModule="MealPlanner209" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="146" width="182" height="34"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="34" id="x2x-tA-4dP"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" textContentType="name"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="15"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" red="0.0045606461939999999" green="0.29425788650000001" blue="0.080881043540000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1.5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                                <real key="value" value="15"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textField>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2eY-97-2Y0">
+                                                        <rect key="frame" x="0.0" y="185" width="182" height="40"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="hGk-Lu-CQm"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="GSi-xQ-qfA">
+                                                <rect key="frame" x="192" y="0.0" width="182" height="225"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verify Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wbP-mA-d4c">
+                                                        <rect key="frame" x="0.0" y="0.0" width="182" height="40"/>
+                                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="20"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rWX-Uh-mUR" customClass="DesignableUITextField" customModule="MealPlanner209" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="45" width="182" height="34"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="34" id="nAR-b1-wdL"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="15"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" red="0.0045606461939999999" green="0.29425788650000001" blue="0.080881043540000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1.5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                                <real key="value" value="15"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textField>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invalid password                      Try again" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g77-OV-gof">
+                                                        <rect key="frame" x="0.0" y="84" width="182" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="30" id="xmF-eV-Bxx"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="User ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jwe-c0-qkJ">
+                                                        <rect key="frame" x="0.0" y="119" width="182" height="22"/>
+                                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="20"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="User ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hpT-dW-o8C" customClass="DesignableUITextField" customModule="MealPlanner209" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="146" width="182" height="34"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="34" id="bch-bs-tLG"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="15"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" red="0.0045606461939999999" green="0.29425788650000001" blue="0.080881043540000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1.5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                                <real key="value" value="15"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textField>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already exist!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SYd-7z-uDv">
+                                                        <rect key="frame" x="0.0" y="185" width="182" height="40"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="JJU-Dr-G6X"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7tC-3U-gjN">
+                                        <rect key="frame" x="0.0" y="304" width="374" height="50"/>
+                                        <color key="backgroundColor" red="0.78214484672818529" green="1" blue="0.4819246258320351" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="qZc-Fb-YYF"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="30"/>
+                                        <state key="normal" title="Sign up">
+                                            <color key="titleColor" systemColor="systemTealColor"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="signUpButtonTapped:" destination="Zf6-KR-eq2" eventType="touchUpInside" id="l7o-yW-C4C"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="374" id="tKE-zm-Lox"/>
+                                </constraints>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your account here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cEj-0F-0nl">
+                                <rect key="frame" x="80" y="221" width="254" height="22"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="20"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="58N-Hh-c6H"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="58N-Hh-c6H" firstAttribute="bottom" secondItem="aTQ-Cf-K8x" secondAttribute="bottom" constant="189" id="Dhj-8i-Xs5"/>
+                            <constraint firstItem="cEj-0F-0nl" firstAttribute="bottom" secondItem="wdM-ct-KOM" secondAttribute="bottom" constant="24" id="GpX-FL-anC"/>
+                            <constraint firstItem="aTQ-Cf-K8x" firstAttribute="top" secondItem="wdM-ct-KOM" secondAttribute="bottom" constant="100" id="KHv-GC-z57"/>
+                            <constraint firstItem="wdM-ct-KOM" firstAttribute="centerX" secondItem="58N-Hh-c6H" secondAttribute="centerX" id="Lb7-AE-jsS"/>
+                            <constraint firstItem="wdM-ct-KOM" firstAttribute="top" secondItem="58N-Hh-c6H" secondAttribute="top" constant="80" id="YLn-uh-xKA"/>
+                            <constraint firstItem="58N-Hh-c6H" firstAttribute="bottom" secondItem="wdM-ct-KOM" secondAttribute="bottom" constant="643" id="mDf-Dz-Vka"/>
+                            <constraint firstItem="cEj-0F-0nl" firstAttribute="centerX" secondItem="wdM-ct-KOM" secondAttribute="centerX" id="p9u-6E-NSj"/>
+                            <constraint firstItem="aTQ-Cf-K8x" firstAttribute="centerX" secondItem="wdM-ct-KOM" secondAttribute="centerX" id="rbB-FI-DmI"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="fmJ-WY-5mc"/>
+                    <connections>
+                        <outlet property="emailTextfield" destination="YVM-Bw-8NH" id="0sE-Qx-RI5"/>
+                        <outlet property="nameTextfield" destination="tLj-ao-sWa" id="Zgv-Ly-HtM"/>
+                        <outlet property="passwordMessageLabel" destination="g77-OV-gof" id="JO2-yL-9Nz"/>
+                        <outlet property="passwordTextfield" destination="q0s-Hl-sF1" id="RmK-bU-IVW"/>
+                        <outlet property="signUpButton" destination="7tC-3U-gjN" id="ldh-Kk-LbJ"/>
+                        <outlet property="userIDMessageLabel" destination="SYd-7z-uDv" id="BNL-L3-Ojp"/>
+                        <outlet property="userIDTextfield" destination="hpT-dW-o8C" id="G8P-5J-ou4"/>
+                        <outlet property="verifyPasswordTextfield" destination="rWX-Uh-mUR" id="drf-hq-CR6"/>
+                        <segue destination="iVV-xx-Gbh" kind="show" identifier="SignUpComplete" id="pyq-ye-iwp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yug-f3-xO1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="442" y="743"/>
+            <point key="canvasLocation" x="440.57971014492756" y="742.63392857142856"/>
         </scene>
         <!--SearchVC-->
         <scene sceneID="VuE-Xe-ToN">
@@ -251,7 +677,7 @@
                         <viewLayoutGuide key="safeArea" id="XTI-DT-9X7"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass" catalog="system" id="Rwx-xo-5QR"/>
+                    <tabBarItem key="tabBarItem" title="" image="search" id="Rwx-xo-5QR"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f3l-OW-bYL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -264,10 +690,49 @@
                     <view key="view" contentMode="scaleToFill" id="ibz-J0-s9N">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7gR-vQ-toH">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingCell" id="fhN-PW-ht2" customClass="SettingsCell" customModule="MealPlanner209" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="43"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fhN-PW-ht2" id="I4k-Dl-fsa" customClass="SettingsCell" customModule="MealPlanner209" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipi-CR-Noh">
+                                                    <rect key="frame" x="20" y="11" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ipi-CR-Noh" secondAttribute="trailing" constant="20" symbolic="YES" id="DV2-hx-zhd"/>
+                                                <constraint firstItem="ipi-CR-Noh" firstAttribute="centerY" secondItem="I4k-Dl-fsa" secondAttribute="centerY" id="HlU-6a-l4C"/>
+                                                <constraint firstItem="ipi-CR-Noh" firstAttribute="leading" secondItem="I4k-Dl-fsa" secondAttribute="leadingMargin" id="UW7-cR-F8N"/>
+                                                <constraint firstItem="ipi-CR-Noh" firstAttribute="top" secondItem="I4k-Dl-fsa" secondAttribute="topMargin" id="gjm-gn-rqK"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="cellTitle" destination="ipi-CR-Noh" id="I6c-4l-o91"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="dTU-Y4-11Y"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="dTU-Y4-11Y" firstAttribute="trailing" secondItem="7gR-vQ-toH" secondAttribute="trailing" id="Fg6-E1-TC9"/>
+                            <constraint firstItem="dTU-Y4-11Y" firstAttribute="bottom" secondItem="7gR-vQ-toH" secondAttribute="bottom" id="SA8-xs-qgI"/>
+                            <constraint firstItem="7gR-vQ-toH" firstAttribute="leading" secondItem="dTU-Y4-11Y" secondAttribute="leading" id="Th2-av-kpk"/>
+                            <constraint firstItem="7gR-vQ-toH" firstAttribute="top" secondItem="dTU-Y4-11Y" secondAttribute="top" id="roB-sY-GNm"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" image="gearshape.fill" catalog="system" id="gvr-la-58i"/>
+                    <tabBarItem key="tabBarItem" title="" image="settings" id="gvr-la-58i"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="spo-62-jhM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -305,16 +770,48 @@
             <point key="canvasLocation" x="-428" y="31"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="M63-cR-XSE">
+            <size key="intrinsicContentSize" width="125" height="24"/>
+        </designable>
+        <designable name="YVM-Bw-8NH">
+            <size key="intrinsicContentSize" width="105" height="18.5"/>
+        </designable>
+        <designable name="hpT-dW-o8C">
+            <size key="intrinsicContentSize" width="63" height="18.5"/>
+        </designable>
+        <designable name="m4I-NF-pJN">
+            <size key="intrinsicContentSize" width="162" height="25.5"/>
+        </designable>
+        <designable name="q0s-Hl-sF1">
+            <size key="intrinsicContentSize" width="77.5" height="17"/>
+        </designable>
+        <designable name="rWX-Uh-mUR">
+            <size key="intrinsicContentSize" width="77.5" height="17"/>
+        </designable>
+        <designable name="tLj-ao-sWa">
+            <size key="intrinsicContentSize" width="53" height="18.5"/>
+        </designable>
+    </designables>
+    <inferredMetricsTieBreakers>
+        <segue reference="pyq-ye-iwp"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="facebookLogo" width="43" height="43"/>
-        <image name="gearshape.fill" catalog="system" width="128" height="121"/>
         <image name="googleLogo" width="40" height="41"/>
-        <image name="homekit" catalog="system" width="128" height="106"/>
-        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="house" width="38" height="38"/>
+        <image name="mail-inbox-app" width="256" height="256"/>
         <image name="naverLogo" width="45" height="46"/>
-        <image name="star.fill" catalog="system" width="128" height="116"/>
+        <image name="padlock" width="256" height="256"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="search" width="38" height="38"/>
+        <image name="settings" width="38" height="38"/>
+        <image name="star" width="38" height="38"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
