@@ -15,7 +15,7 @@ import FBSDKCoreKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var user = User()
+    let dataController = DataController(modelName: "DataModel")
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -40,6 +40,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             didFinishLaunchingWithOptions: launchOptions
         )
         FirebaseApp.configure()
+        
+        // Core Data
+        dataController.load()
         return true
     }
 

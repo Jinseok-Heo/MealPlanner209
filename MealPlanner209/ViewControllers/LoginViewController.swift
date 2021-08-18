@@ -25,7 +25,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var naverButton: UIButton!
     
     let naverSignInInstance = NaverThirdPartyLoginConnection.getSharedInstance()
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,11 +36,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         emailTextfield.text = "hjs7747@naver.com"
         passwordTextfield.text = "hh44061312!"
         
-        if Auth.auth().currentUser !=  nil {
-            appDelegate.user.didSigninWith = .Default
+        if let user =  Auth.auth().currentUser {
+            User.didSigninWith = .Default
+            User.Auth.uid = user.uid
             performSegue(withIdentifier: "SignInComplete", sender: nil)
-        } else if naverSignInInstance?.accessToken != nil {
-            appDelegate.user.didSigninWith = .Naver
+        }
+        
+        if naverSignInInstance?.accessToken != nil {
+            User.didSigninWith = .Naver
+            User.Auth.uid = naverSignInInstance?.accessToken
             performSegue(withIdentifier: "SignInComplete", sender: nil)
         }
     }
@@ -49,7 +52,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBAction func signInButtonTapped(_ sender: Any) {
         Auth.auth().signIn(withEmail: emailTextfield.text ?? "", password: passwordTextfield.text ?? "") { (user, error) in
             if user != nil{
-                print("login success")
                 self.performSegue(withIdentifier: "SignInComplete", sender: nil)
             } else {
                 DispatchQueue.main.async {
@@ -69,12 +71,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func googleButtonTapped(_ sender: Any) {
-        signWithGoogleAuthentication()
+        googleLogin()
     }
     
     @IBAction func naverButtonTapped(_ sender: Any) {
         naverSignInInstance?.requestThirdPartyLogin()
-        
     }
     
 }
@@ -83,12 +84,10 @@ extension LoginViewController: NaverThirdPartyLoginConnectionDelegate {
     
     func oauth20ConnectionDidFinishRequestACTokenWithAuthCode() {
         print("Success login")
-        appDelegate.user.didSigninWith = .Naver
+        User.didSigninWith = .Naver
         performSegue(withIdentifier: "SignInComplete", sender: nil)
-        //getInfo()
     }
     
-    // referesh token
     func oauth20ConnectionDidFinishRequestACTokenWithRefreshToken() {
         print(naverSignInInstance?.accessToken ?? "Nil")
     }
@@ -105,33 +104,18 @@ extension LoginViewController: NaverThirdPartyLoginConnectionDelegate {
 
 extension LoginViewController {
     
-    func signWithGoogleAuthentication() {
+    func googleLogin() {
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
-
-        // Create Google Sign In configuration object.
         let config = GIDConfiguration(clientID: clientID)
 
-        // Start the sign in flow!
         GIDSignIn.sharedInstance.signIn(with: config, presenting: self) { [unowned self] user, error in
-
             if let error = error {
                 print(error.localizedDescription)
                 return
             }
-
             guard let authentication = user?.authentication, let idToken = authentication.idToken else { return }
-
             let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: authentication.accessToken)
-            
-            Auth.auth().signIn(with: credential) { (authResult, error) in
-                if let error = error {
-                    fatalError("Failed sign in with error: \(error.localizedDescription)")
-                } else {
-                    appDelegate.user.didSigninWith = .Google
-                    performSegue(withIdentifier: "SignInComplete", sender: nil)
-                }
-            }
-            
+            signInWithFirebase(sort: 1, credential: credential)
         }
     }
     
@@ -164,20 +148,55 @@ extension LoginViewController {
     
     func signInWithFacebookAuthentication() {
         guard let token = AccessToken.current else { return }
-        
         let credential = FacebookAuthProvider.credential(withAccessToken: token.tokenString)
-        Auth.auth().signIn(with: credential, completion: { (user, error) in
-            if let error = error {
-                fatalError("Failed sign in with error: \(error.localizedDescription)")
-            } else {
-                self.appDelegate.user.didSigninWith = .Facebook
-                self.performSegue(withIdentifier: "SignInComplete", sender: nil)
-            }
-        })
+        signInWithFirebase(sort: 3, credential: credential)
+    }
+    
+    private func signInWithFirebase(sort: Int, credential: AuthCredential) {
+        switch sort {
+        case 0:
+            User.didSigninWith = .Default
+        case 1:
+            User.didSigninWith = .Google
+        case 2:
+            User.didSigninWith = .Facebook
+        case 3:
+            User.didSigninWith = .Naver
+        default:
+            fatalError("Sort must be lower than 3")
+        }
+        
+        if sort == 0 {
+            Auth.auth().signIn(withEmail: emailTextfield.text ?? "",
+                               password: passwordTextfield.text ?? "",
+                               completion: handleSignInRequeset(authResult:error:))
+        } else if sort < 3 {
+            Auth.auth().signIn(with: credential, completion: handleSignInRequeset(authResult:error:))
+        } else {
+            
+        }
         
     }
     
-    func notifyError() {
+    private func handleSignInRequeset(authResult: AuthDataResult?, error: Error?) {
+        if let error = error {
+            DispatchQueue.main.async {
+                self.notifyError()
+            }
+            fatalError("Failed sign in with error: \(error.localizedDescription)")
+        } else {
+            guard let user = authResult else {
+                fatalError("Can't configure current user")
+            }
+            User.Auth.uid = user.user.uid
+            User.name = user.user.displayName
+            User.userId = user.user.email
+            User.profileImageURL = user.user.photoURL
+            self.performSegue(withIdentifier: "SignInComplete", sender: nil)
+        }
+    }
+    
+    private func notifyError() {
         let alertController = UIAlertController(title: "Login Failed", message: "", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(okAction)

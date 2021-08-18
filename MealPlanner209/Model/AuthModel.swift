@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class User {
     
@@ -23,7 +24,22 @@ class User {
     
     static var name: String? = nil
     static var userId: String? = nil
-    static var profileImage: UIImage? = nil
-    var didSigninWith: SignInWith = .Default
+    static var profileImageURL: URL? = nil
+    static var profileImage: Data? {
+        guard let url = profileImageURL else { return nil }
+        let imageData = try? Data(contentsOf: url)
+        return imageData
+    }
+    static var didSigninWith: SignInWith = .Default
+    
+    static var user: UserInfo? = nil
+    
+    class func deleteUser() {
+        Auth.uid = nil
+        name = nil
+        userId = nil
+        profileImageURL = nil
+        user = nil
+    }
     
 }

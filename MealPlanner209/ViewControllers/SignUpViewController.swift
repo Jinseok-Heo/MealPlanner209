@@ -18,6 +18,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var passwordMessageLabel: UILabel!
     @IBOutlet weak var userIDMessageLabel: UILabel!
     @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     
     let baseTextfieldDelegate = BaseTextfieldDelegate()
     let emailTextfieldDelegate = EmailTextfieldDelegate()
@@ -75,6 +76,9 @@ class SignUpViewController: UIViewController {
                 self.notifyMessage()
             }
         }
+    }
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
     }
     
 }

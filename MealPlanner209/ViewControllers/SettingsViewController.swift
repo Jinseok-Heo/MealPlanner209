@@ -10,9 +10,12 @@ import NaverThirdPartyLogin
 import FirebaseAuth
 
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -33,7 +36,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func signOut() {
         print("SignOut Tapped")
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        switch appDelegate.user.didSigninWith {
+        switch User.didSigninWith {
         case .Default, .Google, .Facebook:
             print("Default or Google or Facebook")
             let firebaseAuth = Auth.auth()
@@ -47,7 +50,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             let naverSignInInstance = NaverThirdPartyLoginConnection.getSharedInstance()
             naverSignInInstance?.requestDeleteToken()
         }
-        appDelegate.user = User()
+        
         self.navigationController?.popViewController(animated: true)
     }
 }
