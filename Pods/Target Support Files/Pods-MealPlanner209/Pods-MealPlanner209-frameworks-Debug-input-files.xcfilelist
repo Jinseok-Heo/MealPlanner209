@@ -2,6 +2,7 @@ ${PODS_ROOT}/Target Support Files/Pods-MealPlanner209/Pods-MealPlanner209-framew
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/AppAuth/AppAuth.framework
 ${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework
+${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework
 ${BUILT_PRODUCTS_DIR}/FBAEMKit/FBAEMKit.framework
 ${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework
 ${BUILT_PRODUCTS_DIR}/FBSDKCoreKit_Basics/FBSDKCoreKit_Basics.framework

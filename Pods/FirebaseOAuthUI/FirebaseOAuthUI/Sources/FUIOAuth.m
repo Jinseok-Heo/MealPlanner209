@@ -99,6 +99,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic, copy, nullable) NSString *loginHintKey;
 
+@property(nonatomic, copy, nullable) NSString *currentNonce;
+
 /** @property provider
     @brief The OAuth provider that does the actual sign in.
  */
@@ -134,7 +136,7 @@ NS_ASSUME_NONNULL_BEGIN
     _customParameters = customParameters;
     _loginHintKey = loginHintKey;
     if ((_authUI.isEmulatorEnabled || ![_providerID isEqualToString:@"apple.com"]) && ![_providerID isEqualToString:@"facebook.com"]) {
-      _provider = [FIROAuthProvider providerWithProviderID:self.providerID];
+      _provider = [FIROAuthProvider providerWithProviderID:self.providerID auth:_authUI.auth];
     }
   }
   return self;
@@ -292,8 +294,11 @@ NS_ASSUME_NONNULL_BEGIN
 
   if ([self.providerID isEqualToString:@"apple.com"] && !self.authUI.isEmulatorEnabled) {
     if (@available(iOS 13.0, *)) {
+      NSString *nonce = [FUIAuthUtils randomNonce];
+      self.currentNonce = nonce;
       ASAuthorizationAppleIDRequest *request = [[[ASAuthorizationAppleIDProvider alloc] init] createRequest];
       request.requestedScopes = @[ASAuthorizationScopeFullName, ASAuthorizationScopeEmail];
+      request.nonce = [FUIAuthUtils stringBySHA256HashingString:nonce];
       ASAuthorizationController* controller = [[ASAuthorizationController alloc] initWithAuthorizationRequests:@[request]];
       controller.delegate = self;
       controller.presentationContextProvider = self;
@@ -368,9 +373,10 @@ NS_ASSUME_NONNULL_BEGIN
     _providerSignInCompletion(nil, nil, nil, nil);
   }
   NSString *idToken = [[NSString alloc] initWithData:appleIDCredential.identityToken encoding:NSUTF8StringEncoding];
+  NSString *rawNonce = self.currentNonce;
   FIROAuthCredential *credential = [FIROAuthProvider credentialWithProviderID:@"apple.com"
                                                                       IDToken:idToken
-                                                                  accessToken:nil];
+                                                                     rawNonce:rawNonce];
   FIRAuthResultCallback result;
   NSPersonNameComponents *nameComponents = appleIDCredential.fullName;
   if (nameComponents != nil) {

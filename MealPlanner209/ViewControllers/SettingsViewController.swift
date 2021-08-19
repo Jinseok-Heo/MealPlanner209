@@ -28,14 +28,14 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
         return cell
     }
-
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("\(indexPath.row) selected!")
         signOut()
     }
     
     func signOut() {
         print("SignOut Tapped")
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         switch User.didSigninWith {
         case .Default, .Google, .Facebook:
             print("Default or Google or Facebook")

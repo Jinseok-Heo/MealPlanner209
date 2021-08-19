@@ -33,6 +33,11 @@ class HomeViewController: UIViewController {
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        fetchedResultController = nil
+    }
+    
     @IBAction func addButtonTapped(_ sender: Any) {
         
     }

@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20G71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Favorites" representedClassName="Favorites" syncable="YES" codeGenerationType="class">
-        <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="foods" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Food" inverseName="favorite" inverseEntity="Food"/>
-        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserInfo" inverseName="favorites" inverseEntity="UserInfo"/>
-    </entity>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Food" representedClassName="Food" syncable="YES" codeGenerationType="class">
         <attribute name="calories" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="carbohydrates" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="fats" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="photo" optional="YES" attributeType="Binary"/>
         <attribute name="proteins" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="sort" optional="YES" attributeType="String" defaultValueString="meal"/>
+        <attribute name="sort" optional="YES" attributeType="String"/>
         <relationship name="consumeDate" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="History" inverseName="foods" inverseEntity="History"/>
-        <relationship name="favorite" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Favorites" inverseName="foods" inverseEntity="Favorites"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserInfo" inverseName="foods" inverseEntity="UserInfo"/>
     </entity>
     <entity name="History" representedClassName="History" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -25,13 +22,12 @@
         <attribute name="profilePhoto" optional="YES" attributeType="Binary"/>
         <attribute name="signInInfo" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="uid" optional="YES" attributeType="String"/>
-        <relationship name="favorites" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Favorites" inverseName="user" inverseEntity="Favorites"/>
+        <relationship name="foods" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Food" inverseName="user" inverseEntity="Food"/>
         <relationship name="histories" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="History" inverseName="user" inverseEntity="History"/>
     </entity>
     <elements>
-        <element name="Favorites" positionX="950.3660888671875" positionY="-1495.690841674805" width="128" height="88"/>
-        <element name="Food" positionX="1170.705200195313" positionY="-1673.467376708985" width="128" height="163"/>
-        <element name="History" positionX="947.9069213867188" positionY="-1735.943923950195" width="128" height="88"/>
-        <element name="UserInfo" positionX="747.59521484375" positionY="-1630.605529785156" width="128" height="133"/>
+        <element name="Food" positionX="1220.839965820313" positionY="-1710.55892944336" width="128" height="179"/>
+        <element name="History" positionX="971.2304077148438" positionY="-1746.048782348633" width="128" height="88"/>
+        <element name="UserInfo" positionX="759.34375" positionY="-1692.961822509765" width="128" height="133"/>
     </elements>
 </model>

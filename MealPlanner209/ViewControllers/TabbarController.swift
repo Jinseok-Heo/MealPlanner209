@@ -27,9 +27,12 @@ class TabbarController: UITabBarController {
             return
         }
         if fetchedObjects.count == 0 {
+            print("Adding user..")
             addUser()
         } else if fetchedObjects.count == 1 {
+            print("Found a user with uid: \(User.Auth.uid)")
             User.user = fetchedObjects.first
+            print(User.user)
         } else {
             print(fetchedObjects)
             fatalError("There's duplicate user")

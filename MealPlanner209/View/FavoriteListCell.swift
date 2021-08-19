@@ -16,6 +16,5 @@ class FavoriteListHeaderCell: UICollectionReusableView {
 }
 
 class FavoriteListDefaultCell: UICollectionViewCell {
-    @IBOutlet weak var addFavoriteButton: UIButton!
     
 }
