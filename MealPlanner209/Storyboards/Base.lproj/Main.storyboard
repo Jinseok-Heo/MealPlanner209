@@ -339,17 +339,17 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vew-c2-yWG">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7bQ-PS-Vse">
-                                                <rect key="frame" x="0.0" y="0.0" width="60" height="43.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7bQ-PS-Vse">
+                                                <rect key="frame" x="0.0" y="0.0" width="75" height="43.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="yLl-ho-yiR"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="20"/>
+                                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter food name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kUd-zV-PpI" customClass="DesignableUITextField" customModule="MealPlanner209" customModuleProvider="target">
-                                                <rect key="frame" x="60" y="0.0" width="314" height="43.5"/>
+                                                <rect key="frame" x="75" y="0.0" width="299" height="43.5"/>
                                                 <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                                 <userDefinedRuntimeAttributes>
@@ -381,14 +381,8 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FuZ-1J-cdA">
-                                                <rect key="frame" x="75" y="0.0" width="60" height="43.5"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="60" id="6wM-E4-GY8"/>
-                                                </constraints>
-                                            </pickerView>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter calories" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gfW-d9-Ewk" customClass="DesignableUITextField" customModule="MealPlanner209" customModuleProvider="target">
-                                                <rect key="frame" x="135" y="0.0" width="239" height="43.5"/>
+                                                <rect key="frame" x="75" y="0.0" width="299" height="43.5"/>
                                                 <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                                 <userDefinedRuntimeAttributes>
@@ -526,6 +520,9 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="7bQ-PS-Vse" firstAttribute="width" secondItem="pCs-w1-bIZ" secondAttribute="width" id="Qvh-hw-QYJ"/>
+                                </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AgZ-0v-lM6">
                                 <rect key="frame" x="110.5" y="339" width="193" height="36"/>
@@ -601,7 +598,6 @@
                     <navigationItem key="navigationItem" id="CAa-vo-Gv2"/>
                     <connections>
                         <outlet property="addImageButton" destination="AgZ-0v-lM6" id="N7Y-5g-Tkp"/>
-                        <outlet property="caloriesSort" destination="FuZ-1J-cdA" id="rX2-Yg-dXf"/>
                         <outlet property="cancelButton" destination="0Lt-eW-JDU" id="MoA-Eu-oUW"/>
                         <outlet property="carbsSort" destination="ody-Sc-36N" id="bj3-Iy-s14"/>
                         <outlet property="fatsSort" destination="iWL-gr-l6H" id="Nus-O4-Yra"/>
@@ -1088,14 +1084,34 @@
                     <view key="view" contentMode="scaleToFill" id="LIq-wT-xGj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="eMk-VX-A4s">
+                                <rect key="frame" x="0.0" y="44" width="414" height="69"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PEz-e0-YJq">
+                                <rect key="frame" x="0.0" y="113" width="414" height="700"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="XTI-DT-9X7"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="eMk-VX-A4s" firstAttribute="top" secondItem="XTI-DT-9X7" secondAttribute="top" id="0eY-ok-qZL"/>
+                            <constraint firstItem="XTI-DT-9X7" firstAttribute="bottom" secondItem="PEz-e0-YJq" secondAttribute="bottom" id="8Nz-OQ-jah"/>
+                            <constraint firstItem="XTI-DT-9X7" firstAttribute="trailing" secondItem="eMk-VX-A4s" secondAttribute="trailing" id="aST-SC-qGf"/>
+                            <constraint firstItem="XTI-DT-9X7" firstAttribute="trailing" secondItem="PEz-e0-YJq" secondAttribute="trailing" id="bij-8d-c1A"/>
+                            <constraint firstItem="eMk-VX-A4s" firstAttribute="leading" secondItem="XTI-DT-9X7" secondAttribute="leading" id="e5M-Yr-IEk"/>
+                            <constraint firstItem="PEz-e0-YJq" firstAttribute="top" secondItem="eMk-VX-A4s" secondAttribute="bottom" id="gRa-L0-cDh"/>
+                            <constraint firstItem="XTI-DT-9X7" firstAttribute="bottom" secondItem="eMk-VX-A4s" secondAttribute="bottom" constant="700" id="pFx-u0-W8f"/>
+                            <constraint firstItem="PEz-e0-YJq" firstAttribute="leading" secondItem="XTI-DT-9X7" secondAttribute="leading" id="w8T-M7-zcQ"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="search" id="Rwx-xo-5QR"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f3l-OW-bYL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2213" y="292"/>
+            <point key="canvasLocation" x="2211.594202898551" y="291.96428571428572"/>
         </scene>
         <!--SettingsVC-->
         <scene sceneID="KES-ni-2sH">
@@ -1110,14 +1126,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsCell" id="fhN-PW-ht2" customClass="SettingsCell" customModule="MealPlanner209" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="43"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fhN-PW-ht2" id="I4k-Dl-fsa" customClass="SettingsCell" customModule="MealPlanner209" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipi-CR-Noh">
-                                                    <rect key="frame" x="20" y="11" width="42" height="21"/>
+                                                    <rect key="frame" x="20" y="11" width="42" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1187,14 +1203,26 @@
         </scene>
     </scenes>
     <designables>
+        <designable name="0xl-fH-Aaz">
+            <size key="intrinsicContentSize" width="112" height="29"/>
+        </designable>
+        <designable name="5by-ao-a0r">
+            <size key="intrinsicContentSize" width="81.5" height="29"/>
+        </designable>
         <designable name="M63-cR-XSE">
             <size key="intrinsicContentSize" width="125" height="24"/>
         </designable>
         <designable name="YVM-Bw-8NH">
             <size key="intrinsicContentSize" width="105" height="18.5"/>
         </designable>
+        <designable name="gfW-d9-Ewk">
+            <size key="intrinsicContentSize" width="110" height="29"/>
+        </designable>
         <designable name="hpT-dW-o8C">
             <size key="intrinsicContentSize" width="63" height="18.5"/>
+        </designable>
+        <designable name="kUd-zV-PpI">
+            <size key="intrinsicContentSize" width="128.5" height="29"/>
         </designable>
         <designable name="m4I-NF-pJN">
             <size key="intrinsicContentSize" width="162" height="25.5"/>
@@ -1207,6 +1235,9 @@
         </designable>
         <designable name="tLj-ao-sWa">
             <size key="intrinsicContentSize" width="53" height="18.5"/>
+        </designable>
+        <designable name="uFR-AV-qHc">
+            <size key="intrinsicContentSize" width="156.5" height="29"/>
         </designable>
     </designables>
     <inferredMetricsTieBreakers>

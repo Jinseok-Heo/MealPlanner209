@@ -47,10 +47,19 @@ class FavoriteListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setUpFetchedResultController()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        self.dataController = appDelegate.dataController
         setUpMealResultController()
         setUpSnackResultController()
         setUpBeverageResultController()
+        self.collectionView.reloadData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.fetchedResultController = nil
+        self.mealResultController = nil
+        self.snackResultController = nil
+        self.beverageResultController = nil
     }
 }
 
@@ -90,7 +99,7 @@ extension FavoriteListViewController: UICollectionViewDelegate, UICollectionView
                 return cell
             } else {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoriteListCell", for: indexPath) as! FavoriteListCell
-                guard let image = UIImage(data: snackResultController.object(at: indexPath).photo!) else {
+                guard let image = UIImage(data: snackResultController.object(at: IndexPath(row: indexPath.row, section: 0)).photo!) else {
                     cell.imageView.image = ImageHandler.resizeImage(image: UIImage(named: "user-2")!, targetSize: cell.imageView.frame.size)
                     return cell
                 }
@@ -103,7 +112,7 @@ extension FavoriteListViewController: UICollectionViewDelegate, UICollectionView
                 return cell
             } else {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoriteListCell", for: indexPath) as! FavoriteListCell
-                guard let image = UIImage(data: beverageResultController.object(at: indexPath).photo!) else {
+                guard let image = UIImage(data: beverageResultController.object(at: IndexPath(row: indexPath.row, section: 0)).photo!) else {
                     cell.imageView.image = ImageHandler.resizeImage(image: UIImage(named: "user-2")!, targetSize: cell.imageView.frame.size)
                     return cell
                 }
@@ -118,13 +127,14 @@ extension FavoriteListViewController: UICollectionViewDelegate, UICollectionView
             || (indexPath.section == 1 && indexPath.row == numberOfSnack)
             || (indexPath.section == 2 && indexPath.row == numberOfBeverage) {
             let addFoodVC = self.storyboard?.instantiateViewController(identifier: "AddFoodVC") as! AddFoodViewController
+            addFoodVC.foodSort = self.section[indexPath.section]
             self.navigationController?.pushViewController(addFoodVC, animated: true)
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let headerview = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "FavoriteListHeaderCell", for: indexPath) as! FavoriteListHeaderCell
-        headerview.sectionTitleLabel.text = section[indexPath.section]
+        headerview.sectionTitleLabel.text = self.section[indexPath.section]
         return headerview
     }
     
@@ -132,31 +142,10 @@ extension FavoriteListViewController: UICollectionViewDelegate, UICollectionView
 
 extension FavoriteListViewController: NSFetchedResultsControllerDelegate {
     
-    private func setUpFetchedResultController() {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        self.dataController = appDelegate.dataController
-                
-        let fetchRequest: NSFetchRequest<Food> = Food.fetchRequest()
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(Food.user), User.user!)
-        
-        let sortDescripter = NSSortDescriptor(key: "creationDate", ascending: false)
-        fetchRequest.sortDescriptors = [sortDescripter]
-        fetchRequest.predicate = predicate
-
-        fetchedResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: dataController.viewContext, sectionNameKeyPath: nil, cacheName: nil)
-        
-        fetchedResultController.delegate = self
-        do {
-            try fetchedResultController.performFetch()
-        } catch {
-            fatalError("Fetch cannot be performed: \(error.localizedDescription)")
-        }
-    }
-    
     private func setUpMealResultController() {
         let fetchRequest: NSFetchRequest<Food> = Food.fetchRequest()
         let userPredicate = NSPredicate(format: "user == %@", User.user!)
-        let sortPredicate = NSPredicate(format: "sort == %@", "meal")
+        let sortPredicate = NSPredicate(format: "sort == %@", "Meal")
         let sortDescripter = NSSortDescriptor(key: "creationDate", ascending: false)
         fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [userPredicate, sortPredicate])
         fetchRequest.sortDescriptors = [sortDescripter]
@@ -174,12 +163,12 @@ extension FavoriteListViewController: NSFetchedResultsControllerDelegate {
     private func setUpSnackResultController() {
         let fetchRequest: NSFetchRequest<Food> = Food.fetchRequest()
         let userPredicate = NSPredicate(format: "user == %@", User.user!)
-        let sortPredicate = NSPredicate(format: "sort == %@", "snack")
+        let sortPredicate = NSPredicate(format: "sort == %@", "Snack")
         let sortDescripter = NSSortDescriptor(key: "creationDate", ascending: false)
         fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [userPredicate, sortPredicate])
         fetchRequest.sortDescriptors = [sortDescripter]
         
-        snackResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: fetchedResultController.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        snackResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: dataController.viewContext, sectionNameKeyPath: nil, cacheName: nil)
         
         snackResultController.delegate = self
         do {
@@ -192,12 +181,12 @@ extension FavoriteListViewController: NSFetchedResultsControllerDelegate {
     private func setUpBeverageResultController() {
         let fetchRequest: NSFetchRequest<Food> = Food.fetchRequest()
         let userPredicate = NSPredicate(format: "user == %@", User.user!)
-        let sortPredicate = NSPredicate(format: "sort == %@", "beverage")
+        let sortPredicate = NSPredicate(format: "sort == %@", "Beverage")
         let sortDescripter = NSSortDescriptor(key: "creationDate", ascending: false)
         fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [userPredicate, sortPredicate])
         fetchRequest.sortDescriptors = [sortDescripter]
         
-        beverageResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: fetchedResultController.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        beverageResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: dataController.viewContext, sectionNameKeyPath: nil, cacheName: nil)
         
         beverageResultController.delegate = self
         do {

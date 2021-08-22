@@ -20,7 +20,6 @@ class AddFoodViewController: UIViewController {
     @IBOutlet weak var foodProteinsTextfield: DesignableUITextField!
     @IBOutlet weak var foodFatsTextfield: DesignableUITextField!
     
-    @IBOutlet weak var caloriesSort: UIPickerView!
     @IBOutlet weak var carbsSort: UIPickerView!
     @IBOutlet weak var proteinsSort: UIPickerView!
     @IBOutlet weak var fatsSort: UIPickerView!
@@ -37,6 +36,7 @@ class AddFoodViewController: UIViewController {
     var textfields: [DesignableUITextField] = []
     var pickerViews: [UIPickerView] = []
     var totalCalories: Double = 0
+    var foodSort: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -140,7 +140,14 @@ extension AddFoodViewController: NSFetchedResultsControllerDelegate {
                 }
             }
         }
-        newFood.calories = self.totalCalories
+        
+        newFood.sort = foodSort
+        if let calories = foodCaloriesTextfield.text {
+            newFood.calories = Double(calories)!
+        } else {
+            newFood.calories = self.totalCalories
+        }
+        newFood.user = User.user
         newFood.creationDate = Date()
         if let image = imageView.image {
             newFood.photo = image.pngData()
@@ -193,7 +200,6 @@ extension AddFoodViewController: UIImagePickerControllerDelegate, UINavigationCo
 extension AddFoodViewController {
     
     private func setupPickerView() {
-        self.caloriesSort.delegate = pickerDelegate
         self.carbsSort.delegate = pickerDelegate
         self.proteinsSort.delegate = pickerDelegate
         self.fatsSort.delegate = pickerDelegate
