@@ -39,19 +39,23 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if let user =  Auth.auth().currentUser {
             User.didSigninWith = .Default
             User.Auth.uid = user.uid
-            performSegue(withIdentifier: "SignInComplete", sender: nil)
+            self.performSegue(withIdentifier: "SignInComplete", sender: nil)
         }
         
         if naverSignInInstance?.accessToken != nil {
             User.didSigninWith = .Naver
             User.Auth.uid = naverSignInInstance?.accessToken
-            performSegue(withIdentifier: "SignInComplete", sender: nil)
+            self.performSegue(withIdentifier: "SignInComplete", sender: nil)
         }
     }
     
     @IBAction func signInButtonTapped(_ sender: Any) {
         Auth.auth().signIn(withEmail: emailTextfield.text ?? "", password: passwordTextfield.text ?? "") { (user, error) in
-            if user != nil{
+            if let user = user  {
+                User.Auth.uid = user.user.uid
+                User.name = user.user.displayName
+                User.userId = user.user.email
+                User.profileImageURL = user.user.photoURL
                 self.performSegue(withIdentifier: "SignInComplete", sender: nil)
             } else {
                 DispatchQueue.main.async {
@@ -85,7 +89,7 @@ extension LoginViewController: NaverThirdPartyLoginConnectionDelegate {
     func oauth20ConnectionDidFinishRequestACTokenWithAuthCode() {
         print("Success login")
         User.didSigninWith = .Naver
-        performSegue(withIdentifier: "SignInComplete", sender: nil)
+        self.performSegue(withIdentifier: "SignInComplete", sender: nil)
     }
     
     func oauth20ConnectionDidFinishRequestACTokenWithRefreshToken() {

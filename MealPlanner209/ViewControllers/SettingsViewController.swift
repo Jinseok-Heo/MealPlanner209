@@ -18,6 +18,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.dataSource = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }

@@ -17,10 +17,13 @@
 		EB4E348126C90DD00093CDC4 /* CustomCircleProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4E348026C90DD00093CDC4 /* CustomCircleProgressBar.swift */; };
 		EB58476E26CCEB67000A6738 /* AddFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB58476D26CCEB67000A6738 /* AddFoodViewController.swift */; };
 		EB6DC32426C2567F00764CDD /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6DC32326C2567F00764CDD /* CustomTextField.swift */; };
+		EB7497C326D4B00F003418E9 /* NutritionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7497C226D4B00F003418E9 /* NutritionResponse.swift */; };
 		EB83C50726BE6605007A82F6 /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB83C50626BE6605007A82F6 /* AuthModel.swift */; };
 		EB83C50926BE89FD007A82F6 /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB83C50826BE89FD007A82F6 /* TabbarController.swift */; };
 		EB990F0126C3982A008E671F /* ImageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB990F0026C3982A008E671F /* ImageHandler.swift */; };
 		EBA78C3326C3F8FD0066DF7C /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA78C3226C3F8FD0066DF7C /* TextFieldDelegate.swift */; };
+		EBAA4AB926D36CE1000FFB1C /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAA4AB826D36CE1000FFB1C /* SearchCell.swift */; };
+		EBAA4ABC26D386FE000FFB1C /* FoodResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAA4ABB26D386FE000FFB1C /* FoodResponse.swift */; };
 		EBAE7F3026CA51C800FCF6C1 /* FavoriteListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAE7F2F26CA51C800FCF6C1 /* FavoriteListCell.swift */; };
 		EBAE7F3226CA528F00FCF6C1 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAE7F3126CA528F00FCF6C1 /* DataController.swift */; };
 		EBB2ECEA26BCF8B900176847 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2ECE926BCF8B900176847 /* AppDelegate.swift */; };
@@ -75,10 +78,13 @@
 		EB4E348026C90DD00093CDC4 /* CustomCircleProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCircleProgressBar.swift; sourceTree = "<group>"; };
 		EB58476D26CCEB67000A6738 /* AddFoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodViewController.swift; sourceTree = "<group>"; };
 		EB6DC32326C2567F00764CDD /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		EB7497C226D4B00F003418E9 /* NutritionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionResponse.swift; sourceTree = "<group>"; };
 		EB83C50626BE6605007A82F6 /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
 		EB83C50826BE89FD007A82F6 /* TabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
 		EB990F0026C3982A008E671F /* ImageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHandler.swift; sourceTree = "<group>"; };
 		EBA78C3226C3F8FD0066DF7C /* TextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
+		EBAA4AB826D36CE1000FFB1C /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
+		EBAA4ABB26D386FE000FFB1C /* FoodResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodResponse.swift; sourceTree = "<group>"; };
 		EBAE7F2F26CA51C800FCF6C1 /* FavoriteListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListCell.swift; sourceTree = "<group>"; };
 		EBAE7F3126CA528F00FCF6C1 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		EBB2ECE626BCF8B900176847 /* MealPlanner209.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MealPlanner209.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,6 +172,7 @@
 				EB4E347E26C8F5D40093CDC4 /* CustomLinearProgressBar.swift */,
 				EB4E348026C90DD00093CDC4 /* CustomCircleProgressBar.swift */,
 				EBAE7F2F26CA51C800FCF6C1 /* FavoriteListCell.swift */,
+				EBAA4AB826D36CE1000FFB1C /* SearchCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -177,6 +184,15 @@
 				EB04FDD526CE31B700ABDE03 /* PickerViewDelegate.swift */,
 			);
 			path = Delegate;
+			sourceTree = "<group>";
+		};
+		EBAA4ABA26D37132000FFB1C /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				EBAA4ABB26D386FE000FFB1C /* FoodResponse.swift */,
+				EB7497C226D4B00F003418E9 /* NutritionResponse.swift */,
+			);
+			path = Response;
 			sourceTree = "<group>";
 		};
 		EBB2ECDD26BCF8B900176847 = {
@@ -240,6 +256,7 @@
 		EBB2ED1926BCF8CC00176847 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EBAA4ABA26D37132000FFB1C /* Response */,
 				EBB2ED1E26BCF92B00176847 /* NetworkModel.swift */,
 				EB83C50626BE6605007A82F6 /* AuthModel.swift */,
 				EB990F0026C3982A008E671F /* ImageHandler.swift */,
@@ -573,9 +590,11 @@
 				EBAE7F3226CA528F00FCF6C1 /* DataController.swift in Sources */,
 				EBB2ED2326BD220C00176847 /* HomeViewController.swift in Sources */,
 				EBB2ED2726BD225400176847 /* SearchViewController.swift in Sources */,
+				EBAA4ABC26D386FE000FFB1C /* FoodResponse.swift in Sources */,
 				EBB2ED1F26BCF92B00176847 /* NetworkModel.swift in Sources */,
 				EBB2ED2526BD223A00176847 /* FavoriteListViewController.swift in Sources */,
 				EBA78C3326C3F8FD0066DF7C /* TextFieldDelegate.swift in Sources */,
+				EBAA4AB926D36CE1000FFB1C /* SearchCell.swift in Sources */,
 				EB58476E26CCEB67000A6738 /* AddFoodViewController.swift in Sources */,
 				EB83C50726BE6605007A82F6 /* AuthModel.swift in Sources */,
 				EBB2ED2D26BD22A100176847 /* RecipeViewController.swift in Sources */,
@@ -583,6 +602,7 @@
 				EBB2ECEE26BCF8B900176847 /* LoginViewController.swift in Sources */,
 				EB4E347F26C8F5D40093CDC4 /* CustomLinearProgressBar.swift in Sources */,
 				EB990F0126C3982A008E671F /* ImageHandler.swift in Sources */,
+				EB7497C326D4B00F003418E9 /* NutritionResponse.swift in Sources */,
 				EBB2ECEA26BCF8B900176847 /* AppDelegate.swift in Sources */,
 				EBB2ED2B26BD228D00176847 /* HistoryViewController.swift in Sources */,
 				EB4E347D26C8EDA40093CDC4 /* DataModel.xcdatamodeld in Sources */,
