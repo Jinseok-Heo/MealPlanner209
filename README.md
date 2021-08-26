@@ -6,13 +6,13 @@
         Login View Controller (Authentication) ✅
         Home View Controller ❌
         History View Controller ❌
-        Favorite Food List View Controller ❌
-        Search View Controller ❌
+        Favorite Food List View Controller ✅
+        Search View Controller ✅
         Setting View Controller ❌
         Recipe View Controller ❌
 
     Backend
         Spoonacular API (https://spoonacular.com/food-api/) ❌
-        Alamofire Library ❌
+        Alamofire Library ✅
         Firebase Library ✅
-        Core Data ❌
+        Core Data ✅

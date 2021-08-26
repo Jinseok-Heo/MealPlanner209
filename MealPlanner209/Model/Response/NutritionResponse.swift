@@ -8,31 +8,34 @@
 import Foundation
 
 struct NutritionResponse: Codable {
-    let id: Int
-    let title: String
-    let restaurantChain: String
-    let nutrition: Nutrition
+    let id: Int?
+    let title: String?
+    let nutrition: Nutrition?
     let breadcrumbs: [String]
     let generatedText: String?
     let imageType: String?
-    let likes: Int
-    let price: Int?
+    let likes: Double?
+    let price: Double?
 }
 
 struct Nutrition: Codable {
     let nutrients: [Nutrient]
-    let caloricBreakdown: CaloricBreakdown
+    let caloricBreakdown: CaloricBreakdown?
+    let calories: Double?
+    let carbs: String?
+    let protein: String?
+    let fat: String?
 }
 
 struct Nutrient: Codable {
-    let name: String
-    let amount: Int
-    let unit: String
-    let percentOfDailyNeeds: Int
+    let name: String?
+    let amount: Double?
+    let unit: String?
+    let percentOfDailyNeeds: Double?
 }
 
 struct CaloricBreakdown: Codable {
-    let percentProtein: Int
-    let percentFat: Int
-    let percentCarbs: Int
+    let percentProtein: Int?
+    let percentFat: Int?
+    let percentCarbs: Int?
 }

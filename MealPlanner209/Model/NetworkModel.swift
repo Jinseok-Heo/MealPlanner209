@@ -14,7 +14,7 @@ class NetworkModel {
     
     enum EndPoints {
         static let base = "https://api.spoonacular.com/food/menuItems"
-        static let apikey = "&apiKey=\(NetworkModel.APIKey)"
+        static let apikey = "apiKey=\(NetworkModel.APIKey)"
         
         case searchFood(String, Int)
         case searchNutrients(Int)
@@ -22,9 +22,9 @@ class NetworkModel {
         var stringValue: String {
             switch self {
             case .searchFood(let query, let page):
-                return EndPoints.base + "/search?query=\(query)&number=10&offset=\(page)" + EndPoints.apikey
+                return EndPoints.base + "/search?query=\(query)&number=10&offset=\(page)&" + EndPoints.apikey
             case .searchNutrients(let id):
-                return EndPoints.base + "/\(id)" + EndPoints.apikey
+                return EndPoints.base + "/\(id)?" + EndPoints.apikey
             }
         }
         var url: URL? {
@@ -35,10 +35,12 @@ class NetworkModel {
     class func getFoods(query: String, page: Int, completion: @escaping (FoodResponse?, Error?)->Void) -> DataRequest {
         let request = AF.request(EndPoints.searchFood(query, page).stringValue)
         request.responseJSON { (response) in
+            print(String(data: response.data!, encoding: .utf8))
             switch response.result {
-            case .success(let result):
-                print(result)
-                guard let resultData = result as? Data else { return }
+            case .success:
+                guard let resultData = response.data else {
+                    return
+                }
                 let decoder = JSONDecoder()
                 do {
                     let responseObject = try decoder.decode(FoodResponse.self, from: resultData)
@@ -65,9 +67,9 @@ class NetworkModel {
     class func getNutrients(id: Int, completion: @escaping (NutritionResponse?, Error?)->Void) {
         AF.request(EndPoints.searchNutrients(id).stringValue).responseJSON { (response) in
             switch response.result {
-            case.success(let result):
-                print(result)
-                guard let resultData = result as? Data else { return }
+            case.success:
+                guard let resultData = response.data else { return }
+                print(resultData)
                 let decoder = JSONDecoder()
                 do {
                     let responseObject = try decoder.decode(NutritionResponse.self, from: resultData)

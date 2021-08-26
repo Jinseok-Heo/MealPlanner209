@@ -97,29 +97,39 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                 return cell
             }
             cell.foodImageView.image = ImageHandler.resizeImage(image: image, targetSize: cell.foodImageView.frame.size)
-            NetworkModel.getNutrients(id: result.menuItems[indexPath.row].id) { (result, error) in
+            NetworkModel.getNutrients(id: result.menuItems[indexPath.row].id!) { (result, error) in
                 if let result = result {
-                    let nutrients = result.nutrition.nutrients
-                    for nutrient in nutrients {
-                        var amount: Int = 0
-                        if nutrient.unit == "g" {
-                            amount = nutrient.amount * 4
-                        } else {
-                            amount = nutrient.amount
-                        }
-                        switch nutrient.name {
-                        case "Calories":
-                            cell.calories.text = String(amount)
-                        case "Carbohydrates":
-                            cell.carbs.text = String(amount)
-                        case "Proteins":
-                            cell.proteins.text = String(amount)
-                        case "Fats":
-                            cell.fats.text = String(amount)
-                        default:
-                            print("Other nutrients")
-                        }
-                    }
+                    guard let calories = result.nutrition!.calories else { return } // Double
+                    guard let carbs = result.nutrition!.carbs else { return } // String
+                    guard let protein = result.nutrition!.protein else { return } // String
+                    guard let fat = result.nutrition!.fat else { return } // String
+                    
+                    cell.calories.text = String(calories) + "kcal"
+                    cell.carbs.text = carbs
+                    cell.proteins.text = protein
+                    cell.fats.text = fat
+                    
+//                    let nutrients = result.nutrition!.nutrients
+//                    for nutrient in nutrients {
+//                        var amount: Double = 0
+//                        if nutrient.unit == "g" {
+//                            amount = (nutrient.amount ?? 0) * 4
+//                        } else {
+//                            amount = (nutrient.amount ?? 0)
+//                        }
+//                        switch nutrient.name {
+//                        case "Calories":
+//                            cell.calories.text = String(amount)
+//                        case "Carbohydrates":
+//                            cell.carbs.text = String(amount)
+//                        case "Proteins":
+//                            cell.proteins.text = String(amount)
+//                        case "Fats":
+//                            cell.fats.text = String(amount)
+//                        default:
+//                            print("Other nutrients")
+//                        }
+//                    }
                 }
             }
         }
@@ -134,7 +144,6 @@ extension SearchViewController: UISearchResultsUpdating {
         guard let text = self.navigationItem.searchController!.searchBar.text else {
             return
         }
-        print(text)
         currentNetworkTask?.cancel()
         currentNetworkTask = NetworkModel.getFoods(query: text, page: currentPage, completion: getFoodCompletionHandler(result:error:))
     }

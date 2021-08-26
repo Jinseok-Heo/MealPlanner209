@@ -22,15 +22,20 @@ class HomeViewController: UIViewController {
     var dataController: DataController!
     var fetchedResultController: NSFetchedResultsController<History>!
     
+    var favoriteListVC: FavoriteListViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Home"
-        print("This is homeVC")
         
+        let tapGestureRecognizer = UITapGestureRecognizer()
+        tapGestureRecognizer.delegate = self
+        self.view.addGestureRecognizer(tapGestureRecognizer)
+        title = "Home"
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupFetchedResultController()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -38,15 +43,19 @@ class HomeViewController: UIViewController {
         fetchedResultController = nil
     }
     
-    @IBAction func addButtonTapped(_ sender: Any) {
-        
+    override func viewDidLayoutSubviews() {
+        self.view.autoresizesSubviews = false
     }
     
+    @IBAction func addButtonTapped(_ sender: Any) {
+        addSubCollectionView()
+    }
+
 }
 
 extension HomeViewController {
     
-    private func setUpFetchedResultController() {
+    private func setupFetchedResultController() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         self.dataController = appDelegate.dataController
         
@@ -71,6 +80,39 @@ extension HomeViewController {
             fatalError("Fetch cannot be performed: \(error.localizedDescription)")
         }
     }
+    
+    private func addSubCollectionView() {
+        favoriteListVC = self.storyboard?.instantiateViewController(identifier: "FavoriteListVC") as? FavoriteListViewController
+        guard let favoriteListVC = self.favoriteListVC else {
+            return
+        }
+        let width = self.view.bounds.width - 30
+        let height: CGFloat = 100
+        favoriteListVC.view.frame = CGRect(x: defaultAddButton.center.x - width / 2,
+                                           y: defaultAddButton.frame.minY + 30,
+                                           width: width,
+                                           height: height)
+        self.view.addSubview(favoriteListVC.view)
+        self.addChild(favoriteListVC)
+        // favoriteListVC.didMove(toParent: self)
+    }
+    
+    private func moveButton() {
+        print("Move button")
+        let timeInterval: TimeInterval = 1
+        UIView.animate(withDuration: timeInterval) {
+            self.defaultAddButton.center.y += 200
+        }
+    }
+    
+    private func removeSubView() {
+        if let favoriteListVC = self.favoriteListVC {
+            if self.view.subviews.contains(favoriteListVC.view) {
+                self.favoriteListVC?.view.removeFromSuperview()
+            }
+        }
+    }
+    
 }
 
 extension HomeViewController: NSFetchedResultsControllerDelegate {
@@ -85,5 +127,15 @@ extension HomeViewController: NSFetchedResultsControllerDelegate {
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         
+    }
+}
+
+extension HomeViewController: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if !(self.favoriteListVC?.view.bounds.contains(touch.location(in: self.favoriteListVC?.view)) ?? true) {
+            removeSubView()
+        }
+        return !(self.favoriteListVC?.view.bounds.contains(touch.location(in: self.favoriteListVC?.view)) ?? true)
     }
 }

@@ -18,7 +18,7 @@ class FavoriteListViewController: UIViewController {
     }
     
     var dataController: DataController!
-    var fetchedResultController: NSFetchedResultsController<Food>!
+    var fetchedResultController: NSFetchedResultsController<History>!
     
     var mealResultController: NSFetchedResultsController<Food>!
     var snackResultController: NSFetchedResultsController<Food>!
@@ -48,9 +48,9 @@ class FavoriteListViewController: UIViewController {
         super.viewWillAppear(animated)
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         self.dataController = appDelegate.dataController
-        setUpMealResultController()
-        setUpSnackResultController()
-        setUpBeverageResultController()
+        setupMealResultController()
+        setupSnackResultController()
+        setupBeverageResultController()
         self.collectionView.reloadData()
     }
     
@@ -128,6 +128,21 @@ extension FavoriteListViewController: UICollectionViewDelegate, UICollectionView
             let addFoodVC = self.storyboard?.instantiateViewController(identifier: "AddFoodVC") as! AddFoodViewController
             addFoodVC.foodSort = self.section[indexPath.section]
             self.navigationController?.pushViewController(addFoodVC, animated: true)
+        } else {
+            let history = History(context: dataController.viewContext)
+            var food = Food(context: dataController.viewContext)
+            food = mealResultController.object(at: indexPath)
+            history.date = Date()
+            switch indexPath.section {
+            case 0:
+                let foods =
+            case 1:
+                
+            case 2:
+                
+            default:
+                fatalError("Section Error")
+            }
         }
     }
     
@@ -141,7 +156,24 @@ extension FavoriteListViewController: UICollectionViewDelegate, UICollectionView
 
 extension FavoriteListViewController: NSFetchedResultsControllerDelegate {
     
-    private func setUpMealResultController() {
+    private func setupFetchedResultController() {
+        let fetchRequest: NSFetchRequest<History> = History.fetchRequest()
+        let userPredicate = NSPredicate(format: "user == %@", User.user!)
+        fetchRequest.predicate = userPredicate
+        let sortDescripter = NSSortDescriptor(key: "creationDate", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescripter]
+        
+        fetchedResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: dataController.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        
+        fetchedResultController.delegate = self
+        do {
+            try fetchedResultController.performFetch()
+        } catch {
+            fatalError("Fetch cannot be performed: \(error.localizedDescription)")
+        }
+    }
+    
+    private func setupMealResultController() {
         let fetchRequest: NSFetchRequest<Food> = Food.fetchRequest()
         let userPredicate = NSPredicate(format: "user == %@", User.user!)
         let sortPredicate = NSPredicate(format: "sort == %@", "Meal")
@@ -159,7 +191,7 @@ extension FavoriteListViewController: NSFetchedResultsControllerDelegate {
         }
     }
     
-    private func setUpSnackResultController() {
+    private func setupSnackResultController() {
         let fetchRequest: NSFetchRequest<Food> = Food.fetchRequest()
         let userPredicate = NSPredicate(format: "user == %@", User.user!)
         let sortPredicate = NSPredicate(format: "sort == %@", "Snack")
@@ -177,7 +209,7 @@ extension FavoriteListViewController: NSFetchedResultsControllerDelegate {
         }
     }
     
-    private func setUpBeverageResultController() {
+    private func setupBeverageResultController() {
         let fetchRequest: NSFetchRequest<Food> = Food.fetchRequest()
         let userPredicate = NSPredicate(format: "user == %@", User.user!)
         let sortPredicate = NSPredicate(format: "sort == %@", "Beverage")
@@ -193,6 +225,10 @@ extension FavoriteListViewController: NSFetchedResultsControllerDelegate {
         } catch {
             fatalError("Fetch cannot be performed: \(error.localizedDescription)")
         }
+    }
+    
+    private func addFood() {
+        
     }
     
 }

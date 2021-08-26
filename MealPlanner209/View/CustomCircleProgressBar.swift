@@ -33,20 +33,17 @@ class CircleProgressBar: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        print("Frame")
         setupLayers()
         createAnimation()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        print("Coder")
         setupLayers()
         createAnimation()
     }
     
     override func draw(_ rect: CGRect) {
-        print("Draw")
         let circlePath = UIBezierPath(ovalIn: rect.insetBy(dx: ringWidth / 2, dy: ringWidth / 2))
         backgroundMask.path = circlePath.cgPath
 
