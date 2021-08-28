@@ -7,182 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DC74BD4B-4BAE-4789-A1BE-0E37B43DBFA6"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MealPlanner209/ViewControllers/FavoriteListViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
-            landmarkName = "collectionView(_:didSelectItemAt:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "DC74BD4B-4BAE-4789-A1BE-0E37B43DBFA6 - 26dd1452a8fc426f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MealPlanner209.FavoriteListViewController.collectionView(_: __C.UICollectionView, didSelectItemAt: Foundation.IndexPath) -&gt; ()"
-                  moduleName = "MealPlanner209"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Jinseok/Desktop/my_workspace/SwiftProjects/MealPlanner209/MealPlanner209/ViewControllers/FavoriteListViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "128"
-                  endingLineNumber = "128"
-                  offsetFromSymbolStart = "1519">
-               </Location>
-               <Location
-                  uuid = "DC74BD4B-4BAE-4789-A1BE-0E37B43DBFA6 - 26dd1452a8fc426f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MealPlanner209.FavoriteListViewController.collectionView(_: __C.UICollectionView, didSelectItemAt: Foundation.IndexPath) -&gt; ()"
-                  moduleName = "MealPlanner209"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Jinseok/Desktop/my_workspace/SwiftProjects/MealPlanner209/MealPlanner209/ViewControllers/FavoriteListViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "128"
-                  endingLineNumber = "128"
-                  offsetFromSymbolStart = "2582">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "BEB5C99E-B216-4C5B-8820-B72D1BF76917"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MealPlanner209/ViewControllers/FavoriteListViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "viewWillAppear(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "629BE305-1384-42B9-95C7-12A9B6E1DF04"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MealPlanner209/ViewControllers/FavoriteListViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "viewWillAppear(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6DEF48CE-ABF3-46DB-B8C7-9DF6AA1D1653"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MealPlanner209/ViewControllers/FavoriteListViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "collectionView(_:cellForItemAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6A5E4B20-4BAA-49C4-9150-FEFE71E99868"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MealPlanner209/ViewControllers/FavoriteListViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "collectionView(_:cellForItemAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "97C2F2DE-0057-42C6-8E3B-675F6B2DA5FB"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MealPlanner209/ViewControllers/TabbarController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "FC41E50E-05D9-4FAF-88C0-4C9A74880877"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MealPlanner209/ViewControllers/SearchViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
-            landmarkName = "updateSearchResults(for:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "FC41E50E-05D9-4FAF-88C0-4C9A74880877 - 668accd64cb268dd"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MealPlanner209.SearchViewController.updateSearchResults(for: __C.UISearchController) -&gt; ()"
-                  moduleName = "MealPlanner209"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Jinseok/Desktop/my_workspace/SwiftProjects/MealPlanner209/MealPlanner209/ViewControllers/SearchViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "139"
-                  endingLineNumber = "139"
-                  offsetFromSymbolStart = "1094">
-               </Location>
-               <Location
-                  uuid = "FC41E50E-05D9-4FAF-88C0-4C9A74880877 - 164236f9fe136b2a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "implicit closure #2 (Swift.Optional&lt;MealPlanner209.FoodResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in implicit closure #1 (MealPlanner209.SearchViewController) -&gt; (Swift.Optional&lt;MealPlanner209.FoodResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in MealPlanner209.SearchViewController.updateSearchResults(for: __C.UISearchController) -&gt; ()"
-                  moduleName = "MealPlanner209"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Jinseok/Desktop/my_workspace/SwiftProjects/MealPlanner209/MealPlanner209/ViewControllers/SearchViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "139"
-                  endingLineNumber = "139"
-                  offsetFromSymbolStart = "46">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "2FC8E5E2-A77E-455A-889D-80B0D62DEAB3"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -190,8 +14,8 @@
             filePath = "MealPlanner209/Model/NetworkModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
             landmarkName = "getFoods(query:page:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -206,8 +30,8 @@
             filePath = "MealPlanner209/Model/NetworkModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
             landmarkName = "getFoods(query:page:completion:)"
             landmarkType = "7">
          </BreakpointContent>

@@ -15,6 +15,7 @@
 		EB4E347D26C8EDA40093CDC4 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EB4E347B26C8EDA40093CDC4 /* DataModel.xcdatamodeld */; };
 		EB4E347F26C8F5D40093CDC4 /* CustomLinearProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4E347E26C8F5D40093CDC4 /* CustomLinearProgressBar.swift */; };
 		EB4E348126C90DD00093CDC4 /* CustomCircleProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4E348026C90DD00093CDC4 /* CustomCircleProgressBar.swift */; };
+		EB526E2526D8BA0E0017D3BC /* HomeSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB526E2426D8BA0E0017D3BC /* HomeSubView.swift */; };
 		EB58476E26CCEB67000A6738 /* AddFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB58476D26CCEB67000A6738 /* AddFoodViewController.swift */; };
 		EB6DC32426C2567F00764CDD /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6DC32326C2567F00764CDD /* CustomTextField.swift */; };
 		EB7497C326D4B00F003418E9 /* NutritionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7497C226D4B00F003418E9 /* NutritionResponse.swift */; };
@@ -76,6 +77,7 @@
 		EB4E347C26C8EDA40093CDC4 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		EB4E347E26C8F5D40093CDC4 /* CustomLinearProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLinearProgressBar.swift; sourceTree = "<group>"; };
 		EB4E348026C90DD00093CDC4 /* CustomCircleProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCircleProgressBar.swift; sourceTree = "<group>"; };
+		EB526E2426D8BA0E0017D3BC /* HomeSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSubView.swift; sourceTree = "<group>"; };
 		EB58476D26CCEB67000A6738 /* AddFoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodViewController.swift; sourceTree = "<group>"; };
 		EB6DC32326C2567F00764CDD /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		EB7497C226D4B00F003418E9 /* NutritionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionResponse.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				EB4E348026C90DD00093CDC4 /* CustomCircleProgressBar.swift */,
 				EBAE7F2F26CA51C800FCF6C1 /* FavoriteListCell.swift */,
 				EBAA4AB826D36CE1000FFB1C /* SearchCell.swift */,
+				EB526E2426D8BA0E0017D3BC /* HomeSubView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -608,6 +611,7 @@
 				EB4E347D26C8EDA40093CDC4 /* DataModel.xcdatamodeld in Sources */,
 				EBB2ECEC26BCF8B900176847 /* SceneDelegate.swift in Sources */,
 				EBB2ED2926BD227A00176847 /* SettingsViewController.swift in Sources */,
+				EB526E2526D8BA0E0017D3BC /* HomeSubView.swift in Sources */,
 				EB04FDD626CE31B700ABDE03 /* PickerViewDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

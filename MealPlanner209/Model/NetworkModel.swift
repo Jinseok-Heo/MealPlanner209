@@ -35,7 +35,6 @@ class NetworkModel {
     class func getFoods(query: String, page: Int, completion: @escaping (FoodResponse?, Error?)->Void) -> DataRequest {
         let request = AF.request(EndPoints.searchFood(query, page).stringValue)
         request.responseJSON { (response) in
-            print(String(data: response.data!, encoding: .utf8))
             switch response.result {
             case .success:
                 guard let resultData = response.data else {
@@ -45,7 +44,6 @@ class NetworkModel {
                 do {
                     let responseObject = try decoder.decode(FoodResponse.self, from: resultData)
                     DispatchQueue.main.async {
-                        print("Decode success")
                         completion(responseObject, nil)
                     }
                 } catch {
@@ -69,7 +67,6 @@ class NetworkModel {
             switch response.result {
             case.success:
                 guard let resultData = response.data else { return }
-                print(resultData)
                 let decoder = JSONDecoder()
                 do {
                     let responseObject = try decoder.decode(NutritionResponse.self, from: resultData)

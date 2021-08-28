@@ -15,12 +15,11 @@ class TabbarController: UITabBarController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("This is tabbar controller")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setUpFetchedResultsController()
+        setupFetchedResultsController()
         guard let fetchedObjects = fetchedResultController.fetchedObjects else {
             addUser()
             return
@@ -29,9 +28,7 @@ class TabbarController: UITabBarController {
             print("Adding user..")
             addUser()
         } else if fetchedObjects.count == 1 {
-            print("Found a user with uid: \(User.Auth.uid)")
             User.user = fetchedObjects.first
-            print(User.user)
         } else {
             print(fetchedObjects)
             fatalError("There's duplicate user")
@@ -47,7 +44,7 @@ class TabbarController: UITabBarController {
 
 extension TabbarController: NSFetchedResultsControllerDelegate {
     
-    fileprivate func setUpFetchedResultsController() {
+    fileprivate func setupFetchedResultsController() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         self.dataController = appDelegate.dataController
         

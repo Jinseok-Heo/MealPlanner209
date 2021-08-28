@@ -15,14 +15,13 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var previousButton: UIButton!
     
-    var currentPage: Int = 0
+    var currentPage: Int = 1
     var networkResult: FoodResponse?
     
     var currentNetworkTask: DataRequest?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -30,40 +29,29 @@ class SearchViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let searchController = UISearchController(searchResultsController: nil)
-        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.searchBar.placeholder = "Search food"
-        searchController.searchResultsUpdater = self
-
-        self.navigationItem.searchController = searchController
-        self.navigationItem.title = "Search Food"
-        self.navigationItem.hidesSearchBarWhenScrolling = false
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.definesPresentationContext = true
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+        let searchController = setupSearchController()
+        setupNavigationItem(searchController: searchController)
+        
+        setupButton()
     }
     
     @IBAction func nextButtonTapped(_ sender: Any) {
         currentPage += 1
+        setupButton()
         currentNetworkTask?.cancel()
         currentNetworkTask = NetworkModel.getFoods(query: self.navigationItem.searchController!.searchBar.text ?? "", page: currentPage, completion: getFoodCompletionHandler(result:error:))
     }
     
     @IBAction func previousButtonTapped(_ sender: Any) {
-        if currentPage <= 1 {
-            return
-        }
         currentPage -= 1
+        setupButton()
         currentNetworkTask?.cancel()
         currentNetworkTask = NetworkModel.getFoods(query: self.navigationItem.searchController!.searchBar.text ?? "", page: currentPage, completion: getFoodCompletionHandler(result:error:))
     }
     
     private func getFoodCompletionHandler(result: FoodResponse?, error: Error?) {
         if error != nil {
-            print(error?.localizedDescription)
+            print(error!.localizedDescription)
             return
         }
         guard let result = result else { return }
@@ -80,7 +68,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let result = networkResult {
-            return result.menuItems.count
+//            return result.menuItems.count
+            return 1
         } else {
             return 0
         }
@@ -88,8 +77,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell") as! SearchCell
-        if let result = networkResult {
-            let image = try? Data(contentsOf: result.menuItems[indexPath.row].imageURL!)
+        if let networkResult = networkResult {
+            let image = try? Data(contentsOf: networkResult.menuItems[indexPath.row].imageURL!)
             guard let imageData = image else {
                 return cell
             }
@@ -97,39 +86,30 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                 return cell
             }
             cell.foodImageView.image = ImageHandler.resizeImage(image: image, targetSize: cell.foodImageView.frame.size)
-            NetworkModel.getNutrients(id: result.menuItems[indexPath.row].id!) { (result, error) in
+            NetworkModel.getNutrients(id: networkResult.menuItems[indexPath.row].id!) { (result, error) in
                 if let result = result {
-                    guard let calories = result.nutrition!.calories else { return } // Double
-                    guard let carbs = result.nutrition!.carbs else { return } // String
-                    guard let protein = result.nutrition!.protein else { return } // String
-                    guard let fat = result.nutrition!.fat else { return } // String
+                    guard let calories = result.nutrition!.calories else {
+                        print("Calories has nil value")
+                        return
+                    } // Double
+                    guard let carbs = result.nutrition!.carbs else {
+                        print("Carbs has nil value")
+                        return
+                    } // String
+                    guard let protein = result.nutrition!.protein else {
+                        print("Proteins has nil value")
+                        return
+                    } // String
+                    guard let fat = result.nutrition!.fat else {
+                        print("Fats has nil value")
+                        return
+                    } // String
                     
-                    cell.calories.text = String(calories) + "kcal"
-                    cell.carbs.text = carbs
-                    cell.proteins.text = protein
-                    cell.fats.text = fat
-                    
-//                    let nutrients = result.nutrition!.nutrients
-//                    for nutrient in nutrients {
-//                        var amount: Double = 0
-//                        if nutrient.unit == "g" {
-//                            amount = (nutrient.amount ?? 0) * 4
-//                        } else {
-//                            amount = (nutrient.amount ?? 0)
-//                        }
-//                        switch nutrient.name {
-//                        case "Calories":
-//                            cell.calories.text = String(amount)
-//                        case "Carbohydrates":
-//                            cell.carbs.text = String(amount)
-//                        case "Proteins":
-//                            cell.proteins.text = String(amount)
-//                        case "Fats":
-//                            cell.fats.text = String(amount)
-//                        default:
-//                            print("Other nutrients")
-//                        }
-//                    }
+                    cell.title.text = result.title ?? ""
+                    cell.calories.text = "Calories: " + String(calories) + "kcal"
+                    cell.carbs.text = "Carbs: " + carbs
+                    cell.proteins.text = "Protein: " + protein
+                    cell.fats.text = "Fat: " + fat
                 }
             }
         }
@@ -146,5 +126,33 @@ extension SearchViewController: UISearchResultsUpdating {
         }
         currentNetworkTask?.cancel()
         currentNetworkTask = NetworkModel.getFoods(query: text, page: currentPage, completion: getFoodCompletionHandler(result:error:))
+    }
+    
+}
+
+extension SearchViewController {
+    
+    private func setupSearchController() -> UISearchController {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.placeholder = "Search food"
+        searchController.searchResultsUpdater = self
+        return searchController
+    }
+    
+    private func setupNavigationItem(searchController: UISearchController) {
+        self.navigationItem.searchController = searchController
+        self.navigationItem.title = "Search"
+        self.navigationItem.hidesSearchBarWhenScrolling = false
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.definesPresentationContext = true
+    }
+    
+    private func setupButton() {
+        if currentPage <= 1 {
+            previousButton.isEnabled = false
+        } else {
+            previousButton.isEnabled = true
+        }
     }
 }

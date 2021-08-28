@@ -11,11 +11,8 @@ struct NutritionResponse: Codable {
     let id: Int?
     let title: String?
     let nutrition: Nutrition?
-    let breadcrumbs: [String]
     let generatedText: String?
     let imageType: String?
-    let likes: Double?
-    let price: Double?
 }
 
 struct Nutrition: Codable {
@@ -35,7 +32,7 @@ struct Nutrient: Codable {
 }
 
 struct CaloricBreakdown: Codable {
-    let percentProtein: Int?
-    let percentFat: Int?
-    let percentCarbs: Int?
+    let percentProtein: Double?
+    let percentFat: Double?
+    let percentCarbs: Double?
 }

@@ -140,7 +140,7 @@ extension AddFoodViewController: NSFetchedResultsControllerDelegate {
                 }
             }
         }
-        
+        newFood.name = foodNameTextfield.text!
         newFood.sort = foodSort
         if let calories = foodCaloriesTextfield.text {
             newFood.calories = Double(calories)!
@@ -154,10 +154,6 @@ extension AddFoodViewController: NSFetchedResultsControllerDelegate {
         } else {
             newFood.photo = UIImage(named: "placeholder")!.pngData()
         }
-        print(newFood.calories)
-        print(newFood.carbohydrates)
-        print(newFood.proteins)
-        print(newFood.fats)
         print("Succesfully added")
         do {
             try dataController.viewContext.save()
@@ -216,6 +212,7 @@ extension AddFoodViewController {
     }
     
     private func checkTextfield() -> Bool {
+        if foodNameTextfield.text == nil { return false }
         for textfield in textfields {
             if textfield.text == nil {
                 return false

@@ -13,7 +13,7 @@
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserInfo" inverseName="foods" inverseEntity="UserInfo"/>
     </entity>
     <entity name="History" representedClassName="History" syncable="YES" codeGenerationType="class">
-        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="date" optional="YES" attributeType="String"/>
         <relationship name="foods" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Food" inverseName="consumeDate" inverseEntity="Food"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserInfo" inverseName="histories" inverseEntity="UserInfo"/>
     </entity>
