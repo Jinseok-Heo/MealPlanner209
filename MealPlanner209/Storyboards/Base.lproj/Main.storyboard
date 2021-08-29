@@ -731,21 +731,10 @@
                                 <rect key="frame" x="20" y="352.5" width="374" height="406.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aWC-Yy-R83">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="166.5"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dZk-ke-BXT">
-                                                <rect key="frame" x="174" y="100" width="26.5" height="26.5"/>
-                                                <state key="normal" image="add"/>
-                                                <connections>
-                                                    <action selector="addButtonTapped:" destination="Ol5-b4-LkK" eventType="touchUpInside" id="wYU-Zp-A99"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="1000"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="dZk-ke-BXT" firstAttribute="top" secondItem="aWC-Yy-R83" secondAttribute="top" constant="100" id="7H9-sK-NRx"/>
-                                            <constraint firstItem="dZk-ke-BXT" firstAttribute="centerX" secondItem="aWC-Yy-R83" secondAttribute="centerX" id="8jW-kf-FnU"/>
-                                            <constraint firstAttribute="bottom" secondItem="dZk-ke-BXT" secondAttribute="bottom" constant="40" id="kgl-Kg-Ggi"/>
+                                            <constraint firstAttribute="height" constant="1000" id="wLL-9k-DpL"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -787,7 +776,6 @@
                     <connections>
                         <outlet property="caloriesBar" destination="E30-CG-ZdV" id="A6g-Ci-ZbL"/>
                         <outlet property="carbsBar" destination="4EE-8O-h0Y" id="ua3-ec-FtG"/>
-                        <outlet property="defaultAddButton" destination="dZk-ke-BXT" id="eFq-OH-UDL"/>
                         <outlet property="fatsBar" destination="wpA-MU-OQf" id="Sqf-5o-wLx"/>
                         <outlet property="homeBarButton" destination="bnr-Wd-fTl" id="M3q-bY-arC"/>
                         <outlet property="proteinsBar" destination="fl4-PN-zVN" id="oSY-ym-nR2"/>
@@ -1270,14 +1258,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsCell" id="fhN-PW-ht2" customClass="SettingsCell" customModule="MealPlanner209" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fhN-PW-ht2" id="I4k-Dl-fsa" customClass="SettingsCell" customModule="MealPlanner209" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipi-CR-Noh">
-                                                    <rect key="frame" x="20" y="11" width="42" height="21.5"/>
+                                                    <rect key="frame" x="20" y="11" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>

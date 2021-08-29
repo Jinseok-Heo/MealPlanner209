@@ -17,10 +17,10 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var proteinsBar: CircleProgressBar!
     @IBOutlet weak var fatsBar: CircleProgressBar!
     
-    @IBOutlet weak var defaultAddButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var scrollContentView: UIView!
     
+    var addButton: UIButton!
     var dataController: DataController!
     var fetchedResultController: NSFetchedResultsController<History>!
     
@@ -34,9 +34,9 @@ class HomeViewController: UIViewController {
     let maxProtein: CGFloat = 120
     let maxFat: CGFloat = 800
     
-    var favoriteListVC: FavoriteListViewController?
+    var favoriteListVC: FavoriteListViewController!
     var homeSubviews = [HomeSubView]()
-    var itemCount: Int = 0
+    var buttonConstraint: NSLayoutConstraint!
     
     let currentDate: String = {
         let currentDate = Date()
@@ -54,14 +54,17 @@ class HomeViewController: UIViewController {
         self.view.addGestureRecognizer(tapGestureRecognizer)
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.title = "Home"
+        
+        scrollContentView.layer.backgroundColor = UIColor.yellow.cgColor
         scrollView.isScrollEnabled = true
         scrollView.backgroundColor = .green
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        initButtonPosition()
         setupFetchedResultController()
+        homeSubviews = []
+        setupButton()
         calculateNutrients()
     }
     
@@ -69,18 +72,19 @@ class HomeViewController: UIViewController {
         super.viewWillDisappear(animated)
         fetchedResultController = nil
         for subview in homeSubviews {
+            NSLayoutConstraint.deactivate(subview.constraints)
             subview.removeFromSuperview()
         }
+        NSLayoutConstraint.deactivate([buttonConstraint])
+        buttonConstraint = nil
+        
+        homeSubviews = []
     }
     
     override func viewDidLayoutSubviews() {
         self.view.autoresizesSubviews = false
     }
     
-    @IBAction func addButtonTapped(_ sender: Any) {
-        addSubCollectionView()
-    }
-
 }
 
 extension HomeViewController {
@@ -112,44 +116,27 @@ extension HomeViewController {
     
     private func addSubCollectionView() {
         favoriteListVC = self.storyboard?.instantiateViewController(identifier: "FavoriteListVC") as? FavoriteListViewController
-        guard let favoriteListVC = self.favoriteListVC else {
-            return
-        }
-        let width = self.view.bounds.width - 30
+
         let height: CGFloat = 140
         let space: CGFloat = 10
-        let buttonMaxY = defaultAddButton.frame.minY + scrollView.frame.minY
-        var yFrame: CGFloat
         
-        if buttonMaxY + height + space < self.view.bounds.maxY {
-            yFrame = buttonMaxY + space
-        } else {
-            yFrame = buttonMaxY - defaultAddButton.frame.size.height - space - height
-        }
-        favoriteListVC.view.frame = CGRect(x: self.view.center.x - width / 2,
-                                           y: yFrame,
-                                           width: width,
-                                           height: height)
         favoriteListVC.view.layer.borderWidth = 2
         favoriteListVC.view.layer.borderColor = UIColor.black.cgColor
         self.view.addSubview(favoriteListVC.view)
+        favoriteListVC.view.translatesAutoresizingMaskIntoConstraints = false
+        favoriteListVC.view.topAnchor.constraint(equalTo: addButton.bottomAnchor, constant: space).isActive = true
+        favoriteListVC.view.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 10).isActive = true
+        favoriteListVC.view.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 10).isActive = true
+        favoriteListVC.view.heightAnchor.constraint(equalToConstant: height).isActive = true
         self.addChild(favoriteListVC)
         // favoriteListVC.didMove(toParent: self)
-    }
-    
-    private func moveButton(yDifference: CGFloat) {
-        let newConstant = 100 + yDifference * CGFloat(itemCount)
-        self.defaultAddButton.topAnchor.constraint(equalTo: self.scrollView.topAnchor, constant: newConstant).isActive = true
-        let timeInterval: TimeInterval = 1
-        UIView.animate(withDuration: timeInterval) {
-            self.defaultAddButton.center.y += yDifference * CGFloat(self.itemCount)
-        }
     }
     
     private func removeSubView() {
         if let favoriteListVC = self.favoriteListVC {
             if self.view.subviews.contains(favoriteListVC.view) {
-                self.favoriteListVC?.view.removeFromSuperview()
+                NSLayoutConstraint.deactivate(favoriteListVC.view.constraints)
+                favoriteListVC.view.removeFromSuperview()
             }
         }
     }
@@ -195,22 +182,33 @@ extension HomeViewController: UIGestureRecognizerDelegate {
 
 extension HomeViewController {
     
-    private func initButtonPosition() {
-        let initialConstant: CGFloat = 100
-        self.defaultAddButton.topAnchor.constraint(equalTo: self.scrollView.topAnchor, constant: initialConstant).isActive = true
+    private func setupButton() {
+        addButton = UIButton()
+        addButton.frame.size = CGSize(width: 26.5, height: 26.5)
+        let imageButton = ImageHandler.resizeImage(image: #imageLiteral(resourceName: "add"), targetSize: addButton.frame.size)
+        addButton.setImage(imageButton, for: .normal)
+        addButton.addTarget(self, action: #selector(addButtonClicked), for: .touchUpInside)
+        
+        scrollContentView.addSubview(addButton)
+        addButton.translatesAutoresizingMaskIntoConstraints = false
+        addButton.centerXAnchor.constraint(equalTo: self.scrollContentView.centerXAnchor).isActive = true
+        addButton.widthAnchor.constraint(equalToConstant: 26.5).isActive = true
+        addButton.heightAnchor.constraint(equalToConstant: 26.5).isActive = true
+        buttonConstraint = addButton.topAnchor.constraint(equalTo: scrollContentView.topAnchor, constant: 70)
+        buttonConstraint!.isActive = true
+    }
+    
+    @objc func addButtonClicked() {
+        addSubCollectionView()
     }
     
     private func setupSubviews(food: Food) {
-        let currentButtonPosition = defaultAddButton.center
-        moveButton(yDifference: 140 as CGFloat)
         let width = self.scrollContentView.bounds.width
         let height: CGFloat = 120
-        let frame = CGRect(x: currentButtonPosition.x - width / 2,
-                           y: currentButtonPosition.y - height / 2,
+        let frame = CGRect(x: 0,
+                           y: 0,
                            width: width,
                            height: height)
-//        print("Food name: \(food.name), frame: \(frame)")
-//        print("Button position: \(defaultAddButton.center)")
         
         let image: UIImage = {
             if let photo = food.photo {
@@ -222,8 +220,16 @@ extension HomeViewController {
         }()
         
         let subView = HomeSubView(frame: frame, image: image, food: food, fetchedResultController: self.fetchedResultController)
-        homeSubviews.append(subView)
         self.scrollContentView.addSubview(subView)
+        subView.translatesAutoresizingMaskIntoConstraints = false
+        subView.widthAnchor.constraint(equalToConstant: width).isActive = true
+        subView.heightAnchor.constraint(equalToConstant: height).isActive = true
+        if let lastView = homeSubviews.last {
+            subView.topAnchor.constraint(equalTo: lastView.bottomAnchor, constant: 20).isActive = true
+        } else {
+            subView.topAnchor.constraint(equalTo: self.scrollContentView.topAnchor).isActive = true
+        }
+        homeSubviews.append(subView)
     }
     
     private func calculateNutrients() {
@@ -242,17 +248,29 @@ extension HomeViewController {
             return
         }
         
-        itemCount = 0
         for food in foodsAsArray.reversed() {
-            itemCount += 1
             currentCalories += CGFloat(food.calories)
             currentCarbs += CGFloat(food.carbohydrates)
             currentProtein += CGFloat(food.proteins)
             currentFat += CGFloat(food.fats)
             setupSubviews(food: food)
         }
-//        print("scroll view size: \(scrollContentView.frame)")
+        updateButton()
         updateProgress()
+    }
+    
+    private func updateButton() {
+        NSLayoutConstraint.deactivate([buttonConstraint])
+        if let lastView = homeSubviews.last {
+            buttonConstraint = addButton.topAnchor.constraint(equalTo: lastView.bottomAnchor, constant: 40)
+        } else {
+            buttonConstraint = addButton.topAnchor.constraint(equalTo: scrollContentView.topAnchor, constant: 70)
+        }
+        buttonConstraint.isActive = true
+        let timeInterval: TimeInterval = 1
+        UIView.animate(withDuration: timeInterval) {
+            self.addButton.center.y += 140
+        }
     }
     
     private func updateProgress() {
