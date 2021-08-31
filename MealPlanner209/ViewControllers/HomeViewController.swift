@@ -12,32 +12,23 @@ import CoreData
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var homeBarButton: UITabBarItem!
-    @IBOutlet weak var caloriesBar: LinearProgressBar!
-    @IBOutlet weak var carbsBar: CircleProgressBar!
-    @IBOutlet weak var proteinsBar: CircleProgressBar!
-    @IBOutlet weak var fatsBar: CircleProgressBar!
-    
+    @IBOutlet weak var barStackView: UIStackView!
+    @IBOutlet weak var caloriesLabel: UILabel!
+    @IBOutlet weak var linearBarView: LinearProgressBar!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var scrollContentView: UIView!
     
+    var caloriesBar: LinearProgressBar!
+    var carbsBar: CircularProgressBar!
+    var proteinBar: CircularProgressBar!
+    var fatBar: CircularProgressBar!
     var addButton: UIButton!
-    var dataController: DataController!
+    
+    let dataController: DataController = {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        return appDelegate.dataController
+    }()
     var fetchedResultController: NSFetchedResultsController<History>!
-    
-    var currentCalories: CGFloat = 0
-    var currentCarbs: CGFloat = 0
-    var currentProtein: CGFloat = 0
-    var currentFat: CGFloat = 0
-    
-    let maxCalories: CGFloat = 2700
-    let maxCarbs: CGFloat = 1500
-    let maxProtein: CGFloat = 120
-    let maxFat: CGFloat = 800
-    
-    var favoriteListVC: FavoriteListViewController!
-    var homeSubviews = [HomeSubView]()
-    var buttonConstraint: NSLayoutConstraint!
-    
     let currentDate: String = {
         let currentDate = Date()
         let dateFormatter = DateFormatter()
@@ -46,39 +37,40 @@ class HomeViewController: UIViewController {
         return dateString
     }()
     
+    var currentCalories: Double = 0
+    var currentCarbs: Double = 0
+    var currentProtein: Double = 0
+    var currentFat: Double = 0
+    
+    let maxCalories: Double = 2700
+    let maxCarbs: Double = 1500
+    let maxProtein: Double = 120
+    let maxFat: Double = 800
+    
+    var favoriteListVC: FavoriteListViewController!
+    var homeSubviews = [HomeSubView]()
+    var buttonConstraint: NSLayoutConstraint!
+    var isFirstLoad: Bool = true
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let tapGestureRecognizer = UITapGestureRecognizer()
-        tapGestureRecognizer.delegate = self
-        self.view.addGestureRecognizer(tapGestureRecognizer)
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationItem.title = "Home"
-        
-        scrollContentView.layer.backgroundColor = UIColor.yellow.cgColor
+        setupGesture()
+        setupNavigation()
         scrollView.isScrollEnabled = true
-        scrollView.backgroundColor = .green
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupFetchedResultController()
-        homeSubviews = []
-        setupButton()
-        calculateNutrients()
+        updateSubView()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         fetchedResultController = nil
-        for subview in homeSubviews {
-            NSLayoutConstraint.deactivate(subview.constraints)
-            subview.removeFromSuperview()
-        }
-        NSLayoutConstraint.deactivate([buttonConstraint])
-        buttonConstraint = nil
-        
-        homeSubviews = []
+        initSubView()
     }
     
     override func viewDidLayoutSubviews() {
@@ -87,12 +79,29 @@ class HomeViewController: UIViewController {
     
 }
 
+extension HomeViewController: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if !(self.favoriteListVC?.view.bounds.contains(touch.location(in: self.favoriteListVC?.view)) ?? true) {
+            removeSubCollectionView()
+        }
+        return !(self.favoriteListVC?.view.bounds.contains(touch.location(in: self.favoriteListVC?.view)) ?? true)
+    }
+}
+
+extension HomeViewController: NSFetchedResultsControllerDelegate {
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        removeSubCollectionView()
+        updateSubView()
+    }
+    
+}
+
 extension HomeViewController {
     
+    // MARK: Setting
     private func setupFetchedResultController() {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        self.dataController = appDelegate.dataController
-        
         guard let user = User.user else { fatalError("Can't configure current user") }
         
         let fetchRequest: NSFetchRequest<History> = History.fetchRequest()
@@ -104,7 +113,6 @@ extension HomeViewController {
         fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [userPredicate, datePredicate])
 
         fetchedResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: dataController.viewContext, sectionNameKeyPath: nil, cacheName: nil)
-        
         fetchedResultController.delegate = self
         
         do {
@@ -114,73 +122,47 @@ extension HomeViewController {
         }
     }
     
-    private func addSubCollectionView() {
-        favoriteListVC = self.storyboard?.instantiateViewController(identifier: "FavoriteListVC") as? FavoriteListViewController
-
-        let height: CGFloat = 140
-        let space: CGFloat = 10
+    private func setupGesture() {
+        let tapGestureRecognizer = UITapGestureRecognizer()
+        tapGestureRecognizer.delegate = self
+        self.view.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    private func setupNavigation() {
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationItem.title = "Home"
+    }
+    
+    private func setupBars() {
+        var linearFrame: CGRect
+        if isFirstLoad {
+            linearFrame = CGRect(x: linearBarView.frame.origin.x,
+                                 y: caloriesLabel.frame.origin.y + 85,
+                                 width: linearBarView.frame.width,
+                                 height: linearBarView.frame.height)
+            isFirstLoad = false
+        } else {
+            linearFrame = CGRect(x: linearBarView.frame.origin.x,
+                                 y: caloriesLabel.frame.origin.y,
+                                 width: linearBarView.frame.width,
+                                 height: linearBarView.frame.height)
+        }
         
-        favoriteListVC.view.layer.borderWidth = 2
-        favoriteListVC.view.layer.borderColor = UIColor.black.cgColor
-        self.view.addSubview(favoriteListVC.view)
-        favoriteListVC.view.translatesAutoresizingMaskIntoConstraints = false
-        favoriteListVC.view.topAnchor.constraint(equalTo: addButton.bottomAnchor, constant: space).isActive = true
-        favoriteListVC.view.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 10).isActive = true
-        favoriteListVC.view.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 10).isActive = true
-        favoriteListVC.view.heightAnchor.constraint(equalToConstant: height).isActive = true
-        self.addChild(favoriteListVC)
-        // favoriteListVC.didMove(toParent: self)
-    }
-    
-    private func removeSubView() {
-        if let favoriteListVC = self.favoriteListVC {
-            if self.view.subviews.contains(favoriteListVC.view) {
-                NSLayoutConstraint.deactivate(favoriteListVC.view.constraints)
-                favoriteListVC.view.removeFromSuperview()
-            }
-        }
-    }
-    
-}
+        caloriesBar = LinearProgressBar(frame: linearFrame, maxValue: maxCalories, currentValue: currentCalories)
+        linearBarView.removeFromSuperview()
+        linearBarView = caloriesBar
+        self.view.addSubview(linearBarView)
 
-extension HomeViewController: NSFetchedResultsControllerDelegate {
-    
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        
+        let space = barStackView.spacing
+        let width = (barStackView.frame.width - 2 * space) / 3
+        let frame = CGRect(x: 0, y: 0, width: width, height: barStackView.frame.height)
+        carbsBar = CircularProgressBar(frame: frame, title: "Carbs", maxValue: maxCarbs, currentValue: currentCarbs)
+        proteinBar = CircularProgressBar(frame: frame, title: "Protein", maxValue: maxProtein, currentValue: currentProtein)
+        fatBar = CircularProgressBar(frame: frame, title: "Fat     ", maxValue: maxFat, currentValue: currentFat)
+        self.barStackView.addArrangedSubview(carbsBar)
+        self.barStackView.addArrangedSubview(proteinBar)
+        self.barStackView.addArrangedSubview(fatBar)
     }
-    
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        removeSubView()
-        viewWillAppear(true)
-    }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        switch type {
-        case .insert:
-            print("Insert in home")
-        case .delete:
-            print("Delete in home")
-        case .update:
-            print("Update in home")
-        case .move:
-            print("Move")
-        default:
-            fatalError("Data controller type error")
-        }
-    }
-}
-
-extension HomeViewController: UIGestureRecognizerDelegate {
-    
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        if !(self.favoriteListVC?.view.bounds.contains(touch.location(in: self.favoriteListVC?.view)) ?? true) {
-            removeSubView()
-        }
-        return !(self.favoriteListVC?.view.bounds.contains(touch.location(in: self.favoriteListVC?.view)) ?? true)
-    }
-}
-
-extension HomeViewController {
     
     private func setupButton() {
         addButton = UIButton()
@@ -196,10 +178,6 @@ extension HomeViewController {
         addButton.heightAnchor.constraint(equalToConstant: 26.5).isActive = true
         buttonConstraint = addButton.topAnchor.constraint(equalTo: scrollContentView.topAnchor, constant: 70)
         buttonConstraint!.isActive = true
-    }
-    
-    @objc func addButtonClicked() {
-        addSubCollectionView()
     }
     
     private func setupSubviews(food: Food) {
@@ -232,6 +210,60 @@ extension HomeViewController {
         homeSubviews.append(subView)
     }
     
+    private func addSubCollectionView() {
+        favoriteListVC = self.storyboard?.instantiateViewController(identifier: "FavoriteListVC") as? FavoriteListViewController
+        favoriteListVC.fetchedResultController = self.fetchedResultController
+        let height: CGFloat = 150
+        let space: CGFloat = 20
+        
+        favoriteListVC.view.layer.borderWidth = 1.4
+        favoriteListVC.view.layer.borderColor = UIColor.black.cgColor
+        self.view.addSubview(favoriteListVC.view)
+        favoriteListVC.view.translatesAutoresizingMaskIntoConstraints = false
+        favoriteListVC.view.topAnchor.constraint(equalTo: addButton.bottomAnchor, constant: space).isActive = true
+        favoriteListVC.view.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0).isActive = true
+        favoriteListVC.view.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0).isActive = true
+        favoriteListVC.view.heightAnchor.constraint(equalToConstant: height).isActive = true
+        self.addChild(favoriteListVC)
+    }
+    
+    private func updateSubView() {
+        initSubView()
+        setupButton()
+        calculateNutrients()
+    }
+    
+    private func initSubView() {
+        for subview in homeSubviews {
+            NSLayoutConstraint.deactivate(subview.constraints)
+            subview.removeFromSuperview()
+        }
+        homeSubviews = []
+        
+        if buttonConstraint != nil {
+            NSLayoutConstraint.deactivate([buttonConstraint])
+            buttonConstraint = nil
+        }
+        
+        if addButton != nil {
+            addButton.removeFromSuperview()
+            addButton = nil
+        }
+    }
+    
+    private func removeSubCollectionView() {
+        if let favoriteListVC = self.favoriteListVC {
+            if self.view.subviews.contains(favoriteListVC.view) {
+                NSLayoutConstraint.deactivate(favoriteListVC.view.constraints)
+                favoriteListVC.view.removeFromSuperview()
+            }
+        }
+    }
+    
+    @objc func addButtonClicked() {
+        addSubCollectionView()
+    }
+    
     private func calculateNutrients() {
         guard let history = fetchedResultController.fetchedObjects?.first else {
             print("There is no history")
@@ -248,15 +280,20 @@ extension HomeViewController {
             return
         }
         
+        currentCalories = 0
+        currentCarbs = 0
+        currentProtein = 0
+        currentFat = 0
+        
         for food in foodsAsArray.reversed() {
-            currentCalories += CGFloat(food.calories)
-            currentCarbs += CGFloat(food.carbohydrates)
-            currentProtein += CGFloat(food.proteins)
-            currentFat += CGFloat(food.fats)
+            currentCalories += food.calories
+            currentCarbs += food.carbohydrates
+            currentProtein += food.proteins
+            currentFat += food.fats
             setupSubviews(food: food)
         }
         updateButton()
-        updateProgress()
+        updateBars()
     }
     
     private func updateButton() {
@@ -273,15 +310,13 @@ extension HomeViewController {
         }
     }
     
-    private func updateProgress() {
-        let caloriesProgress: CGFloat = currentCalories / maxCalories
-        let carbsProgress: CGFloat = currentCarbs / maxCarbs
-        let proteinProgress: CGFloat = currentProtein / maxProtein
-        let fatProgress: CGFloat = currentFat / maxFat
-        
-        caloriesBar.progress = caloriesProgress
-        carbsBar.progress = carbsProgress
-        proteinsBar.progress = proteinProgress
-        fatsBar.progress = fatProgress
+    private func updateBars() {
+        for subview in self.barStackView.arrangedSubviews {
+            subview.removeFromSuperview()
+        }
+        for subview in self.linearBarView.subviews {
+            subview.removeFromSuperview()
+        }
+        setupBars()
     }
 }

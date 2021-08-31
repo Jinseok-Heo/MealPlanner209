@@ -12,10 +12,19 @@ import FirebaseAuth
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
     
+    let settingItems: [String] = [
+        "Edit profile",
+        "Consumption goal",
+        "Sign out"
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationItem.title = "Settings"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -23,23 +32,30 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return settingItems.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell") as! SettingsCell
-        cell.cellTitle.text = "Sign out"
+        cell.cellTitle.text = settingItems[indexPath.row]
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("\(indexPath.row) selected!")
-        signOut()
+        switch indexPath.row {
+        case 0:
+            performSegue(withIdentifier: "ToEditProfile", sender: nil)
+        case 1:
+            performSegue(withIdentifier: "ToEditGoal", sender: nil)
+        case 2:
+            signOut()
+        default:
+            print("Invalid cell is tapped")
+        }
     }
     
     func signOut() {
-        print("SignOut Tapped")
         switch User.didSigninWith {
         case .Default, .Google, .Facebook:
             print("Default or Google or Facebook")
@@ -54,7 +70,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             let naverSignInInstance = NaverThirdPartyLoginConnection.getSharedInstance()
             naverSignInInstance?.requestDeleteToken()
         }
-        
-        self.navigationController?.popViewController(animated: true)
+
+        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
 }

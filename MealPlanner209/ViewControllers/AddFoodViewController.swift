@@ -47,7 +47,6 @@ class AddFoodViewController: UIViewController {
     }
     
     @IBAction func addImageButtonTapped(_ sender: Any) {
-        print("Add image button tapped")
         let dropDown = DropDown()
         dropDown.dataSource = ["Add image with album", "Add image with camera"]
         dropDown.anchorView = addImageButton

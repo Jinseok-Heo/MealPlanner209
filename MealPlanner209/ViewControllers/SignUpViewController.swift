@@ -19,16 +19,20 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var userIDMessageLabel: UILabel!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var genderPicker: UIPickerView!
+    @IBOutlet weak var datePicker: UIDatePicker!
     
     let baseTextfieldDelegate = BaseTextfieldDelegate()
     let emailTextfieldDelegate = EmailTextfieldDelegate()
     let passwordTextfieldDelegate = PasswordTextfieldDelegate()
     
+    let genderData: [String] = ["Male", "Female", "Unknown"]
+    
     var ableToSignUp: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        setSignUpButton()
+        genderPicker.delegate = self
         setTextfieldDelegate()
     }
     
@@ -76,8 +80,29 @@ class SignUpViewController: UIViewController {
             }
         }
     }
+    
     @IBAction func cancelButtonTapped(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func birthSelected(_ sender: UIDatePicker) {
+        
+    }
+    
+}
+
+extension SignUpViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return genderData[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return genderData.count
     }
     
 }

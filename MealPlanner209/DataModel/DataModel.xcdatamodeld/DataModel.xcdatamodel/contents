@@ -18,6 +18,8 @@
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserInfo" inverseName="histories" inverseEntity="UserInfo"/>
     </entity>
     <entity name="UserInfo" representedClassName="UserInfo" syncable="YES" codeGenerationType="class">
+        <attribute name="birth" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="gender" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="profilePhoto" optional="YES" attributeType="Binary"/>
         <attribute name="signInInfo" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -28,6 +30,6 @@
     <elements>
         <element name="Food" positionX="1220.839965820313" positionY="-1710.55892944336" width="128" height="179"/>
         <element name="History" positionX="971.2304077148438" positionY="-1746.048782348633" width="128" height="88"/>
-        <element name="UserInfo" positionX="759.34375" positionY="-1692.961822509765" width="128" height="133"/>
+        <element name="UserInfo" positionX="759.34375" positionY="-1692.961822509765" width="128" height="149"/>
     </elements>
 </model>

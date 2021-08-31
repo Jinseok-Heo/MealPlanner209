@@ -11,10 +11,9 @@
 		A9C5C6CC63C344A8EB642A04 /* Pods_MealPlanner209.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEBFA23DB6665172C3DC9B23 /* Pods_MealPlanner209.framework */; };
 		BE5670CCA54B2A373B0E4D16 /* Pods_MealPlanner209Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5B803E0CB3DF9C6BD427F3E /* Pods_MealPlanner209Tests.framework */; };
 		EB04FDD626CE31B700ABDE03 /* PickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB04FDD526CE31B700ABDE03 /* PickerViewDelegate.swift */; };
+		EB0B427126DCA20A008FF60D /* CircleProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0B427026DCA20A008FF60D /* CircleProgressBar.swift */; };
 		EB4E347A26C8ECD70093CDC4 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4E347926C8ECD70093CDC4 /* SettingsCell.swift */; };
 		EB4E347D26C8EDA40093CDC4 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EB4E347B26C8EDA40093CDC4 /* DataModel.xcdatamodeld */; };
-		EB4E347F26C8F5D40093CDC4 /* CustomLinearProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4E347E26C8F5D40093CDC4 /* CustomLinearProgressBar.swift */; };
-		EB4E348126C90DD00093CDC4 /* CustomCircleProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4E348026C90DD00093CDC4 /* CustomCircleProgressBar.swift */; };
 		EB526E2526D8BA0E0017D3BC /* HomeSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB526E2426D8BA0E0017D3BC /* HomeSubView.swift */; };
 		EB58476E26CCEB67000A6738 /* AddFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB58476D26CCEB67000A6738 /* AddFoodViewController.swift */; };
 		EB6DC32426C2567F00764CDD /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6DC32326C2567F00764CDD /* CustomTextField.swift */; };
@@ -44,6 +43,10 @@
 		EBB2ED2B26BD228D00176847 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2ED2A26BD228D00176847 /* HistoryViewController.swift */; };
 		EBB2ED2D26BD22A100176847 /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2ED2C26BD22A100176847 /* RecipeViewController.swift */; };
 		EBB2ED2F26BD29E700176847 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB2ED2E26BD29E700176847 /* SignUpViewController.swift */; };
+		EBB3194426DDD4F7004B3687 /* LinearProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB3194326DDD4F7004B3687 /* LinearProgressBar.swift */; };
+		EBB3194626DDF51A004B3687 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB3194526DDF51A004B3687 /* EditProfileViewController.swift */; };
+		EBB3194826DDF553004B3687 /* EditGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB3194726DDF553004B3687 /* EditGoalViewController.swift */; };
+		EBB3194A26DE349B004B3687 /* FetchedResultControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB3194926DE349B004B3687 /* FetchedResultControllers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,10 +76,9 @@
 		D5B803E0CB3DF9C6BD427F3E /* Pods_MealPlanner209Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MealPlanner209Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6035873311B356F75469409 /* Pods-MealPlanner209-MealPlanner209UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealPlanner209-MealPlanner209UITests.debug.xcconfig"; path = "Target Support Files/Pods-MealPlanner209-MealPlanner209UITests/Pods-MealPlanner209-MealPlanner209UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		EB04FDD526CE31B700ABDE03 /* PickerViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewDelegate.swift; sourceTree = "<group>"; };
+		EB0B427026DCA20A008FF60D /* CircleProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressBar.swift; sourceTree = "<group>"; };
 		EB4E347926C8ECD70093CDC4 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		EB4E347C26C8EDA40093CDC4 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
-		EB4E347E26C8F5D40093CDC4 /* CustomLinearProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLinearProgressBar.swift; sourceTree = "<group>"; };
-		EB4E348026C90DD00093CDC4 /* CustomCircleProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCircleProgressBar.swift; sourceTree = "<group>"; };
 		EB526E2426D8BA0E0017D3BC /* HomeSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSubView.swift; sourceTree = "<group>"; };
 		EB58476D26CCEB67000A6738 /* AddFoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodViewController.swift; sourceTree = "<group>"; };
 		EB6DC32326C2567F00764CDD /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
@@ -112,6 +114,10 @@
 		EBB2ED2A26BD228D00176847 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		EBB2ED2C26BD22A100176847 /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
 		EBB2ED2E26BD29E700176847 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		EBB3194326DDD4F7004B3687 /* LinearProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearProgressBar.swift; sourceTree = "<group>"; };
+		EBB3194526DDF51A004B3687 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		EBB3194726DDF553004B3687 /* EditGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGoalViewController.swift; sourceTree = "<group>"; };
+		EBB3194926DE349B004B3687 /* FetchedResultControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultControllers.swift; sourceTree = "<group>"; };
 		EEBFA23DB6665172C3DC9B23 /* Pods_MealPlanner209.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MealPlanner209.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -171,11 +177,11 @@
 			children = (
 				EB6DC32326C2567F00764CDD /* CustomTextField.swift */,
 				EB4E347926C8ECD70093CDC4 /* SettingsCell.swift */,
-				EB4E347E26C8F5D40093CDC4 /* CustomLinearProgressBar.swift */,
-				EB4E348026C90DD00093CDC4 /* CustomCircleProgressBar.swift */,
 				EBAE7F2F26CA51C800FCF6C1 /* FavoriteListCell.swift */,
 				EBAA4AB826D36CE1000FFB1C /* SearchCell.swift */,
 				EB526E2426D8BA0E0017D3BC /* HomeSubView.swift */,
+				EB0B427026DCA20A008FF60D /* CircleProgressBar.swift */,
+				EBB3194326DDD4F7004B3687 /* LinearProgressBar.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -280,6 +286,8 @@
 				EBB2ED2C26BD22A100176847 /* RecipeViewController.swift */,
 				EB83C50826BE89FD007A82F6 /* TabbarController.swift */,
 				EB58476D26CCEB67000A6738 /* AddFoodViewController.swift */,
+				EBB3194526DDF51A004B3687 /* EditProfileViewController.swift */,
+				EBB3194726DDF553004B3687 /* EditGoalViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -289,6 +297,7 @@
 			children = (
 				EB4E347B26C8EDA40093CDC4 /* DataModel.xcdatamodeld */,
 				EBAE7F3126CA528F00FCF6C1 /* DataController.swift */,
+				EBB3194926DE349B004B3687 /* FetchedResultControllers.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -585,16 +594,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBB3194626DDF51A004B3687 /* EditProfileViewController.swift in Sources */,
 				EB4E347A26C8ECD70093CDC4 /* SettingsCell.swift in Sources */,
 				EB6DC32426C2567F00764CDD /* CustomTextField.swift in Sources */,
 				EBAE7F3026CA51C800FCF6C1 /* FavoriteListCell.swift in Sources */,
+				EBB3194426DDD4F7004B3687 /* LinearProgressBar.swift in Sources */,
+				EB0B427126DCA20A008FF60D /* CircleProgressBar.swift in Sources */,
 				EBB2ED2F26BD29E700176847 /* SignUpViewController.swift in Sources */,
-				EB4E348126C90DD00093CDC4 /* CustomCircleProgressBar.swift in Sources */,
 				EBAE7F3226CA528F00FCF6C1 /* DataController.swift in Sources */,
 				EBB2ED2326BD220C00176847 /* HomeViewController.swift in Sources */,
 				EBB2ED2726BD225400176847 /* SearchViewController.swift in Sources */,
 				EBAA4ABC26D386FE000FFB1C /* FoodResponse.swift in Sources */,
 				EBB2ED1F26BCF92B00176847 /* NetworkModel.swift in Sources */,
+				EBB3194A26DE349B004B3687 /* FetchedResultControllers.swift in Sources */,
 				EBB2ED2526BD223A00176847 /* FavoriteListViewController.swift in Sources */,
 				EBA78C3326C3F8FD0066DF7C /* TextFieldDelegate.swift in Sources */,
 				EBAA4AB926D36CE1000FFB1C /* SearchCell.swift in Sources */,
@@ -602,8 +614,8 @@
 				EB83C50726BE6605007A82F6 /* AuthModel.swift in Sources */,
 				EBB2ED2D26BD22A100176847 /* RecipeViewController.swift in Sources */,
 				EB83C50926BE89FD007A82F6 /* TabbarController.swift in Sources */,
+				EBB3194826DDF553004B3687 /* EditGoalViewController.swift in Sources */,
 				EBB2ECEE26BCF8B900176847 /* LoginViewController.swift in Sources */,
-				EB4E347F26C8F5D40093CDC4 /* CustomLinearProgressBar.swift in Sources */,
 				EB990F0126C3982A008E671F /* ImageHandler.swift in Sources */,
 				EB7497C326D4B00F003418E9 /* NutritionResponse.swift in Sources */,
 				EBB2ECEA26BCF8B900176847 /* AppDelegate.swift in Sources */,

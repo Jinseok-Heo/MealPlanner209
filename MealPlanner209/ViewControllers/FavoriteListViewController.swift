@@ -18,7 +18,10 @@ class FavoriteListViewController: UIViewController {
         }
     }
     
-    var dataController: DataController!
+    let dataController: DataController = {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        return appDelegate.dataController
+    }()
     var fetchedResultController: NSFetchedResultsController<History>!
     
     var mealResultController: NSFetchedResultsController<Food>!
@@ -59,8 +62,6 @@ class FavoriteListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        self.dataController = appDelegate.dataController
         setupFetchedResultController()
         setupMealResultController()
         setupSnackResultController()
@@ -145,10 +146,8 @@ extension FavoriteListViewController: UICollectionViewDelegate, UICollectionView
             
             dropDown.selectionAction = { (index: Int, item: String) in
                 if index == 0 {
-                    print("add food(selected index: \(index)")
                     self.addFoodNotification(indexPath: indexPath)
                 } else {
-                    print("remove food(selected index: \(index)")
                     self.removeFoodNotification(indexPath: indexPath)
                 }
                 dropDown.clearSelection()
@@ -160,17 +159,14 @@ extension FavoriteListViewController: UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let headerview = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "FavoriteListHeaderCell", for: indexPath) as! FavoriteListHeaderCell
         headerview.sectionTitleLabel.text = self.section[indexPath.section]
+        headerview.sectionTitleLabel.font = UIFont(name: "Noteworthy Bold", size: 15)
         return headerview
     }
     
 }
 
 extension FavoriteListViewController: NSFetchedResultsControllerDelegate {
-    
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        
-    }
-    
+
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         collectionView.reloadData()
     }
@@ -205,11 +201,9 @@ extension FavoriteListViewController {
         fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [userPredicate, datePredicate])
         let sortDescripter = NSSortDescriptor(key: "date", ascending: false)
         fetchRequest.sortDescriptors = [sortDescripter]
-        
+
         fetchedResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: dataController.viewContext, sectionNameKeyPath: nil, cacheName: nil)
-        
-        let homveVC = storyboard?.instantiateViewController(identifier: "HomeVC") as! HomeViewController
-        fetchedResultController.delegate = homveVC.self
+
         do {
             try fetchedResultController.performFetch()
         } catch {
@@ -277,13 +271,10 @@ extension FavoriteListViewController {
             var food: Food
             switch indexPath.section {
             case 0:
-                print("This is for meal")
                 food  = self.mealResultController.object(at: IndexPath(row: indexPath.row, section: 0))
             case 1:
-                print("This is for snack")
                 food = self.snackResultController.object(at: IndexPath(row: indexPath.row, section: 0))
             case 2:
-                print("This is for beverage")
                 food = self.snackResultController.object(at: IndexPath(row: indexPath.row, section: 0))
             default:
                 fatalError("Section Error")
@@ -307,14 +298,11 @@ extension FavoriteListViewController {
             var food: Food
             switch indexPath.section {
             case 0:
-                print("This is for meal")
                 food  = self.mealResultController.object(at: IndexPath(row: indexPath.row, section: 0))
             case 1:
-                print("This is for snack")
                 food = self.snackResultController.object(at: IndexPath(row: indexPath.row, section: 0))
             case 2:
-                print("This is for beverage")
-                food = self.snackResultController.object(at: IndexPath(row: indexPath.row, section: 0))
+                food = self.beverageResultController.object(at: IndexPath(row: indexPath.row, section: 0))
             default:
                 fatalError("Section Error")
             }
@@ -329,7 +317,9 @@ extension FavoriteListViewController {
             }
             
             do {
+                print("Saving")
                 try self.dataController.viewContext.save()
+                print("Save completed")
             } catch {
                 fatalError("Can't save data")
             }
