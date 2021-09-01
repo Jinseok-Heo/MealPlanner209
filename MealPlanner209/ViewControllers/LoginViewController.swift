@@ -35,9 +35,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         passwordTextfield.delegate = self
         
         naverSignInInstance?.delegate = self
-        // Test
-        emailTextfield.text = "hjs7747@naver.com"
-        passwordTextfield.text = "hh44061312!"
     }
     
     override func viewWillAppear(_ animated: Bool) {
