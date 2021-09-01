@@ -14,7 +14,8 @@
 ## Functions
 ### View Controllers
     
-<img src="https://user-images.githubusercontent.com/71974878/131629764-cb24d4b8-7f0e-4926-bb03-73043b94a3b6.png"  width="700" height="370">
+<img src="https://user-images.githubusercontent.com/71974878/131629764-cb24d4b8-7f0e-4926-bb03-73043b94a3b6.png"  width="292.1" height="632.18">
+
     <Sign in page>
 
     ![Simulator Screen Shot - iPhone 11 - 2021-09-01 at 16 08 27](https://user-images.githubusercontent.com/71974878/131629892-6243f6cc-5740-4ff8-a2a0-d36055d42a24.png)
