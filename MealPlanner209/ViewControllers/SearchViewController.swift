@@ -68,8 +68,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let result = networkResult {
-//            return result.menuItems.count
-            return 1
+            return result.menuItems.count
         } else {
             return 0
         }

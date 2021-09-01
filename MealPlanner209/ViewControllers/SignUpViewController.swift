@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 import FirebaseAuth
 
 class SignUpViewController: UIViewController {
@@ -27,6 +28,8 @@ class SignUpViewController: UIViewController {
     let passwordTextfieldDelegate = PasswordTextfieldDelegate()
     
     let genderData: [String] = ["Male", "Female", "Unknown"]
+    var gender: User.Gender?
+    var selectedDate: Date?
     
     var ableToSignUp: Bool = false
     
@@ -38,7 +41,6 @@ class SignUpViewController: UIViewController {
     
     @IBAction func signUpButtonTapped(_ sender: Any) {
         guard let email = emailTextfield.text else {
-            // TODO: Notify
             return
         }
         guard let password = passwordTextfield.text else {
@@ -68,14 +70,15 @@ class SignUpViewController: UIViewController {
                         print("login success")
                         User.name = name
                         User.userId = userId
-                        print(user?.additionalUserInfo)
+                        User.birth = self.selectedDate
+                        User.gender = self.gender
+                        self.addUser()
                         self.performSegue(withIdentifier: "SignUpComplete", sender: nil)
                     } else {
                         fatalError("Failed login with error: \(error?.localizedDescription ?? "")")
                     }
                 }
             } else {
-                // TODO: Notify Failure
                 self.notifyMessage()
             }
         }
@@ -86,7 +89,8 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func birthSelected(_ sender: UIDatePicker) {
-        
+        selectedDate = sender.date
+        self.dismiss(animated: true, completion: nil)
     }
     
 }
@@ -103,6 +107,17 @@ extension SignUpViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return genderData.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        switch row {
+        case 0:
+            gender = .male
+        case 1:
+            gender = .female
+        default:
+            gender = .unknown
+        }
     }
     
 }
@@ -146,7 +161,6 @@ extension SignUpViewController {
     }
     
     private func verifyPassword(password: String, verifiedPassword: String) -> Bool {
-        // TODO: Check if password is valid
         if password != verifiedPassword {
             self.notifyMessage(message: "Password is not correct!")
             return false
@@ -175,4 +189,37 @@ extension SignUpViewController {
             return "Invalid password                      Try again!"
         }
     }
+    
+    private func addUser() {
+        var signInfo: Int = 0
+        switch User.didSigninWith {
+        case .Default:
+            signInfo = 0
+        case .Google:
+            signInfo = 1
+        case .Facebook:
+            signInfo = 2
+        case .Naver:
+            signInfo = 3
+        }
+        let user = UserInfo(context: FetchedResultController.dataController.viewContext)
+        user.uid = User.Auth.uid
+        user.name = User.name
+        user.birth = User.birth
+        user.gender = User.gender?.rawValue
+        user.signInInfo = Int16(signInfo)
+        user.profilePhoto = User.profileImage
+        user.maxCalories = 2500
+        user.maxCarbs = 312.5
+        user.maxProtein = 125
+        user.maxFat = 83.33
+
+        do {
+            try FetchedResultController.dataController.viewContext.save()
+        } catch {
+            fatalError("Can't save user with error: \(error.localizedDescription)")
+        }
+        User.user = user
+    }
+    
 }

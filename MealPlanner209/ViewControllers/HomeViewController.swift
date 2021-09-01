@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import FirebaseAuth
 import CoreData
 
 class HomeViewController: UIViewController {
@@ -24,35 +23,22 @@ class HomeViewController: UIViewController {
     var fatBar: CircularProgressBar!
     var addButton: UIButton!
     
-    let dataController: DataController = {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        return appDelegate.dataController
-    }()
     var fetchedResultController: NSFetchedResultsController<History>!
-    let currentDate: String = {
-        let currentDate = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let dateString = dateFormatter.string(from: currentDate)
-        return dateString
-    }()
     
     var currentCalories: Double = 0
     var currentCarbs: Double = 0
     var currentProtein: Double = 0
     var currentFat: Double = 0
     
-    let maxCalories: Double = 2700
-    let maxCarbs: Double = 1500
-    let maxProtein: Double = 120
-    let maxFat: Double = 800
+    let maxCalories: Double = User.user!.maxCalories
+    let maxCarbs: Double = User.user!.maxCarbs
+    let maxProtein: Double = User.user!.maxProtein
+    let maxFat: Double = User.user!.maxFat
     
     var favoriteListVC: FavoriteListViewController!
     var homeSubviews = [HomeSubView]()
     var buttonConstraint: NSLayoutConstraint!
     var isFirstLoad: Bool = true
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,24 +88,8 @@ extension HomeViewController {
     
     // MARK: Setting
     private func setupFetchedResultController() {
-        guard let user = User.user else { fatalError("Can't configure current user") }
-        
-        let fetchRequest: NSFetchRequest<History> = History.fetchRequest()
-        let userPredicate = NSPredicate(format: "user == %@", user)
-        let datePredicate = NSPredicate(format: "date == %@", currentDate)
-        
-        let sortDescripter = NSSortDescriptor(key: "date", ascending: false)
-        fetchRequest.sortDescriptors = [sortDescripter]
-        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [userPredicate, datePredicate])
-
-        fetchedResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: dataController.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultController = FetchedResultController.historyFetchedResultController()
         fetchedResultController.delegate = self
-        
-        do {
-            try fetchedResultController.performFetch()
-        } catch {
-            fatalError("Fetch cannot be performed: \(error.localizedDescription)")
-        }
     }
     
     private func setupGesture() {
@@ -137,7 +107,7 @@ extension HomeViewController {
         var linearFrame: CGRect
         if isFirstLoad {
             linearFrame = CGRect(x: linearBarView.frame.origin.x,
-                                 y: caloriesLabel.frame.origin.y + 85,
+                                 y: linearBarView.frame.origin.y + 85,
                                  width: linearBarView.frame.width,
                                  height: linearBarView.frame.height)
             isFirstLoad = false
@@ -212,8 +182,8 @@ extension HomeViewController {
     
     private func addSubCollectionView() {
         favoriteListVC = self.storyboard?.instantiateViewController(identifier: "FavoriteListVC") as? FavoriteListViewController
-        favoriteListVC.fetchedResultController = self.fetchedResultController
-        let height: CGFloat = 150
+        favoriteListVC.historyFetchedResultController = self.fetchedResultController
+        let height: CGFloat = 160
         let space: CGFloat = 20
         
         favoriteListVC.view.layer.borderWidth = 1.4

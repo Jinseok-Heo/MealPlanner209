@@ -70,7 +70,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             let naverSignInInstance = NaverThirdPartyLoginConnection.getSharedInstance()
             naverSignInInstance?.requestDeleteToken()
         }
-
         self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
 }

@@ -25,7 +25,12 @@ class EditProfileViewController: UIViewController {
     
     let passwordTextfieldDelegate = PasswordTextfieldDelegate()
     
+    var userFetchedResultController: NSFetchedResultsController<UserInfo>! = {
+        return FetchedResultController.userFetchedResultController()
+    }()
+    
     let genderData: [String] = ["Male", "Female", "Unknown"]
+    var gender: String = "Unknown"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +43,42 @@ class EditProfileViewController: UIViewController {
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
+        guard let fetchedObject = userFetchedResultController.fetchedObjects else {
+            fatalError("Can't define user")
+        }
+        if fetchedObject.count != 1 {
+            fatalError("Invalid user count")
+        }
+        guard let user = fetchedObject.first else {
+            fatalError("No user is found")
+        }
         
+        user.birth = datePicker.date
+        user.gender = gender
+        user.profilePhoto = self.profileImageView.image?.pngData()
+        
+        if let newName = userIdTextfield.text {
+            user.name = newName
+        }
+        
+        if let newPassword = passwordTextfield.text {
+            if let verifiedNewPassword = verifiedPasswordTextfield.text {
+                // TODO: request change password
+            }
+        }
+        
+        do {
+            try FetchedResultController.dataController.viewContext.save()
+        } catch {
+            fatalError("Can't save data")
+        }
+        User.user = user
+        let alert = UIAlertController(title: "Save success!", message: nil, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+            self.navigationController?.popViewController(animated: true)
+        }
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
@@ -46,7 +86,6 @@ class EditProfileViewController: UIViewController {
     }
     
     @IBAction func birthSelected(_ sender: UIDatePicker) {
-        print(sender.date)
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -85,6 +124,10 @@ extension EditProfileViewController: UIPickerViewDelegate, UIPickerViewDataSourc
         return genderData.count
     }
     
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.gender = genderData[row]
+    }
+    
 }
 
 extension EditProfileViewController: UITextFieldDelegate {
@@ -95,9 +138,11 @@ extension EditProfileViewController: UITextFieldDelegate {
         if newText == (self.passwordTextfield.text ?? "") as NSString {
             verifiedLabel.textColor = .systemGreen
             verifiedLabel.text = passwordMessage(verified: true)
+            saveButton.isEnabled = true
         } else {
             verifiedLabel.textColor = .red
             verifiedLabel.text = passwordMessage(verified: false)
+            saveButton.isEnabled = false
         }
         return newText.length <= 15
     }

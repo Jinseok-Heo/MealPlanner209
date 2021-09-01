@@ -162,21 +162,25 @@
                                     <constraint firstItem="m4I-NF-pJN" firstAttribute="width" secondItem="M63-cR-XSE" secondAttribute="width" id="XTO-WV-mLb"/>
                                 </constraints>
                             </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NRl-Hi-TUr">
-                                <rect key="frame" x="87" y="92" width="240" height="220"/>
-                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Meal Planner" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q3g-Ou-moE">
+                                <rect key="frame" x="61" y="227" width="292" height="65"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.78776177000000003" green="0.90269557180000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vvz-0y-ojF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="NRl-Hi-TUr" firstAttribute="centerX" secondItem="FZ2-2A-wka" secondAttribute="centerX" id="2s1-ER-JLr"/>
                             <constraint firstItem="FZ2-2A-wka" firstAttribute="top" secondItem="vvz-0y-ojF" secondAttribute="top" constant="328" id="7jf-RX-OrP"/>
-                            <constraint firstItem="NRl-Hi-TUr" firstAttribute="top" secondItem="vvz-0y-ojF" secondAttribute="top" constant="48" id="J4p-Go-f5V"/>
-                            <constraint firstItem="NRl-Hi-TUr" firstAttribute="leading" secondItem="vvz-0y-ojF" secondAttribute="leading" constant="87" id="M2h-1j-yI0"/>
+                            <constraint firstItem="vvz-0y-ojF" firstAttribute="trailing" secondItem="q3g-Ou-moE" secondAttribute="trailing" constant="61" id="8Rp-ZP-azv"/>
+                            <constraint firstItem="q3g-Ou-moE" firstAttribute="leading" secondItem="vvz-0y-ojF" secondAttribute="leading" constant="61" id="A3m-hp-KlR"/>
                             <constraint firstItem="vvz-0y-ojF" firstAttribute="trailing" secondItem="FZ2-2A-wka" secondAttribute="trailing" constant="20" id="MVO-VF-8oU"/>
                             <constraint firstItem="FZ2-2A-wka" firstAttribute="leading" secondItem="vvz-0y-ojF" secondAttribute="leading" constant="20" id="QMd-oE-tIB"/>
+                            <constraint firstItem="FZ2-2A-wka" firstAttribute="top" secondItem="q3g-Ou-moE" secondAttribute="bottom" constant="80" id="f1m-Ho-FkA"/>
                             <constraint firstItem="vvz-0y-ojF" firstAttribute="bottom" secondItem="FZ2-2A-wka" secondAttribute="bottom" constant="100" id="jyV-st-HbG"/>
-                            <constraint firstItem="FZ2-2A-wka" firstAttribute="top" secondItem="NRl-Hi-TUr" secondAttribute="bottom" constant="60" id="lxd-W0-fmm"/>
+                            <constraint firstItem="q3g-Ou-moE" firstAttribute="top" secondItem="vvz-0y-ojF" secondAttribute="top" constant="183" id="myP-YB-lDA"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="aw6-dw-oSz"/>
@@ -184,7 +188,6 @@
                         <outlet property="emailTextfield" destination="m4I-NF-pJN" id="E9B-68-yBV"/>
                         <outlet property="facebookButton" destination="deU-xT-qfw" id="NiH-5j-RJe"/>
                         <outlet property="googleButton" destination="VgI-rY-6C8" id="AdO-Gx-rLK"/>
-                        <outlet property="imageView" destination="NRl-Hi-TUr" id="emw-jT-zY2"/>
                         <outlet property="naverButton" destination="57a-lS-IVn" id="aEn-qU-DFX"/>
                         <outlet property="passwordTextfield" destination="M63-cR-XSE" id="0Rr-VI-Yz7"/>
                         <outlet property="signInButton" destination="A3O-kh-K5A" id="GxV-xk-iJD"/>
@@ -335,10 +338,10 @@
                                 <rect key="frame" x="59" y="116" width="296" height="111"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Hux-wl-Psd">
-                                <rect key="frame" x="20" y="302" width="374" height="337"/>
+                                <rect key="frame" x="40" y="302" width="334" height="337"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vew-c2-yWG">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="43.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7bQ-PS-Vse">
                                                 <rect key="frame" x="0.0" y="0.0" width="75" height="43.5"/>
@@ -350,7 +353,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter food name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kUd-zV-PpI" customClass="DesignableUITextField" customModule="MealPlanner209" customModuleProvider="target">
-                                                <rect key="frame" x="75" y="0.0" width="299" height="43.5"/>
+                                                <rect key="frame" x="75" y="0.0" width="259" height="43.5"/>
                                                 <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                                 <userDefinedRuntimeAttributes>
@@ -370,44 +373,11 @@
                                             </textField>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O9A-Qc-kDT">
-                                        <rect key="frame" x="0.0" y="73.5" width="374" height="43.5"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calories: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pCs-w1-bIZ">
-                                                <rect key="frame" x="0.0" y="0.0" width="75" height="43.5"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="75" id="t52-xz-G4p"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter calories" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gfW-d9-Ewk" customClass="DesignableUITextField" customModule="MealPlanner209" customModuleProvider="target">
-                                                <rect key="frame" x="75" y="0.0" width="299" height="43.5"/>
-                                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="10"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" red="0.0045606461939999999" green="0.29425788650000001" blue="0.080881043540000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="2"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
-                                                        <real key="value" value="10"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </textField>
-                                        </subviews>
-                                    </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VPp-B4-p5E">
-                                        <rect key="frame" x="0.0" y="147" width="374" height="43"/>
+                                        <rect key="frame" x="0.0" y="73.5" width="334" height="43.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carbs:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3PE-Uz-1Ke">
-                                                <rect key="frame" x="0.0" y="0.0" width="75" height="43"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="75" height="43.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="75" id="3r4-YA-Zl8"/>
                                                 </constraints>
@@ -416,13 +386,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ody-Sc-36N">
-                                                <rect key="frame" x="75" y="0.0" width="60" height="43"/>
+                                                <rect key="frame" x="75" y="0.0" width="60" height="43.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="60" id="rZe-2s-6Ck"/>
                                                 </constraints>
                                             </pickerView>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter carbohydrates" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uFR-AV-qHc" customClass="DesignableUITextField" customModule="MealPlanner209" customModuleProvider="target">
-                                                <rect key="frame" x="135" y="0.0" width="239" height="43"/>
+                                                <rect key="frame" x="135" y="0.0" width="199" height="43.5"/>
                                                 <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad" smartDashesType="no" smartInsertDeleteType="no"/>
                                                 <userDefinedRuntimeAttributes>
@@ -443,10 +413,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jT3-dZ-Jx0">
-                                        <rect key="frame" x="0.0" y="220" width="374" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="147" width="334" height="43"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Proteins:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="87U-nK-SBX">
-                                                <rect key="frame" x="0.0" y="0.0" width="75" height="43.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="75" height="43"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="75" id="5Lv-bx-cSg"/>
                                                 </constraints>
@@ -455,13 +425,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bWE-iH-axe">
-                                                <rect key="frame" x="75" y="0.0" width="60" height="43.5"/>
+                                                <rect key="frame" x="75" y="0.0" width="60" height="43"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="60" id="P51-Lp-OWY"/>
                                                 </constraints>
                                             </pickerView>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter proteins" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0xl-fH-Aaz" customClass="DesignableUITextField" customModule="MealPlanner209" customModuleProvider="target">
-                                                <rect key="frame" x="135" y="0.0" width="239" height="43.5"/>
+                                                <rect key="frame" x="135" y="0.0" width="199" height="43"/>
                                                 <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <userDefinedRuntimeAttributes>
@@ -482,7 +452,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZAa-eH-V0C">
-                                        <rect key="frame" x="0.0" y="293.5" width="374" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="220" width="334" height="43.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fats:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zhw-Gq-He5">
                                                 <rect key="frame" x="0.0" y="0.0" width="75" height="43.5"/>
@@ -500,9 +470,42 @@
                                                 </constraints>
                                             </pickerView>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter fats" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5by-ao-a0r" customClass="DesignableUITextField" customModule="MealPlanner209" customModuleProvider="target">
-                                                <rect key="frame" x="135" y="0.0" width="239" height="43.5"/>
+                                                <rect key="frame" x="135" y="0.0" width="199" height="43.5"/>
                                                 <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.0045606461939999999" green="0.29425788650000001" blue="0.080881043540000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O9A-Qc-kDT">
+                                        <rect key="frame" x="0.0" y="293.5" width="334" height="43.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calories: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pCs-w1-bIZ">
+                                                <rect key="frame" x="0.0" y="0.0" width="75" height="43.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="75" id="t52-xz-G4p"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter calories" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gfW-d9-Ewk" customClass="DesignableUITextField" customModule="MealPlanner209" customModuleProvider="target">
+                                                <rect key="frame" x="75" y="0.0" width="259" height="43.5"/>
+                                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="10"/>
@@ -587,12 +590,12 @@
                             <constraint firstItem="AgZ-0v-lM6" firstAttribute="centerX" secondItem="Hh8-1i-KD1" secondAttribute="centerX" id="KQp-eT-zoX"/>
                             <constraint firstItem="0Lt-eW-JDU" firstAttribute="centerY" secondItem="4hx-Su-vZp" secondAttribute="centerY" id="LjN-Yk-LAx"/>
                             <constraint firstItem="Hh8-1i-KD1" firstAttribute="top" secondItem="dqN-0v-RI0" secondAttribute="top" constant="60" id="SrS-YD-ufY"/>
-                            <constraint firstItem="dqN-0v-RI0" firstAttribute="trailing" secondItem="Hux-wl-Psd" secondAttribute="trailing" constant="20" id="W5f-aR-nov"/>
+                            <constraint firstItem="dqN-0v-RI0" firstAttribute="trailing" secondItem="Hux-wl-Psd" secondAttribute="trailing" constant="40" id="W5f-aR-nov"/>
                             <constraint firstItem="dqN-0v-RI0" firstAttribute="bottom" secondItem="Hh8-1i-KD1" secondAttribute="bottom" constant="532" id="X5r-LG-f1M"/>
                             <constraint firstItem="4hx-Su-vZp" firstAttribute="centerX" secondItem="Hux-wl-Psd" secondAttribute="centerX" constant="-100" id="bjH-nr-ksh"/>
                             <constraint firstItem="AgZ-0v-lM6" firstAttribute="top" secondItem="Hh8-1i-KD1" secondAttribute="bottom" constant="9" id="dSS-Jo-Oiw"/>
                             <constraint firstItem="0Lt-eW-JDU" firstAttribute="width" secondItem="4hx-Su-vZp" secondAttribute="width" id="kF4-tv-8AE"/>
-                            <constraint firstItem="Hux-wl-Psd" firstAttribute="leading" secondItem="dqN-0v-RI0" secondAttribute="leading" constant="20" id="mWg-ce-nzS"/>
+                            <constraint firstItem="Hux-wl-Psd" firstAttribute="leading" secondItem="dqN-0v-RI0" secondAttribute="leading" constant="40" id="mWg-ce-nzS"/>
                             <constraint firstItem="0Lt-eW-JDU" firstAttribute="centerX" secondItem="Hux-wl-Psd" secondAttribute="centerX" constant="100" id="sLk-BN-8Ak"/>
                         </constraints>
                     </view>
@@ -1505,21 +1508,314 @@
             </objects>
             <point key="canvasLocation" x="3098.5507246376815" y="1412.9464285714284"/>
         </scene>
-        <!--View Controller-->
+        <!--Edit Goal-->
         <scene sceneID="Yea-m6-K6K">
             <objects>
-                <viewController id="QqZ-bW-4Um" sceneMemberID="viewController">
+                <viewController id="QqZ-bW-4Um" customClass="EditGoalViewController" customModule="MealPlanner209" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3ZD-oF-Zpd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="atS-84-N3e">
+                                <rect key="frame" x="20" y="321" width="374" height="200"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hNK-3A-X91">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="200"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calories" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8uv-ar-kfa">
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="42.5"/>
+                                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carbs" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PLj-e4-3A5">
+                                                <rect key="frame" x="0.0" y="52.5" width="100" height="42.5"/>
+                                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Protein" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WEo-P7-4IS">
+                                                <rect key="frame" x="0.0" y="105" width="100" height="42.5"/>
+                                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8y1-cu-qLT">
+                                                <rect key="frame" x="0.0" y="157.5" width="100" height="42.5"/>
+                                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="zuO-c1-5A0"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="n4z-9E-GXN">
+                                        <rect key="frame" x="100" y="0.0" width="274" height="200"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3ls-D6-JPP" customClass="DesignableUITextField" customModule="MealPlanner209" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="274" height="42.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.0045606461939999999" green="0.29425788650000001" blue="0.080881043540000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dNG-Yg-dP0" customClass="DesignableUITextField" customModule="MealPlanner209" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="52.5" width="274" height="42.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.0045606461939999999" green="0.29425788650000001" blue="0.080881043540000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EA3-HI-PEb" customClass="DesignableUITextField" customModule="MealPlanner209" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="105" width="274" height="42.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.0045606461939999999" green="0.29425788650000001" blue="0.080881043540000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cau-am-F1Z" customClass="DesignableUITextField" customModule="MealPlanner209" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="157.5" width="274" height="42.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.0045606461939999999" green="0.29425788650000001" blue="0.080881043540000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to auto calculate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O5l-EZ-JX8">
+                                <rect key="frame" x="67" y="218.5" width="158" height="63"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uvo-uq-GHZ">
+                                <rect key="frame" x="41" y="239" width="18" height="22"/>
+                                <state key="normal" image="checkmark.square" catalog="system"/>
+                                <connections>
+                                    <action selector="checkBoxButtonTapped:" destination="QqZ-bW-4Um" eventType="touchUpInside" id="pMK-Pw-SJN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Stb-Kn-r3o">
+                                <rect key="frame" x="87" y="621" width="80" height="38"/>
+                                <color key="backgroundColor" red="0.78776177000000003" green="0.90269557180000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="jDf-FN-7Oq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="16"/>
+                                <state key="normal" title="Save"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="saveButtonTapped:" destination="Af1-ap-2V9" eventType="touchUpInside" id="UM1-qR-KzD"/>
+                                    <action selector="saveButtonTapped:" destination="QqZ-bW-4Um" eventType="touchUpInside" id="oHB-f7-EPp"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JA4-t5-Kbi">
+                                <rect key="frame" x="247" y="621" width="80" height="38"/>
+                                <color key="backgroundColor" red="0.78776177000000003" green="0.90269557180000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="16"/>
+                                <state key="normal" title="Cancel"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="cancelButtonTapped:" destination="Af1-ap-2V9" eventType="touchUpInside" id="Ntr-aj-Wzz"/>
+                                    <action selector="cancelButtonTapped:" destination="QqZ-bW-4Um" eventType="touchUpInside" id="b4z-A0-8gM"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gdI-85-dWz">
+                                <rect key="frame" x="20" y="290" width="374" height="21"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carbs    " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gCb-Oi-iw3">
+                                        <rect key="frame" x="0.0" y="0.0" width="45" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="sC3-xi-lBy"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CoL-D5-9JP" customClass="DesignableUITextField" customModule="MealPlanner209" customModuleProvider="target">
+                                        <rect key="frame" x="45" y="0.0" width="80" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="3ih-NK-kPF"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.0045606461939999999" green="0.29425788650000001" blue="0.080881043540000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="   Protein" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8bU-yl-qWi">
+                                        <rect key="frame" x="125" y="0.0" width="57.5" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="54" id="C0U-3B-Ye7"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="49L-eB-L5N" customClass="DesignableUITextField" customModule="MealPlanner209" customModuleProvider="target">
+                                        <rect key="frame" x="182.5" y="0.0" width="80" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.0045606461939999999" green="0.29425788650000001" blue="0.080881043540000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="     Fat" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="shN-E1-0a5">
+                                        <rect key="frame" x="262.5" y="0.0" width="31.5" height="21"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V5s-D8-oZ1" customClass="DesignableUITextField" customModule="MealPlanner209" customModuleProvider="target">
+                                        <rect key="frame" x="294" y="0.0" width="80" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.0045606461939999999" green="0.29425788650000001" blue="0.080881043540000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="49L-eB-L5N" firstAttribute="width" secondItem="CoL-D5-9JP" secondAttribute="width" id="lFh-wi-bQF"/>
+                                    <constraint firstItem="V5s-D8-oZ1" firstAttribute="width" secondItem="CoL-D5-9JP" secondAttribute="width" id="yZF-zy-h97"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="3Yw-UQ-R3p"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="3Yw-UQ-R3p" firstAttribute="trailing" secondItem="atS-84-N3e" secondAttribute="trailing" constant="20" id="0py-ms-UVY"/>
+                            <constraint firstItem="Uvo-uq-GHZ" firstAttribute="leading" secondItem="3Yw-UQ-R3p" secondAttribute="leading" constant="41" id="5WU-RW-0Tf"/>
+                            <constraint firstItem="3Yw-UQ-R3p" firstAttribute="trailing" secondItem="Uvo-uq-GHZ" secondAttribute="trailing" constant="355" id="BND-QN-CnV"/>
+                            <constraint firstItem="gdI-85-dWz" firstAttribute="leading" secondItem="3Yw-UQ-R3p" secondAttribute="leading" constant="20" id="EjI-GB-tQf"/>
+                            <constraint firstItem="JA4-t5-Kbi" firstAttribute="width" secondItem="Stb-Kn-r3o" secondAttribute="width" id="Fiw-V7-zv4"/>
+                            <constraint firstItem="atS-84-N3e" firstAttribute="top" secondItem="Uvo-uq-GHZ" secondAttribute="bottom" constant="60" id="Fug-mU-WrO"/>
+                            <constraint firstItem="O5l-EZ-JX8" firstAttribute="centerY" secondItem="Uvo-uq-GHZ" secondAttribute="centerY" id="NwO-yd-Naf"/>
+                            <constraint firstItem="atS-84-N3e" firstAttribute="leading" secondItem="3Yw-UQ-R3p" secondAttribute="leading" constant="20" id="OoP-YT-hn0"/>
+                            <constraint firstItem="3Yw-UQ-R3p" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="O5l-EZ-JX8" secondAttribute="trailing" symbolic="YES" id="QVC-vj-gPO"/>
+                            <constraint firstItem="atS-84-N3e" firstAttribute="top" secondItem="gdI-85-dWz" secondAttribute="bottom" constant="10" id="R8K-Mt-If2"/>
+                            <constraint firstItem="Stb-Kn-r3o" firstAttribute="centerX" secondItem="3Yw-UQ-R3p" secondAttribute="centerX" constant="-80" id="Zky-qZ-ZET"/>
+                            <constraint firstItem="O5l-EZ-JX8" firstAttribute="leading" secondItem="Uvo-uq-GHZ" secondAttribute="trailing" constant="8" symbolic="YES" id="bOo-vH-R3D"/>
+                            <constraint firstItem="3Yw-UQ-R3p" firstAttribute="bottom" secondItem="atS-84-N3e" secondAttribute="bottom" constant="238" id="f19-N3-fB9"/>
+                            <constraint firstItem="JA4-t5-Kbi" firstAttribute="centerY" secondItem="Stb-Kn-r3o" secondAttribute="centerY" id="ftY-OR-owR"/>
+                            <constraint firstItem="JA4-t5-Kbi" firstAttribute="centerX" secondItem="3Yw-UQ-R3p" secondAttribute="centerX" constant="80" id="ogP-ng-IhS"/>
+                            <constraint firstItem="3Yw-UQ-R3p" firstAttribute="trailing" secondItem="gdI-85-dWz" secondAttribute="trailing" constant="20" id="r8Y-ta-wgh"/>
+                            <constraint firstItem="gdI-85-dWz" firstAttribute="top" secondItem="O5l-EZ-JX8" secondAttribute="bottom" constant="8.5" id="rsT-ET-5s9"/>
+                            <constraint firstItem="Stb-Kn-r3o" firstAttribute="top" secondItem="atS-84-N3e" secondAttribute="bottom" constant="100" id="uML-H4-mbK"/>
+                            <constraint firstItem="atS-84-N3e" firstAttribute="top" secondItem="3Yw-UQ-R3p" secondAttribute="top" constant="265" id="wTn-Aw-v7w"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Bh4-FN-swc"/>
+                    <navigationItem key="navigationItem" title="Edit Goal" id="Bh4-FN-swc"/>
+                    <connections>
+                        <outlet property="caloriesTextfield" destination="3ls-D6-JPP" id="ysv-fe-5wb"/>
+                        <outlet property="cancelButton" destination="JA4-t5-Kbi" id="k65-Xw-DY5"/>
+                        <outlet property="carbsProportionTextfield" destination="CoL-D5-9JP" id="l1H-jd-PWI"/>
+                        <outlet property="carbsTextfield" destination="dNG-Yg-dP0" id="hPp-9y-cbk"/>
+                        <outlet property="checkBoxButton" destination="Uvo-uq-GHZ" id="RfM-ui-SSX"/>
+                        <outlet property="fatProportionTextfield" destination="V5s-D8-oZ1" id="zUT-pL-PMV"/>
+                        <outlet property="fatTextfield" destination="cau-am-F1Z" id="fqk-sv-w6k"/>
+                        <outlet property="proportionStackView" destination="gdI-85-dWz" id="Tjk-U3-TEn"/>
+                        <outlet property="proteinProportionTextfield" destination="49L-eB-L5N" id="uJu-cL-8L4"/>
+                        <outlet property="proteinTextfield" destination="EA3-HI-PEb" id="tKk-iX-xcZ"/>
+                        <outlet property="saveButton" destination="Stb-Kn-r3o" id="XKs-90-XK7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yiy-QJ-FNO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3806" y="1413"/>
+            <point key="canvasLocation" x="3805.7971014492755" y="1412.9464285714284"/>
         </scene>
         <!--Recipe View Controller-->
         <scene sceneID="dh4-9R-OBl">
@@ -1609,23 +1905,44 @@
         <designable name="0xl-fH-Aaz">
             <size key="intrinsicContentSize" width="102" height="29"/>
         </designable>
+        <designable name="3ls-D6-JPP">
+            <size key="intrinsicContentSize" width="4" height="18.5"/>
+        </designable>
+        <designable name="49L-eB-L5N">
+            <size key="intrinsicContentSize" width="4" height="18.5"/>
+        </designable>
         <designable name="5To-Dc-tHl">
             <size key="intrinsicContentSize" width="95" height="17"/>
         </designable>
         <designable name="5by-ao-a0r">
             <size key="intrinsicContentSize" width="71.5" height="29"/>
         </designable>
+        <designable name="CoL-D5-9JP">
+            <size key="intrinsicContentSize" width="4" height="18.5"/>
+        </designable>
         <designable name="E0m-tj-gIn">
             <size key="intrinsicContentSize" width="48" height="18.5"/>
         </designable>
+        <designable name="EA3-HI-PEb">
+            <size key="intrinsicContentSize" width="4" height="18.5"/>
+        </designable>
         <designable name="M63-cR-XSE">
             <size key="intrinsicContentSize" width="85" height="24"/>
+        </designable>
+        <designable name="V5s-D8-oZ1">
+            <size key="intrinsicContentSize" width="4" height="18.5"/>
         </designable>
         <designable name="YVM-Bw-8NH">
             <size key="intrinsicContentSize" width="90" height="18.5"/>
         </designable>
         <designable name="cMh-tR-haR">
             <size key="intrinsicContentSize" width="95" height="17"/>
+        </designable>
+        <designable name="cau-am-F1Z">
+            <size key="intrinsicContentSize" width="4" height="18.5"/>
+        </designable>
+        <designable name="dNG-Yg-dP0">
+            <size key="intrinsicContentSize" width="4" height="18.5"/>
         </designable>
         <designable name="gfW-d9-Ewk">
             <size key="intrinsicContentSize" width="100" height="29"/>
@@ -1653,10 +1970,11 @@
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="pyq-ye-iwp"/>
+        <segue reference="DEa-qs-0a5"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="add" width="26.5" height="26.5"/>
+        <image name="checkmark.square" catalog="system" width="128" height="114"/>
         <image name="facebookLogo" width="43" height="43"/>
         <image name="googleLogo" width="40" height="41"/>
         <image name="house" width="38" height="38"/>

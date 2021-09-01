@@ -22,6 +22,12 @@ class User {
         case Facebook
     }
     
+    enum Gender: String {
+        case male = "Male"
+        case female = "Female"
+        case unknown = "Unknown"
+    }
+    
     static var name: String? = nil
     static var userId: String? = nil
     static var profileImageURL: URL? = nil
@@ -31,7 +37,8 @@ class User {
         return imageData
     }
     static var didSigninWith: SignInWith = .Default
-    
+    static var birth: Date?
+    static var gender: Gender?
     static var user: UserInfo? = nil
     
     class func deleteUser() {

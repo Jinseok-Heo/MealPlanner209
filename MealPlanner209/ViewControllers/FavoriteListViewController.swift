@@ -17,16 +17,19 @@ class FavoriteListViewController: UIViewController {
             flowLayout.estimatedItemSize = .zero
         }
     }
-    
-    let dataController: DataController = {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        return appDelegate.dataController
+
+    var historyFetchedResultController: NSFetchedResultsController<History>! = {
+        return FetchedResultController.historyFetchedResultController()
     }()
-    var fetchedResultController: NSFetchedResultsController<History>!
-    
-    var mealResultController: NSFetchedResultsController<Food>!
-    var snackResultController: NSFetchedResultsController<Food>!
-    var beverageResultController: NSFetchedResultsController<Food>!
+    var mealResultController: NSFetchedResultsController<Food>! = {
+        return FetchedResultController.foodFetchedResultController(sort: "Meal")
+    }()
+    var snackResultController: NSFetchedResultsController<Food>! = {
+        return FetchedResultController.foodFetchedResultController(sort: "Snack")
+    }()
+    var beverageResultController: NSFetchedResultsController<Food>! = {
+        return FetchedResultController.foodFetchedResultController(sort: "Beverage")
+    }()
     
     var numberOfMeal: Int {
         return mealResultController.sections?[0].numberOfObjects ?? 0
@@ -39,16 +42,8 @@ class FavoriteListViewController: UIViewController {
     var numberOfBeverage: Int {
         return beverageResultController.sections?[0].numberOfObjects ?? 0
     }
-    
-    let currentDate: String = {
-        let currentDate = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let dateString = dateFormatter.string(from: currentDate)
-        return dateString
-    }()
-    
-    private let section: [String] = ["Meal", "Snack", "Beverage"]
+
+    private let sectionTitle: [String] = ["Meal", "Snack", "Beverage"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,12 +56,7 @@ class FavoriteListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        setupFetchedResultController()
-        setupMealResultController()
-        setupSnackResultController()
-        setupBeverageResultController()
-        
+        setupFetchedResultControllerDelegate()
         self.collectionView.reloadData()
     }
     
@@ -75,7 +65,7 @@ class FavoriteListViewController: UIViewController {
 extension FavoriteListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return self.section.count
+        return self.sectionTitle.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -136,7 +126,7 @@ extension FavoriteListViewController: UICollectionViewDelegate, UICollectionView
             || (indexPath.section == 1 && indexPath.row == numberOfSnack)
             || (indexPath.section == 2 && indexPath.row == numberOfBeverage) {
             let addFoodVC = self.storyboard?.instantiateViewController(identifier: "AddFoodVC") as! AddFoodViewController
-            addFoodVC.foodSort = self.section[indexPath.section]
+            addFoodVC.foodSort = self.sectionTitle[indexPath.section]
             self.navigationController?.pushViewController(addFoodVC, animated: true)
         } else {
             let dropDown = DropDown()
@@ -158,8 +148,11 @@ extension FavoriteListViewController: UICollectionViewDelegate, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let headerview = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "FavoriteListHeaderCell", for: indexPath) as! FavoriteListHeaderCell
-        headerview.sectionTitleLabel.text = self.section[indexPath.section]
-        headerview.sectionTitleLabel.font = UIFont(name: "Noteworthy Bold", size: 15)
+        headerview.layer.borderWidth = 2
+        headerview.layer.borderColor = UIColor.darkGray.cgColor
+        headerview.layer.cornerRadius = 13
+        headerview.sectionTitleLabel.text = self.sectionTitle[indexPath.section]
+        headerview.sectionTitleLabel.font = UIFont(name: "Noteworthy Bold", size: 20)
         return headerview
     }
     
@@ -194,77 +187,12 @@ extension FavoriteListViewController: NSFetchedResultsControllerDelegate {
 
 extension FavoriteListViewController {
     
-    private func setupFetchedResultController() {
-        let fetchRequest: NSFetchRequest<History> = History.fetchRequest()
-        let userPredicate = NSPredicate(format: "user == %@", User.user!)
-        let datePredicate = NSPredicate(format: "date == %@", currentDate)
-        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [userPredicate, datePredicate])
-        let sortDescripter = NSSortDescriptor(key: "date", ascending: false)
-        fetchRequest.sortDescriptors = [sortDescripter]
-
-        fetchedResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: dataController.viewContext, sectionNameKeyPath: nil, cacheName: nil)
-
-        do {
-            try fetchedResultController.performFetch()
-        } catch {
-            fatalError("Fetch cannot be performed: \(error.localizedDescription)")
-        }
-    }
-    
-    private func setupMealResultController() {
-        let fetchRequest: NSFetchRequest<Food> = Food.fetchRequest()
-        let userPredicate = NSPredicate(format: "user == %@", User.user!)
-        let sortPredicate = NSPredicate(format: "sort == %@", "Meal")
-        let sortDescripter = NSSortDescriptor(key: "creationDate", ascending: false)
-        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [userPredicate, sortPredicate])
-        fetchRequest.sortDescriptors = [sortDescripter]
-        
-        mealResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: dataController.viewContext, sectionNameKeyPath: nil, cacheName: nil)
-        
+    private func setupFetchedResultControllerDelegate() {
         mealResultController.delegate = self
-        do {
-            try mealResultController.performFetch()
-        } catch {
-            fatalError("Fetch cannot be performed: \(error.localizedDescription)")
-        }
-    }
-    
-    private func setupSnackResultController() {
-        let fetchRequest: NSFetchRequest<Food> = Food.fetchRequest()
-        let userPredicate = NSPredicate(format: "user == %@", User.user!)
-        let sortPredicate = NSPredicate(format: "sort == %@", "Snack")
-        let sortDescripter = NSSortDescriptor(key: "creationDate", ascending: false)
-        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [userPredicate, sortPredicate])
-        fetchRequest.sortDescriptors = [sortDescripter]
-        
-        snackResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: dataController.viewContext, sectionNameKeyPath: nil, cacheName: nil)
-        
         snackResultController.delegate = self
-        do {
-            try snackResultController.performFetch()
-        } catch {
-            fatalError("Fetch cannot be performed: \(error.localizedDescription)")
-        }
-    }
-    
-    private func setupBeverageResultController() {
-        let fetchRequest: NSFetchRequest<Food> = Food.fetchRequest()
-        let userPredicate = NSPredicate(format: "user == %@", User.user!)
-        let sortPredicate = NSPredicate(format: "sort == %@", "Beverage")
-        let sortDescripter = NSSortDescriptor(key: "creationDate", ascending: false)
-        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [userPredicate, sortPredicate])
-        fetchRequest.sortDescriptors = [sortDescripter]
-        
-        beverageResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: dataController.viewContext, sectionNameKeyPath: nil, cacheName: nil)
-        
         beverageResultController.delegate = self
-        do {
-            try beverageResultController.performFetch()
-        } catch {
-            fatalError("Fetch cannot be performed: \(error.localizedDescription)")
-        }
     }
-    
+
     private func removeFoodNotification(indexPath: IndexPath) {
         let alert = UIAlertController(title: "Remove food?", message: nil, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { action in
@@ -279,9 +207,9 @@ extension FavoriteListViewController {
             default:
                 fatalError("Section Error")
             }
-            self.dataController.viewContext.delete(food)
+            FetchedResultController.dataController.viewContext.delete(food)
             do {
-                try self.dataController.viewContext.save()
+                try FetchedResultController.dataController.viewContext.save()
             } catch {
                 fatalError("Can't save data")
             }
@@ -307,19 +235,17 @@ extension FavoriteListViewController {
                 fatalError("Section Error")
             }
 
-            if self.fetchedResultController.fetchedObjects?.count ?? 0 == 0 {
-                let history = History(context: self.dataController.viewContext)
-                history.date = self.currentDate
+            if self.historyFetchedResultController.fetchedObjects?.count ?? 0 == 0 {
+                let history = History(context: FetchedResultController.dataController.viewContext)
+                history.date = FetchedResultController.currentDate
                 history.user = User.user!
                 history.addToFoods(food)
             } else {
-                self.fetchedResultController.fetchedObjects?.first?.addToFoods(food)
+                self.historyFetchedResultController.fetchedObjects?.first?.addToFoods(food)
             }
             
             do {
-                print("Saving")
-                try self.dataController.viewContext.save()
-                print("Save completed")
+                try FetchedResultController.dataController.viewContext.save()
             } catch {
                 fatalError("Can't save data")
             }

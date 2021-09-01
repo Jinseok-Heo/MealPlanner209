@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 import Firebase
 import FirebaseAuthUI
 import GoogleSignIn
@@ -26,6 +27,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     let naverSignInInstance = NaverThirdPartyLoginConnection.getSharedInstance()
     
+    var userFetchedResultController: NSFetchedResultsController<UserInfo>!
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         emailTextfield.delegate = self
@@ -35,17 +38,20 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         // Test
         emailTextfield.text = "hjs7747@naver.com"
         passwordTextfield.text = "hh44061312!"
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         if let user =  Auth.auth().currentUser {
             User.didSigninWith = .Default
             User.Auth.uid = user.uid
-            self.performSegue(withIdentifier: "SignInComplete", sender: nil)
+            setupUser()
         }
         
         if naverSignInInstance?.accessToken != nil {
             User.didSigninWith = .Naver
             User.Auth.uid = naverSignInInstance?.accessToken
-            self.performSegue(withIdentifier: "SignInComplete", sender: nil)
+            setupUser()
         }
     }
     
@@ -56,7 +62,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 User.name = user.user.displayName
                 User.userId = user.user.email
                 User.profileImageURL = user.user.photoURL
-                self.performSegue(withIdentifier: "SignInComplete", sender: nil)
+                self.setupUser()
             } else {
                 DispatchQueue.main.async {
                     self.notifyError()
@@ -89,7 +95,7 @@ extension LoginViewController: NaverThirdPartyLoginConnectionDelegate {
     func oauth20ConnectionDidFinishRequestACTokenWithAuthCode() {
         print("Success login")
         User.didSigninWith = .Naver
-        self.performSegue(withIdentifier: "SignInComplete", sender: nil)
+        setupUser()
     }
     
     func oauth20ConnectionDidFinishRequestACTokenWithRefreshToken() {
@@ -179,7 +185,50 @@ extension LoginViewController {
         } else {
             
         }
-        
+    }
+    
+    private func setupUser() {
+        userFetchedResultController = FetchedResultController.userFetchedResultController()
+        if (userFetchedResultController.fetchedObjects?.count ?? 0) == 0 {
+            addUser()
+        } else if (userFetchedResultController.fetchedObjects?.count ?? 0) == 1 {
+            User.user = userFetchedResultController.fetchedObjects?.first
+        } else {
+            fatalError("There's duplicate user")
+        }
+        self.performSegue(withIdentifier: "SignInComplete", sender: nil)
+    }
+    
+    private func addUser() {
+        var signInfo: Int = 0
+        switch User.didSigninWith {
+        case .Default:
+            signInfo = 0
+        case .Google:
+            signInfo = 1
+        case .Facebook:
+            signInfo = 2
+        case .Naver:
+            signInfo = 3
+        }
+        let user = UserInfo(context: FetchedResultController.dataController.viewContext)
+        user.uid = User.Auth.uid
+        user.name = User.name
+        user.birth = User.birth
+        user.gender = User.gender?.rawValue
+        user.signInInfo = Int16(signInfo)
+        user.profilePhoto = User.profileImage
+        user.maxCalories = 2500
+        user.maxCarbs = 312.5
+        user.maxProtein = 125
+        user.maxFat = 83.33
+
+        do {
+            try FetchedResultController.dataController.viewContext.save()
+        } catch {
+            fatalError("Can't save user with error: \(error.localizedDescription)")
+        }
+        User.user = user
     }
     
     private func handleSignInRequeset(authResult: AuthDataResult?, error: Error?) {
@@ -196,7 +245,7 @@ extension LoginViewController {
             User.name = user.user.displayName
             User.userId = user.user.email
             User.profileImageURL = user.user.photoURL
-            self.performSegue(withIdentifier: "SignInComplete", sender: nil)
+            
         }
     }
     
