@@ -15,5 +15,6 @@ class SearchCell: UITableViewCell {
     @IBOutlet weak var carbs: UILabel!
     @IBOutlet weak var proteins: UILabel!
     @IBOutlet weak var fats: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
 }

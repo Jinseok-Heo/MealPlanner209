@@ -22,6 +22,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var genderPicker: UIPickerView!
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     let baseTextfieldDelegate = BaseTextfieldDelegate()
     let emailTextfieldDelegate = EmailTextfieldDelegate()
@@ -29,7 +30,6 @@ class SignUpViewController: UIViewController {
     
     let genderData: [String] = ["Male", "Female", "Unknown"]
     var gender: User.Gender?
-    var selectedDate: Date?
     
     var ableToSignUp: Bool = false
     
@@ -40,46 +40,62 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func signUpButtonTapped(_ sender: Any) {
-        guard let email = emailTextfield.text else {
-            return
-        }
-        guard let password = passwordTextfield.text else {
-            return
-        }
-        
-        guard let verifiedPassword = verifyPasswordTextfield.text else {
+        setLoading(isLoading: true)
+        if emailTextfield.text ?? "" == "" {
+            setLoading(isLoading: false)
+            notifyMessage(message: "Check email address")
             return
         }
         
-        guard let name = nameTextfield.text else {
+        if passwordTextfield.text ?? "" == "" {
+            setLoading(isLoading: false)
+            notifyMessage(message: "Check password")
             return
         }
         
-        guard let userId = userIDTextfield.text else {
+        if verifyPasswordTextfield.text ?? "" == "" {
+            setLoading(isLoading: false)
+            notifyMessage(message: "Check verify password")
             return
         }
         
-        guard verifyPassword(password: password, verifiedPassword: verifiedPassword) == true else {
+        if nameTextfield.text ?? "" == "" {
+            setLoading(isLoading: false)
+            notifyMessage(message: "Check name")
+            return
+        }
+        
+        if userIDTextfield.text ?? "" == "" {
+            setLoading(isLoading: false)
+            notifyMessage(message: "Check user ID")
+            return
+        }
+        
+        guard verifyPassword(password: passwordTextfield.text!, verifiedPassword: verifyPasswordTextfield.text!) == true else {
+            setLoading(isLoading: false)
             return
         }
     
-        Auth.auth().createUser(withEmail: email, password: password) { (authResult, error) in
+        Auth.auth().createUser(withEmail: emailTextfield.text!, password: passwordTextfield.text!) { (authResult, error) in
             if let _ = authResult {
-                Auth.auth().signIn(withEmail: self.emailTextfield.text ?? "", password: self.passwordTextfield.text ?? "") { (user, error) in
-                    if user != nil{
-                        print("login success")
-                        User.name = name
-                        User.userId = userId
-                        User.birth = self.selectedDate
+                Auth.auth().signIn(withEmail: self.emailTextfield.text!, password: self.passwordTextfield.text!) { (user, error) in
+                    if let user = user {
+                        User.Auth.uid = user.user.uid
+                        User.name = self.nameTextfield.text!
+                        User.userId = self.userIDTextfield.text!
+                        User.birth = self.datePicker.date
                         User.gender = self.gender
                         self.addUser()
+                        self.setLoading(isLoading: false)
                         self.performSegue(withIdentifier: "SignUpComplete", sender: nil)
                     } else {
-                        fatalError("Failed login with error: \(error?.localizedDescription ?? "")")
+                        self.setLoading(isLoading: false)
+                        self.notifyMessage(message: "Can't sign in")
                     }
                 }
             } else {
-                self.notifyMessage()
+                self.setLoading(isLoading: false)
+                self.notifyMessage(message: "Can't sign up")
             }
         }
     }
@@ -89,7 +105,6 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func birthSelected(_ sender: UIDatePicker) {
-        selectedDate = sender.date
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -180,6 +195,7 @@ extension SignUpViewController {
         let alertController = UIAlertController(title: "Sign up Failed", message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     private func passwordMessage(verified: Bool) -> String {
@@ -187,6 +203,16 @@ extension SignUpViewController {
             return "Valid password!"
         } else {
             return "Invalid password                      Try again!"
+        }
+    }
+    
+    private func setLoading(isLoading: Bool) {
+        cancelButton.isEnabled = !isLoading
+        signUpButton.isEnabled = !isLoading
+        if isLoading {
+            self.activityIndicator.startAnimating()
+        } else {
+            self.activityIndicator.stopAnimating()
         }
     }
     

@@ -16,7 +16,6 @@ import FBSDKLoginKit
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
-    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var emailTextfield: DesignableUITextField!
     @IBOutlet weak var passwordTextfield: DesignableUITextField!
     @IBOutlet weak var signInButton: UIButton!
@@ -24,6 +23,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var facebookButton: UIButton!
     @IBOutlet weak var googleButton: UIButton!
     @IBOutlet weak var naverButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     let naverSignInInstance = NaverThirdPartyLoginConnection.getSharedInstance()
     
@@ -35,6 +35,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         passwordTextfield.delegate = self
         
         naverSignInInstance?.delegate = self
+        emailTextfield.text = "hjs7747@naver.com"
+        passwordTextfield.text = "hh7747"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,6 +55,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func signInButtonTapped(_ sender: Any) {
+        setLoading(isLoading: true)
         Auth.auth().signIn(withEmail: emailTextfield.text ?? "", password: passwordTextfield.text ?? "") { (user, error) in
             if let user = user  {
                 User.Auth.uid = user.user.uid
@@ -62,9 +65,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 self.setupUser()
             } else {
                 DispatchQueue.main.async {
+                    self.setLoading(isLoading: false)
                     self.notifyError()
                 }
-                fatalError("Failed login with error: \(error?.localizedDescription ?? "")")
             }
         }
     }
@@ -74,14 +77,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func facebookButtonTapped(_ sender: Any) {
+        setLoading(isLoading: true)
         facebookLogin()
     }
     
     @IBAction func googleButtonTapped(_ sender: Any) {
+        setLoading(isLoading: true)
         googleLogin()
     }
     
     @IBAction func naverButtonTapped(_ sender: Any) {
+        setLoading(isLoading: true)
         naverSignInInstance?.requestThirdPartyLogin()
     }
     
@@ -90,7 +96,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 extension LoginViewController: NaverThirdPartyLoginConnectionDelegate {
     
     func oauth20ConnectionDidFinishRequestACTokenWithAuthCode() {
-        print("Success login")
         User.didSigninWith = .Naver
         setupUser()
     }
@@ -104,7 +109,7 @@ extension LoginViewController: NaverThirdPartyLoginConnectionDelegate {
     }
     
     func oauth20Connection(_ oauthConnection: NaverThirdPartyLoginConnection!, didFailWithError error: Error!) {
-        print("error = \(error.localizedDescription)")
+        notifyError(message: "oauth20Connection error")
     }
     
 }
@@ -146,8 +151,7 @@ extension LoginViewController {
         if AccessToken.current != nil {
             GraphRequest(graphPath: "me", parameters: ["fields":"id, name, first_name, last_name, picture.type(large), email"]).start { (connection, result, error) in
                 if error == nil {
-                    guard let result = result else { return }
-                    print(result)
+                    guard let _ = result else { return }
                 }
             }
         }
@@ -179,8 +183,6 @@ extension LoginViewController {
                                completion: handleSignInRequeset(authResult:error:))
         } else if sort < 3 {
             Auth.auth().signIn(with: credential, completion: handleSignInRequeset(authResult:error:))
-        } else {
-            
         }
     }
     
@@ -193,6 +195,7 @@ extension LoginViewController {
         } else {
             fatalError("There's duplicate user")
         }
+        setLoading(isLoading: false)
         self.performSegue(withIdentifier: "SignInComplete", sender: nil)
     }
     
@@ -231,6 +234,7 @@ extension LoginViewController {
     private func handleSignInRequeset(authResult: AuthDataResult?, error: Error?) {
         if let error = error {
             DispatchQueue.main.async {
+                self.setLoading(isLoading: false)
                 self.notifyError()
             }
             fatalError("Failed sign in with error: \(error.localizedDescription)")
@@ -242,14 +246,26 @@ extension LoginViewController {
             User.name = user.user.displayName
             User.userId = user.user.email
             User.profileImageURL = user.user.photoURL
-            
+            setupUser()
+            setLoading(isLoading: false)
         }
     }
     
-    private func notifyError() {
-        let alertController = UIAlertController(title: "Login Failed", message: "", preferredStyle: .alert)
+    private func setLoading(isLoading: Bool) {
+        signInButton.isEnabled = !isLoading
+        signUpButton.isEnabled = !isLoading
+        if isLoading {
+            self.activityIndicator.startAnimating()
+        } else {
+            self.activityIndicator.stopAnimating()
+        }
+    }
+    
+    private func notifyError(message: String?=nil) {
+        let alertController = UIAlertController(title: "Login Failed", message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
     }
     
 }

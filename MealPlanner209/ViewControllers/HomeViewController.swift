@@ -10,10 +10,9 @@ import CoreData
 
 class HomeViewController: UIViewController {
     
-    @IBOutlet weak var homeBarButton: UITabBarItem!
+    @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var barStackView: UIStackView!
     @IBOutlet weak var caloriesLabel: UILabel!
-    @IBOutlet weak var linearBarView: LinearProgressBar!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var scrollContentView: UIView!
     
@@ -44,6 +43,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         setupGesture()
         setupNavigation()
+        setupBars()
         scrollView.isScrollEnabled = true
     }
     
@@ -105,24 +105,18 @@ extension HomeViewController {
     
     private func setupBars() {
         var linearFrame: CGRect
-        if isFirstLoad {
-            linearFrame = CGRect(x: linearBarView.frame.origin.x,
-                                 y: linearBarView.frame.origin.y + 85,
-                                 width: linearBarView.frame.width,
-                                 height: linearBarView.frame.height)
-            isFirstLoad = false
-        } else {
-            linearFrame = CGRect(x: linearBarView.frame.origin.x,
-                                 y: caloriesLabel.frame.origin.y,
-                                 width: linearBarView.frame.width,
-                                 height: linearBarView.frame.height)
-        }
+
+        let leftSpace: CGFloat = 10
+        let barWidth = self.view.layer.bounds.width - caloriesLabel.frame.maxX - leftSpace - 20
+        linearFrame = CGRect(x: caloriesLabel.frame.maxX + 10,
+                             y: caloriesLabel.frame.origin.y,
+                             width: barWidth,
+                             height: caloriesLabel.frame.height)
         
         caloriesBar = LinearProgressBar(frame: linearFrame, maxValue: maxCalories, currentValue: currentCalories)
-        linearBarView.removeFromSuperview()
-        linearBarView = caloriesBar
-        self.view.addSubview(linearBarView)
-
+        self.contentView.addSubview(caloriesBar)
+        caloriesBar.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 60).isActive = true
+        
         let space = barStackView.spacing
         let width = (barStackView.frame.width - 2 * space) / 3
         let frame = CGRect(x: 0, y: 0, width: width, height: barStackView.frame.height)
@@ -284,9 +278,8 @@ extension HomeViewController {
         for subview in self.barStackView.arrangedSubviews {
             subview.removeFromSuperview()
         }
-        for subview in self.linearBarView.subviews {
-            subview.removeFromSuperview()
-        }
+        caloriesBar.removeConstraints(caloriesBar.constraints)
+        caloriesBar.removeFromSuperview()
         setupBars()
     }
 }

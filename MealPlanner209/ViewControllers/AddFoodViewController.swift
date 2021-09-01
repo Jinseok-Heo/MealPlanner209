@@ -28,7 +28,7 @@ class AddFoodViewController: UIViewController {
     @IBOutlet weak var cancelButton: UIButton!
     
     let pickerDelegate = CustomPickerViewDelegate()
-    let pickerData = ["g", "cal"]
+    let pickerData = ["g", "kcal"]
     
     var dataController: DataController!
     var fetchedResultController: NSFetchedResultsController<Food>!
@@ -66,7 +66,6 @@ class AddFoodViewController: UIViewController {
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-        print("Save button tapped")
         addFood()
     }
     
@@ -100,17 +99,18 @@ extension AddFoodViewController: NSFetchedResultsControllerDelegate {
     }
     
     private func addFood() {
-        if !checkTextfield() { return }
-        print("Adding food data..")
+        if !checkTextfield() {
+            self.notifyMessage(message: "Found empty textfield")
+            return
+        }
+        
         let newFood = Food(context: dataController.viewContext)
         var totalCalories: Double = 0
         for (idx, textfield) in textfields.enumerated() {
-            guard let text = textfield.text else {
-                print("No text in textfield")
-                return
-            }
+            let text = textfield.text ?? "0"
             guard let number = Double(text) else {
-                fatalError("Invalid number")
+                notifyMessage(message: "Invalid number")
+                return
             }
             
             // Note: idx 0, 1, 2 -> carbs, proteins, fats
@@ -153,7 +153,6 @@ extension AddFoodViewController: NSFetchedResultsControllerDelegate {
         } else {
             newFood.photo = UIImage(named: "placeholder")!.pngData()
         }
-        print("Succesfully added")
         do {
             try dataController.viewContext.save()
         } catch {
@@ -165,6 +164,16 @@ extension AddFoodViewController: NSFetchedResultsControllerDelegate {
 }
 
 extension AddFoodViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        var newText = textField.text! as NSString
+        newText = newText.replacingCharacters(in: range, with: string) as NSString
+        if Double(newText as String) == nil {
+            notifyMessage(title: "Text error", message: "Invalid number!")
+            return false
+        }
+        return true
+    }
     
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
         calculateTotalCalories()
@@ -236,6 +245,13 @@ extension AddFoodViewController {
                 }
             }
         }
+    }
+    
+    private func notifyMessage(title: String="Add failed", message: String?=nil) {
+        let alertController = UIAlertController(title: "Add failed", message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
     }
     
 }

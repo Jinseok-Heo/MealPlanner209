@@ -14,7 +14,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     let settingItems: [String] = [
         "Edit profile",
-        "Consumption goal",
+        "Edit goal",
         "Sign out"
     ]
     

@@ -14,6 +14,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var pageLabel: UILabel!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var previousButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var currentPage: Int = 1
     var networkResult: FoodResponse?
@@ -24,36 +25,33 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        previousButton.isEnabled = true
+        nextButton.isEnabled = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         let searchController = setupSearchController()
         setupNavigationItem(searchController: searchController)
-        
-        setupButton()
     }
     
     @IBAction func nextButtonTapped(_ sender: Any) {
         currentPage += 1
-        setupButton()
         currentNetworkTask?.cancel()
+        setLoading(isLoading: true)
         currentNetworkTask = NetworkModel.getFoods(query: self.navigationItem.searchController!.searchBar.text ?? "", page: currentPage, completion: getFoodCompletionHandler(result:error:))
     }
     
     @IBAction func previousButtonTapped(_ sender: Any) {
         currentPage -= 1
-        setupButton()
         currentNetworkTask?.cancel()
+        setLoading(isLoading: true)
         currentNetworkTask = NetworkModel.getFoods(query: self.navigationItem.searchController!.searchBar.text ?? "", page: currentPage, completion: getFoodCompletionHandler(result:error:))
     }
     
     private func getFoodCompletionHandler(result: FoodResponse?, error: Error?) {
-        if error != nil {
-            print(error!.localizedDescription)
-            return
-        }
+        setLoading(isLoading: false)
+        if error != nil { return }
         guard let result = result else { return }
         self.networkResult = result
         self.tableView.reloadData()
@@ -84,6 +82,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             guard let image = UIImage(data: imageData) else {
                 return cell
             }
+            cell.activityIndicator.startAnimating()
             cell.foodImageView.image = ImageHandler.resizeImage(image: image, targetSize: cell.foodImageView.frame.size)
             NetworkModel.getNutrients(id: networkResult.menuItems[indexPath.row].id!) { (result, error) in
                 if let result = result {
@@ -109,6 +108,11 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                     cell.carbs.text = "Carbs: " + carbs
                     cell.proteins.text = "Protein: " + protein
                     cell.fats.text = "Fat: " + fat
+                    cell.activityIndicator.stopAnimating()
+                } else {
+                    DispatchQueue.main.async {
+                        self.notifyMessage(message: "Can't get nutrients. Check network")
+                    }
                 }
             }
         }
@@ -120,11 +124,11 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 extension SearchViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        guard let text = self.navigationItem.searchController!.searchBar.text else {
+        if (self.navigationItem.searchController!.searchBar.text ?? "") == "" {
             return
         }
         currentNetworkTask?.cancel()
-        currentNetworkTask = NetworkModel.getFoods(query: text, page: currentPage, completion: getFoodCompletionHandler(result:error:))
+        currentNetworkTask = NetworkModel.getFoods(query: self.navigationItem.searchController!.searchBar.text ?? "", page: currentPage, completion: getFoodCompletionHandler(result:error:))
     }
     
 }
@@ -147,11 +151,26 @@ extension SearchViewController {
         self.definesPresentationContext = true
     }
     
-    private func setupButton() {
-        if currentPage <= 1 {
-            previousButton.isEnabled = false
+    private func setLoading(isLoading: Bool) {
+        nextButton.isEnabled = !isLoading
+        if isLoading {
+            self.activityIndicator.startAnimating()
+            previousButton.isEnabled = !isLoading
         } else {
-            previousButton.isEnabled = true
+            self.activityIndicator.stopAnimating()
+            if currentPage > 1 {
+                previousButton.isEnabled = !isLoading
+            } else {
+                previousButton.isEnabled = false
+            }
         }
     }
+    
+    private func notifyMessage(message: String?=nil) {
+        let alertController = UIAlertController(title: "Search failed", message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
 }

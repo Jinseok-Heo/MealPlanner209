@@ -22,6 +22,7 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var changeImageButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     let passwordTextfieldDelegate = PasswordTextfieldDelegate()
     
@@ -43,42 +44,31 @@ class EditProfileViewController: UIViewController {
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-        guard let fetchedObject = userFetchedResultController.fetchedObjects else {
-            fatalError("Can't define user")
-        }
-        if fetchedObject.count != 1 {
-            fatalError("Invalid user count")
-        }
-        guard let user = fetchedObject.first else {
-            fatalError("No user is found")
-        }
-        
-        user.birth = datePicker.date
-        user.gender = gender
-        user.profilePhoto = self.profileImageView.image?.pngData()
-        
-        if let newName = userIdTextfield.text {
-            user.name = newName
-        }
-        
-        if let newPassword = passwordTextfield.text {
-            if let verifiedNewPassword = verifiedPasswordTextfield.text {
-                // TODO: request change password
+        setLoading(isLoading: true)
+        if let newPassword = passwordTextfield.text, let verifiedNewPassword = verifiedPasswordTextfield.text {
+            if newPassword != verifiedNewPassword {
+                self.setLoading(isLoading: false)
+                return
             }
+            Auth.auth().currentUser?.updatePassword(to: verifiedNewPassword, completion: { error in
+                self.setLoading(isLoading: false)
+                if error == nil {
+                    self.updateUser()
+                    DispatchQueue.main.async {
+                        self.editSuccess()
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.setLoading(isLoading: false)
+                        self.notifyMessage(message: "Check network")
+                    }
+                }
+            })
+        } else {
+            setLoading(isLoading: false)
+            updateUser()
+            editSuccess()
         }
-        
-        do {
-            try FetchedResultController.dataController.viewContext.save()
-        } catch {
-            fatalError("Can't save data")
-        }
-        User.user = user
-        let alert = UIAlertController(title: "Save success!", message: nil, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-            self.navigationController?.popViewController(animated: true)
-        }
-        alert.addAction(okAction)
-        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
@@ -144,6 +134,7 @@ extension EditProfileViewController: UITextFieldDelegate {
             verifiedLabel.text = passwordMessage(verified: false)
             saveButton.isEnabled = false
         }
+        
         return newText.length <= 15
     }
     
@@ -151,10 +142,12 @@ extension EditProfileViewController: UITextFieldDelegate {
         let passwordRegEx = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8}$"
         let passwordTest = NSPredicate(format:"SELF MATCHES %@", passwordRegEx)
         
-        if !passwordTest.evaluate(with: textField.text) {
-            let alertController = UIAlertController(title: "Sign up Failed", message: "Invalid password!", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alertController.addAction(okAction)
+        if passwordTest.evaluate(with: textField.text) {
+            notifyMessage(message: "Invalid password")
+        }
+        
+        if passwordTextfield.text == nil && verifiedPasswordTextfield.text == nil {
+            saveButton.isEnabled = true
         }
     }
     
@@ -182,6 +175,66 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
             self.profileImageView.image = newImage
         }
         self.dismiss(animated: true, completion: nil)
+    }
+    
+}
+
+extension EditProfileViewController {
+    
+    private func updateUser() {
+        guard let fetchedObject = userFetchedResultController.fetchedObjects else {
+            notifyMessage(message: "Can't find user")
+            return
+        }
+        if fetchedObject.count != 1 {
+            notifyMessage(message: "Found more than one user")
+            return
+        }
+        guard let user = fetchedObject.first else {
+            notifyMessage(message: "Can't find user")
+            return
+        }
+        
+        user.birth = datePicker.date
+        user.gender = gender
+        user.profilePhoto = self.profileImageView.image?.pngData()
+        
+        if let newName = userIdTextfield.text {
+            user.name = newName
+        }
+        
+        do {
+            try FetchedResultController.dataController.viewContext.save()
+        } catch {
+            fatalError("Can't save data")
+        }
+        User.user = user
+    }
+    
+    private func editSuccess() {
+        let alert = UIAlertController(title: "Save success!", message: nil, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+            self.navigationController?.popViewController(animated: true)
+        }
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func setLoading(isLoading: Bool) {
+        cancelButton.isEnabled = !isLoading
+        saveButton.isEnabled = !isLoading
+        if isLoading {
+            self.activityIndicator.startAnimating()
+        } else {
+            self.activityIndicator.stopAnimating()
+        }
+    }
+    
+    private func notifyMessage(message: String?=nil) {
+        let alertController = UIAlertController(title: "Edit failed", message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
     }
     
 }

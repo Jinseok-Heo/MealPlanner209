@@ -19,7 +19,6 @@
 		EB6DC32426C2567F00764CDD /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6DC32326C2567F00764CDD /* CustomTextField.swift */; };
 		EB7497C326D4B00F003418E9 /* NutritionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7497C226D4B00F003418E9 /* NutritionResponse.swift */; };
 		EB83C50726BE6605007A82F6 /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB83C50626BE6605007A82F6 /* AuthModel.swift */; };
-		EB83C50926BE89FD007A82F6 /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB83C50826BE89FD007A82F6 /* TabbarController.swift */; };
 		EB990F0126C3982A008E671F /* ImageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB990F0026C3982A008E671F /* ImageHandler.swift */; };
 		EBA78C3326C3F8FD0066DF7C /* UserInfoTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA78C3226C3F8FD0066DF7C /* UserInfoTextFieldDelegate.swift */; };
 		EBAA4AB926D36CE1000FFB1C /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAA4AB826D36CE1000FFB1C /* SearchCell.swift */; };
@@ -85,7 +84,6 @@
 		EB6DC32326C2567F00764CDD /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		EB7497C226D4B00F003418E9 /* NutritionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionResponse.swift; sourceTree = "<group>"; };
 		EB83C50626BE6605007A82F6 /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
-		EB83C50826BE89FD007A82F6 /* TabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
 		EB990F0026C3982A008E671F /* ImageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHandler.swift; sourceTree = "<group>"; };
 		EBA78C3226C3F8FD0066DF7C /* UserInfoTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoTextFieldDelegate.swift; sourceTree = "<group>"; };
 		EBAA4AB826D36CE1000FFB1C /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
@@ -287,7 +285,6 @@
 				EBB2ED2826BD227A00176847 /* SettingsViewController.swift */,
 				EBB2ED2A26BD228D00176847 /* HistoryViewController.swift */,
 				EBB2ED2C26BD22A100176847 /* RecipeViewController.swift */,
-				EB83C50826BE89FD007A82F6 /* TabbarController.swift */,
 				EB58476D26CCEB67000A6738 /* AddFoodViewController.swift */,
 				EBB3194526DDF51A004B3687 /* EditProfileViewController.swift */,
 				EBB3194726DDF553004B3687 /* EditGoalViewController.swift */,
@@ -617,7 +614,6 @@
 				EB58476E26CCEB67000A6738 /* AddFoodViewController.swift in Sources */,
 				EB83C50726BE6605007A82F6 /* AuthModel.swift in Sources */,
 				EBB2ED2D26BD22A100176847 /* RecipeViewController.swift in Sources */,
-				EB83C50926BE89FD007A82F6 /* TabbarController.swift in Sources */,
 				EBB3194826DDF553004B3687 /* EditGoalViewController.swift in Sources */,
 				EBB2ECEE26BCF8B900176847 /* LoginViewController.swift in Sources */,
 				EB990F0126C3982A008E671F /* ImageHandler.swift in Sources */,

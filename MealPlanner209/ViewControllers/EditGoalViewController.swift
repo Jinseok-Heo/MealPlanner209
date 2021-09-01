@@ -21,6 +21,7 @@ class EditGoalViewController: UIViewController {
     @IBOutlet weak var fatTextfield: DesignableUITextField!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     private let otherNutrientsTextfieldDelegate = OtherNutrientsTextfieldDelegate()
     
@@ -104,8 +105,10 @@ class EditGoalViewController: UIViewController {
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         guard let user = userFetchedResultController.fetchedObjects?.first else {
-            fatalError("Can't define user")
+            self.notifyMessage(message: "Can't find user")
+            return
         }
+        setLoading(isLoading: true)
         user.maxCalories = calories
         user.maxCarbs = carbs
         user.maxProtein = protein
@@ -114,9 +117,11 @@ class EditGoalViewController: UIViewController {
         do {
             try FetchedResultController.dataController.viewContext.save()
         } catch {
+            setLoading(isLoading: false)
             fatalError("Can't save data")
         }
         User.user = user
+        setLoading(isLoading: false)
         let alert = UIAlertController(title: "Saving success", message: nil, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { _ in
             self.navigationController?.popViewController(animated: true)
@@ -187,5 +192,22 @@ extension EditGoalViewController {
         carbsTextfield.text = String(calculatedCarbs) + "g"
         proteinTextfield.text = String(calculatedProtein) + "g"
         fatTextfield.text = String(calculatedFat) + "g"
+    }
+    
+    private func setLoading(isLoading: Bool) {
+        cancelButton.isEnabled = !isLoading
+        saveButton.isEnabled = !isLoading
+        if isLoading {
+            self.activityIndicator.startAnimating()
+        } else {
+            self.activityIndicator.stopAnimating()
+        }
+    }
+    
+    private func notifyMessage(message: String?=nil) {
+        let alertController = UIAlertController(title: "Edit failed", message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
     }
 }
